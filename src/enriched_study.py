@@ -110,6 +110,14 @@ def enrich(df, sym, row):
     m["vol_decay_7d"] = float(w7["volume"][1:].mean() / max(v.iloc[0], 1)) if n > 2 else np.nan
     rr = c.pct_change().iloc[:8].dropna()
     m["ann_vol_7d"] = float(rr.std() * np.sqrt(365)) if len(rr) > 2 else np.nan
+    # MAX/MIN effect: экстремальные дневные доходности первой недели
+    r7d = c.pct_change().iloc[:7].dropna()
+    if len(r7d):
+        m["max_daily_7d"] = float(r7d.max())
+        m["min_daily_7d"] = float(r7d.min())
+        m["n_up_streak_open"] = int((r7d > 0).values.prod()) if len(r7d) >= 2 else 0
+    else:
+        m["max_daily_7d"] = m["min_daily_7d"] = m["n_up_streak_open"] = np.nan
     w30c = c.iloc[: min(30, n)]
     m["up_days_share_30"] = float((w30c.pct_change().dropna() > 0).mean()) if len(w30c) > 2 else np.nan
     m["last_date"] = str(df.index[-1])
