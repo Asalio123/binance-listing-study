@@ -108,7 +108,10 @@ def token_from(url_):
         return None
     tokens = [t for t in m.group(1).strip("-").split("-") if t]
     token = tokens[-1] if tokens else ""
-    return token.upper() if len(token) >= 2 else None
+    # числовые хвосты = ID статей zendesk (?HL=EN и пр.), не тикеры
+    if not re.fullmatch(r"[A-Z0-9]{2,10}", token) or token.isdigit():
+        return None
+    return token.upper()
 
 
 def query_coll(cid):
@@ -182,7 +185,11 @@ def rebuild():
     best = {}
     for line in RAWL.open():
         r = json.loads(line)
-        key, d, coll = r["token"], r["ts"], r["coll"]
+        tok = r["token"]
+        # числовые хвосты = ID статей zendesk, не тикеры
+        if not re.fullmatch(r"[A-Z0-9]{2,10}", tok) or tok.isdigit():
+            continue
+        key, d, coll = tok, r["ts"], r["coll"]
         if key not in best or d < best[key][0]:
             best[key] = (d, coll)
     rows = [
