@@ -2,10 +2,9 @@
 import json
 import random
 import re
+import subprocess
 import time
-import urllib.error
 import urllib.parse
-import urllib.request
 from pathlib import Path
 
 import pandas as pd
@@ -26,9 +25,11 @@ def log(msg):
     print(f"{time.strftime('%m-%d %H:%M:%S')} {msg}", flush=True)
 
 
-MIN_GAP = 9.0          # пейсинг ~7 req/min: серией быстрых запросов сервер
-_last_req = [0.0]      # троттлит мусорными 400/502 (наблюдение 2026-08-24)
-THROTTLE_CODES = {400, 403, 429, 500, 502, 503, 504}
+MIN_GAP = 20.0         # вежливый пейсинг между запросами
+_last_req = [0.0]
+CUR_COLL = ["?"]
+PROXY = "socks5h://127.0.0.1:10808"  # локальный туннель: напрямую из РФ
+                                     # канал к commoncrawl флапает (504/400/SSL-ресеты)
 
 
 def _pace():
@@ -38,35 +39,43 @@ def _pace():
     _last_req[0] = time.time()
 
 
-def fetch_page(url, tries=8):
-    """Тело ответа; '' при 404 (сервер так отвечает на нулевую выдачу и отсутствующий индекс).
+def fetch_page(url, tries=5, end_ok=False):
+    """Тело ответа; '' при 404 (нулевая выдача или отсутствующий индекс).
 
-    Троттлинг-коды лечим НЕ частыми ретраями (они держат лимит активным),
-    а длинными эскалирующими паузами.
+    end_ok: HTTP 400 считается концом пагинации — на новом сервере запрос
+    страницы за пределами выдачи отвечает голым nginx 400 вместо JSON-сообщения
+    (2026-08-24), это норма, а не ошибка.
     """
-    last = None
+    last = ""
     for attempt in range(tries):
         _pace()
-        try:
-            req = urllib.request.Request(url, headers=UA)
-            return urllib.request.urlopen(req, timeout=300).read().decode(errors="replace")
-        except urllib.error.HTTPError as e:
-            if e.code == 404:
+        base = ["curl", "-sS", "--max-time", "300", "-A", UA["User-Agent"],
+                "-w", "\n%{http_code}"]
+        for extra in (["-x", PROXY], []):
+            p = subprocess.run(base + extra + [url], capture_output=True, text=True)
+            body, _, code = p.stdout.rpartition("\n")
+            code = code.strip() or "000"
+            if code == "200":
+                return body
+            if code == "404" or (code == "400" and end_ok):
                 return ""
-            last = e
-            if e.code in THROTTLE_CODES:
-                wait = min(300 * 2 ** min(attempt, 3), 2400) + random.uniform(0, 60)
-                log(f"    троттлинг (HTTP {e.code}), пауза {wait:.0f}с")
-            else:
-                wait = 60 + random.uniform(0, 30)
-                log(f"    ретрай {attempt + 1}/{tries} через {wait:.0f}с: HTTP {e.code}")
-            time.sleep(wait)
-        except Exception as e:
-            last = e
-            wait = 60 + random.uniform(0, 30)
-            log(f"    ретрай {attempt + 1}/{tries} через {wait:.0f}с: {str(e)[:120]}")
-            time.sleep(wait)
-    raise RuntimeError(f"исчерпаны ретраи: {last}")
+            last = f"HTTP {code} {p.stderr.strip()[:80]}"
+        import os
+        if os.environ.get("CC_DEBUG") and code != "404":
+            pv = subprocess.run(["curl", "-v", "-sS", "--max-time", "60", "-A",
+                                 UA["User-Agent"], "-o", "/dev/null"] +
+                                (["-x", PROXY] if extra else []) + [url],
+                               capture_output=True, text=True)
+            keep = [l for l in pv.stderr.splitlines()
+                    if any(k in l for k in ("Connected", "HTTP/", "Server:", "Via:",
+                                            "subject:", "SSL connection", "error"))]
+            log("    DEBUG -v:\n      " + "\n      ".join(keep[-10:]))
+            if code != "000":
+                break
+        wait = min(45 * 2 ** attempt, 300) + random.uniform(0, 20)
+        log(f"    [{CUR_COLL[0]}] {last}, ретрай {attempt + 1}/{tries} через {wait:.0f}с")
+        time.sleep(wait)
+    raise RuntimeError(f"[{CUR_COLL[0]}] исчерпаны ретраи: {last}")
 
 
 def load_state():
@@ -112,14 +121,19 @@ def query_coll(cid):
     делаем контрольный проб корневого домена.
     """
     recs = []
+    seen = set()
+    CUR_COLL[0] = cid
     for page in range(MAX_PAGES):
         q = urllib.parse.urlencode({
             "url": "binance.com/en/support/announcement/*",
             "output": "json",
-            "collapse": "urlkey",
+            # collapse=urlkey валит бэкенд на непустых коллекциях (400/504),
+            # поэтому без него — дедуп клиентский, выдача отсортирована
+            # по urlkey->timestamp, первый захват и так ранний
             "page": page,
         })
-        body = fetch_page(f"https://index.commoncrawl.org/{cid}-index?{q}")
+        body = fetch_page(f"https://index.commoncrawl.org/{cid}-index?{q}",
+                          end_ok=(page > 0))
         if body == "":
             if page == 0:
                 probe = fetch_page(
@@ -148,6 +162,10 @@ def query_coll(cid):
             except ValueError:
                 continue
             if "url" in r and "timestamp" in r:
+                key = r.get("urlkey") or r["url"]
+                if key in seen:
+                    continue
+                seen.add(key)
                 recs.append((r["url"], str(r["timestamp"])))
                 n_new += 1
         if n_new == 0:
@@ -206,19 +224,24 @@ def main():
             log(f"[{i + 1}/{len(todo)}] {cid}: FAIL {str(e)[:150]}")
         save_state(st)
         time.sleep(2)
-    # второй проход: упавшие во время плохих окон шард-ов часто оживают
-    if failures:
-        log(f"второй проход по {len(failures)} упавшим: {failures}")
-        for cid in list(failures):
+    # добор: упавшие коллекции при такой нестабильности сервера решаются
+    # ретрай-лотереей — даём им ещё два прохода
+    for extra_pass in range(2):
+        if not failures:
+            break
+        log(f"проход {extra_pass + 2} по {len(failures)} упавшим: {failures}")
+        still = []
+        for cid in failures:
             try:
                 run_coll(cid, st)
-                failures.remove(cid)
             except Exception as e:
+                still.append(cid)
                 log(f"  {cid}: FAIL {str(e)[:150]}")
             save_state(st)
             time.sleep(2)
+        failures = still
     for cid in failures:
-        st["failed"].append({"id": cid, "error": "исчерпаны ретраи в обоих проходах"})
+        st["failed"].append({"id": cid, "error": "исчерпаны ретраи во всех проходах"})
     if failures or st["failed"]:
         save_state(st)
     rebuild()
