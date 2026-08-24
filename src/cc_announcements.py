@@ -1,115 +1,210 @@
-"""Common Crawl коллектор дат анонсов Binance (независимо от Internet Archive).
-
-Для каждой коллекции CC-MAIN-* >= 2019: CDX-совместимый запрос с фильтром
-will-list; слаг -> тикер-кандидат; earliest timestamp per token.
-Resume по коллекциям через data/cc_state.json.
-"""
+"""Даты анонсов листингов Binance из индексов Common Crawl (коллекции 2019+, resume-state, пагинация)."""
 import json
+import random
 import re
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
 
 import pandas as pd
 
-D = Path.home() / "binance-listing-study" / "data"
-STATE = D / "cc_state.json"
-RAW = D / "cc_raw.jsonl"
-OUT = D / "cc_dates.csv"
+ROOT = Path.home() / "binance-listing-study"
+OUT = ROOT / "data" / "cc_dates.csv"
+RAWL = ROOT / "data" / "cc_raw.jsonl"
+STATE = ROOT / "data" / "cc_state.json"
+COLLINFO = "https://index.commoncrawl.org/collinfo.json"
+UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"}
 HEX = re.compile(r"[0-9a-f]{32}")
-SKIP = ("futures", "quarterly", "margin", "contracts")
-IDX = "https://index.commoncrawl.org/{cid}-index?url=binance.com%2Fen%2Fsupport%2Fannouncement%2F*&output=json&filter=url:.*will-list.*&collapse=urlkey"
+SKIP = ("futures", "quarterly", "contracts", "margin")
+MIN_YEAR = 2019
+MAX_PAGES = 1000
 
 
-def get(url, timeout=120):
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    return urllib.request.urlopen(req, timeout=timeout).read().decode(errors="replace")
+def log(msg):
+    print(f"{time.strftime('%m-%d %H:%M:%S')} {msg}", flush=True)
 
 
-def slug_token(url_):
+def fetch_page(url, tries=10):
+    """Тело ответа; '' при 404 (сервер так отвечает на нулевую выдачу и отсутствующий индекс).
+
+    Сервер под нагрузкой эпизодически отдаёт 400/502/504/504-подобный мусор — их ретраим.
+    """
+    last = None
+    for attempt in range(tries):
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            return urllib.request.urlopen(req, timeout=300).read().decode(errors="replace")
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                return ""
+            last = e
+            wait = min(20 * (attempt + 1), 90) + random.uniform(0, 10)
+            log(f"    ретрай {attempt + 1}/{tries} через {wait:.0f}с: HTTP {e.code}")
+            time.sleep(wait)
+        except Exception as e:
+            last = e
+            wait = min(20 * (attempt + 1), 90) + random.uniform(0, 10)
+            log(f"    ретрай {attempt + 1}/{tries} через {wait:.0f}с: {str(e)[:120]}")
+            time.sleep(wait)
+    raise RuntimeError(f"исчерпаны ретраи: {last}")
+
+
+def load_state():
+    if STATE.exists():
+        return json.loads(STATE.read_text())
+    return {"done": [], "failed": []}
+
+
+def save_state(st):
+    STATE.write_text(json.dumps(st, ensure_ascii=False, indent=1))
+
+
+def collections():
+    d = json.loads(fetch_page(COLLINFO))
+    out = []
+    for x in d:
+        m = re.fullmatch(r"CC-MAIN-(\d{4})-\d{2}", x.get("id", ""))
+        if m and int(m.group(1)) >= MIN_YEAR:
+            out.append(x["id"])
+    return sorted(out)
+
+
+def token_from(url_):
     slug = urllib.parse.unquote(url_.rsplit("/", 1)[-1].lower())
-    if any(s in slug for s in SKIP) or "will-list" not in slug:
+    if "will-list" not in slug or any(s in slug for s in SKIP):
         return None
     core = HEX.sub("", slug).strip("-")
     m = re.search(r"will-list-(.+)", core)
     if not m:
         return None
-    toks = m.group(1).strip("-").split("-")
-    tok = toks[-1] if toks else ""
-    return tok.upper() if len(tok) >= 2 else None
+    tokens = [t for t in m.group(1).strip("-").split("-") if t]
+    token = tokens[-1] if tokens else ""
+    return token.upper() if len(token) >= 2 else None
+
+
+def query_coll(cid):
+    """Записи (url, timestamp) одной коллекции; пустой результат — норма, не ошибка.
+
+    Серверные regex-фильтры на новом index.commoncrawl.org сломаны
+    (точный match работает, .* — нет), поэтому фильтруем клиентски.
+    404 на префиксный запрос = нулевая выдача; чтобы не спутать её
+    с отсутствующим индексом коллекции, при пустой нулевой странице
+    делаем контрольный проб корневого домена.
+    """
+    recs = []
+    for page in range(MAX_PAGES):
+        q = urllib.parse.urlencode({
+            "url": "binance.com/en/support/announcement/*",
+            "output": "json",
+            "collapse": "urlkey",
+            "page": page,
+        })
+        body = fetch_page(f"https://index.commoncrawl.org/{cid}-index?{q}")
+        if body == "":
+            if page == 0:
+                probe = fetch_page(
+                    f"https://index.commoncrawl.org/{cid}-index?"
+                    + urllib.parse.urlencode({"url": "wikipedia.org/", "output": "json"}))
+                if probe == "":
+                    raise RuntimeError("ENDPOINT_404: индекс коллекции недоступен")
+            return recs
+        stripped = body.lstrip()
+        if stripped.startswith("<"):
+            raise RuntimeError("HTML вместо JSON-выдачи")
+        if stripped.startswith("{"):
+            try:
+                msg = json.loads(body).get("message", "")
+            except ValueError:
+                msg = ""
+            if msg and ("invalid" in msg.lower() or "no more" in msg.lower()):
+                return recs
+        n_new = 0
+        for line in body.splitlines():
+            line = line.strip()
+            if not line.startswith("{"):
+                continue
+            try:
+                r = json.loads(line)
+            except ValueError:
+                continue
+            if "url" in r and "timestamp" in r:
+                recs.append((r["url"], str(r["timestamp"])))
+                n_new += 1
+        if n_new == 0:
+            return recs
+        time.sleep(2)
+    log(f"    {cid}: достигнут MAX_PAGES, возможна усечённая выдача")
+    return recs
+
+
+def rebuild():
+    if not RAWL.exists():
+        log("raw пуст — CSV не строю")
+        return
+    best = {}
+    for line in RAWL.open():
+        r = json.loads(line)
+        key, d, coll = r["token"], r["ts"], r["coll"]
+        if key not in best or d < best[key][0]:
+            best[key] = (d, coll)
+    rows = [
+        (k, f"{v[0][:4]}-{v[0][4:6]}-{v[0][6:8]}", v[1])
+        for k, v in sorted(best.items())
+    ]
+    pd.DataFrame(rows, columns=["token", "first_seen_date", "source_coll"]).to_csv(OUT, index=False)
+    log(f"итог: {len(rows)} уникальных токенов -> {OUT}")
+
+
+def run_coll(cid, st):
+    """Прогон одной коллекции; True если успех."""
+    recs = query_coll(cid)
+    n_tok = 0
+    with RAWL.open("a") as f:
+        for url_, ts in recs:
+            tok = token_from(url_)
+            if tok and ts.isdigit() and len(ts) >= 8:
+                f.write(json.dumps({"token": tok, "ts": ts[:8], "coll": cid},
+                                   ensure_ascii=False) + "\n")
+                n_tok += 1
+    st["done"].append(cid)
+    log(f"  {cid}: строк={len(recs)}, токенов={n_tok}")
+    return True
 
 
 def main():
-    import urllib.error
-
-    state = json.loads(STATE.read_text()) if STATE.exists() else {"done": [], "failed": []}
-    done = set(state["done"])
-    # coll-info.json мёртв на новом кластере -> генерируем кандидатов по паттерну
-    weeks = [2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50]
-    colls = [f"CC-MAIN-{y}-{w:02d}" for y in range(2019, 2027) for w in weeks]
-    colls = [c for c in colls if c not in done]
-    print(f"Кандидатов коллекций: {len(colls)}", flush=True)
-
-    raw_f = open(RAW, "a")
-    best = {}
     t0 = time.time()
-    for cid in colls:
-        rows_n = 0
-        ok = False
-        for attempt in range(3):
+    st = load_state()
+    done = set(st["done"])
+    todo = [c for c in collections() if c not in done]
+    log(f"к обработке: {len(todo)} коллекций (>= {MIN_YEAR}); уже done: {len(done)}, failed: {len(st['failed'])})")
+    failures = []
+    for i, cid in enumerate(todo):
+        try:
+            run_coll(cid, st)
+        except Exception as e:
+            failures.append(cid)
+            log(f"[{i + 1}/{len(todo)}] {cid}: FAIL {str(e)[:150]}")
+        save_state(st)
+        time.sleep(2)
+    # второй проход: упавшие во время плохих окон шард-ов часто оживают
+    if failures:
+        log(f"второй проход по {len(failures)} упавшим: {failures}")
+        for cid in list(failures):
             try:
-                try:
-                    txt = get(IDX.format(cid=cid))
-                except urllib.error.HTTPError as e:
-                    if e.code == 404:
-                        ok = True  # коллекции с таким id не существует
-                        break
-                    raise
-                if txt.lstrip().startswith("<"):
-                    raise ValueError("index server html error")
-                for line in txt.splitlines():
-                    line = line.strip()
-                    if not line.startswith("{"):
-                        continue
-                    try:
-                        rec = json.loads(line)
-                    except Exception:
-                        continue
-                    if str(rec.get("status")) != "200":
-                        continue
-                    tok = slug_token(rec["url"])
-                    if not tok:
-                        continue
-                    ts = rec.get("timestamp", "")
-                    if len(ts) < 8 or not ts[:8].isdigit():
-                        continue
-                    rows_n += 1
-                    raw_f.write(json.dumps({"coll": cid, "url": rec["url"], "ts": rec["timestamp"]}) + "\n")
-                    d = pd.Timestamp(ts[:8])
-                    if tok not in best or d < best[tok][0]:
-                        best[tok] = (d, cid)
-                ok = True
-                break
+                run_coll(cid, st)
+                failures.remove(cid)
             except Exception as e:
-                wait = 10 * (attempt + 1)
-                print(f"{cid}: попытка {attempt+1} FAIL {e}, ждём {wait}с", flush=True)
-                time.sleep(wait)
-        if ok:
-            done.add(cid)
-            state["done"] = sorted(done)
-            STATE.write_text(json.dumps(state))
-            print(f"{cid}: {rows_n} строк | уникальных токенов: {len(best)} | {time.time()-t0:.0f}с", flush=True)
-        else:
-            state["failed"].append(cid)
-            STATE.write_text(json.dumps(state))
-            print(f"{cid}: FAILED, помечена для ретрая", flush=True)
-        time.sleep(1)
-    raw_f.close()
-
-    rows_out = [(k, v[0].date().isoformat(), v[1]) for k, v in sorted(best.items())]
-    pd.DataFrame(rows_out, columns=["token", "first_seen_date", "collection"]).to_csv(OUT, index=False)
-    print(f"\nГотово: {len(rows_out)} токенов с датами -> {OUT}", flush=True)
+                log(f"  {cid}: FAIL {str(e)[:150]}")
+            save_state(st)
+            time.sleep(2)
+    for cid in failures:
+        st["failed"].append({"id": cid, "error": "исчерпаны ретраи в обоих проходах"})
+    if failures or st["failed"]:
+        save_state(st)
+    rebuild()
+    log(f"готово за {(time.time() - t0) / 60:.0f} мин; failed всего: {len(st['failed'])}")
 
 
 if __name__ == "__main__":
