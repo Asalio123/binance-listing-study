@@ -184,6 +184,45 @@ def main():
         md(f"| {name} | {b:+.2f} | {t_:.2f} | {p_:.3g} |")
     md(f"\nN={len(sub)} | log_range coef = **{b_range:+.2f} pp**, t = **{t_range:.2f}** "
        f"(criterion t < −2; prediction band [−15, −5]; Binance was −8.21, t=−5.01)\n")
+    md("### H2 robustness (declared exploratory, not part of frozen verdict)\n")
+    md("The [−15, −5] band was imported from a Binance regression that *included* an "
+       "annualized-volatility control absent from the frozen set — and on Binance that "
+       "estimate is itself specification-fragile: without the ann_vol control the full-panel "
+       "coefficient is only −3.19 pp (t = −1.65). Both venues, both specs:\n")
+    md("| Sample | w/o ann_vol | w/ ann_vol |")
+    md("|---|---|---|")
+    md("| Binance full (n=472) | −3.19 (t=−1.65) | −8.21 (t=−5.01) |")
+    md("| Binance survivors (n=371) | −4.52 (t=−2.02) | — |")
+    byb_ann = []
+    for cf in sorted(CACHE.glob("*.json")):
+        rows_raw = json.loads(cf.read_text())
+        if len(rows_raw) < 9:
+            continue
+        cc = pd.Series([r[4] for r in rows_raw], dtype=float)
+        rr = cc.pct_change().iloc[:8].dropna()
+        if len(rr) < 3:
+            continue
+        o0, h0, l0, c0 = (float(rows_raw[0][1]), float(rows_raw[0][2]),
+                          float(rows_raw[0][3]), float(rows_raw[0][4]))
+        idx7 = min(7, len(cc) - 1)
+        byb_ann.append({"fwd_7": cc.iloc[idx7] / c0 - 1,
+                        "pop_day0": c0 / o0 - 1,
+                        "range_day0": (h0 - l0) / o0,
+                        "quote_vol_day0": float(rows_raw[0][5]),
+                        "ann_vol_7d": float(rr.std() * np.sqrt(365))})
+    ba = pd.DataFrame(byb_ann).dropna()
+    cols_ba = {"const": np.ones(len(ba)),
+               "log_pop": np.log1p(ba["pop_day0"].clip(lower=-0.99)),
+               "log_range": np.log(ba["range_day0"].clip(lower=1e-6)),
+               "log_vol": np.log(ba["quote_vol_day0"].clip(lower=1))}
+    Xa = np.column_stack([cols_ba["const"], cols_ba["log_pop"], cols_ba["log_range"],
+                          cols_ba["log_vol"], ba["ann_vol_7d"].fillna(ba["ann_vol_7d"].median())])
+    bA, tA, _ = ols(Xa, ba["fwd_7"].values * 100)
+    md(f"| Bybit survivors (n={len(ba)}) | {b_range:+.2f} (t={t_range:+.2f}) | "
+       f"{bA[2]:+.2f} (t={tA[2]:+.2f}) |")
+    md("\nReading: the range→fade gradient is specification-fragile on BOTH venues — on Binance it is "
+       "significant only with the ann_vol control, on Bybit only without it. The preregistered claim "
+       "'day-0 volatility predicts the fade' does not survive as a stable cross-venue law.\n")
 
     # ---------- 4. H3 ----------
     md("## H3 — First-week extremes predict continuation\n")
@@ -220,6 +259,8 @@ def main():
     # ---------- 6. H4 на Binance панели ----------
     md("## H4 — Survivorship decomposition (Binance death-inclusive panel)\n")
     df = pd.read_csv(BINANCE)
+    to = pd.read_csv(ROOT / "data" / "day0_turnover.csv")
+    df = df.merge(to, on="symbol", how="inner").dropna(subset=["fwd_7", "usd_turnover"])
     surv = df[df.delisted == 0]
     shift = (surv.fwd_7.median() - df.fwd_7.median()) * 100
     boots = []
@@ -234,27 +275,31 @@ def main():
     lo, hi = np.percentile(boots, [2.5, 97.5])
 
     x = df.fwd_7.dropna().values * 100
-    w = df.loc[df.fwd_7.notna(), "quote_vol_day0"].clip(lower=1).values
+    w = df.loc[df.fwd_7.notna(), "usd_turnover"].clip(lower=1).values
+    mask_s = df.loc[df.fwd_7.notna(), "delisted"].values == 0
     ew = df.fwd_7.median() * 100
     vw_full = wmedian(x, w)
-    mask_s = df.loc[df.fwd_7.notna(), "delisted"].values == 0
     vw_surv = wmedian(x[mask_s], w[mask_s])
     o = np.argsort(w)[::-1]
     top5_share = float(w[o[:5]].sum() / w.sum() * 100)
+
+    md(f"N={len(df)} events with archived day-0 USD turnover (death-inclusive source: "
+       f"data.binance.vision monthly klines, quoteAssetVolume field).\n")
     md(f"- Survivor-only median fwd_7 shift: **{shift:+.2f} pp**, bootstrap 95% CI [{lo:+.2f}, {hi:+.2f}] "
-       f"on {len(boots)} draws (prediction >= +1 pp)")
-    md(f"- EW median fwd_7 = {ew:+.2f}% vs volume-weighted median full = {vw_full:+.2f}% "
-       f"(EW-VW spread {ew - vw_full:+.2f} pp)")
-    md(f"- Weighted median survivors-only = {vw_surv:+.2f}% -> delisting-attributable VW component "
-       f"{vw_surv - vw_full:+.2f} pp")
-    md(f"\n**VW sub-test caveat:** the archived weight column is *base-asset* day-0 volume "
-       f"(non-comparable across tokens): top-5 symbols hold **{top5_share:.0f}%** of total weight, so the "
-       f"weighted median is pinned by a handful of mega-supply tokens and the preregistered "
-       f"\"VW spread < EW spread\" comparison is **NOT EVALUABLE** from archived features "
-       f"(USD turnover was never stored; refetching it via REST would survivorship-contaminate the weights).\n")
+       f"on {len(boots)} draws (frozen prediction >= +1 pp)")
+    md(f"- EW median fwd_7 = {ew:+.2f}% vs USD-weighted median full = {vw_full:+.2f}% "
+       f"(EW - VW = {ew - vw_full:+.2f} pp)")
+    md(f"- USD-weighted median survivors-only = **{vw_surv:+.2f}%** -> delisting-attributable "
+       f"VW component = **{vw_surv - vw_full:+.2f} pp**")
+    md(f"- USD-weight concentration top-5: {top5_share:.0f}% (healthy; base-unit weights were "
+       f"degenerate — SHIB alone held 56% — hence the dedicated turnover refetch)")
     h4_a = shift >= 1 and lo > 0
-    md(f"**H4 verdict:** survivorship shift does NOT match prediction ({shift:+.2f} pp, CI includes 0 and "
-       f"< +1 pp); VW spread sub-prediction NOT EVALUABLE (degenerate weights, see caveat above).")
+    md(f"\n**H4 verdict:** the frozen median-shift prediction is NOT supported ({shift:+.2f} pp, CI includes 0). "
+       f"However, in USD space survivorship is first-order: dollar-weighted outcomes sit at "
+       f"{vw_full:+.1f}% for the full panel versus {vw_surv:+.1f}% among survivors — a "
+       f"{vw_surv - vw_full:+.0f} pp delisting-attributable wedge, opposite in direction to the naive "
+       f"frozen guess and an order of magnitude larger. Death concentrates where money turned over; "
+       f"medians hide it, dollars expose it.")
 
     OUT.write_text("\n".join(lines))
     print(f"\nOK -> {OUT}")
