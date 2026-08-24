@@ -26,14 +26,27 @@ def log(msg):
     print(f"{time.strftime('%m-%d %H:%M:%S')} {msg}", flush=True)
 
 
-def fetch_page(url, tries=15):
+MIN_GAP = 9.0          # пейсинг ~7 req/min: серией быстрых запросов сервер
+_last_req = [0.0]      # троттлит мусорными 400/502 (наблюдение 2026-08-24)
+THROTTLE_CODES = {400, 403, 429, 500, 502, 503, 504}
+
+
+def _pace():
+    delta = time.time() - _last_req[0]
+    if delta < MIN_GAP:
+        time.sleep(MIN_GAP - delta)
+    _last_req[0] = time.time()
+
+
+def fetch_page(url, tries=8):
     """Тело ответа; '' при 404 (сервер так отвечает на нулевую выдачу и отсутствующий индекс).
 
-    Сервер под нагрузкой эпизодически отдаёт 400/502/504-подобный мусор;
-    окна длились до ~13 минут (2026-08-24), поэтому бюджет ретраев ~25 мин.
+    Троттлинг-коды лечим НЕ частыми ретраями (они держат лимит активным),
+    а длинными эскалирующими паузами.
     """
     last = None
     for attempt in range(tries):
+        _pace()
         try:
             req = urllib.request.Request(url, headers=UA)
             return urllib.request.urlopen(req, timeout=300).read().decode(errors="replace")
@@ -41,12 +54,16 @@ def fetch_page(url, tries=15):
             if e.code == 404:
                 return ""
             last = e
-            wait = min(30 * (attempt + 1), 120) + random.uniform(0, 15)
-            log(f"    ретрай {attempt + 1}/{tries} через {wait:.0f}с: HTTP {e.code}")
+            if e.code in THROTTLE_CODES:
+                wait = min(300 * 2 ** min(attempt, 3), 2400) + random.uniform(0, 60)
+                log(f"    троттлинг (HTTP {e.code}), пауза {wait:.0f}с")
+            else:
+                wait = 60 + random.uniform(0, 30)
+                log(f"    ретрай {attempt + 1}/{tries} через {wait:.0f}с: HTTP {e.code}")
             time.sleep(wait)
         except Exception as e:
             last = e
-            wait = min(30 * (attempt + 1), 120) + random.uniform(0, 15)
+            wait = 60 + random.uniform(0, 30)
             log(f"    ретрай {attempt + 1}/{tries} через {wait:.0f}с: {str(e)[:120]}")
             time.sleep(wait)
     raise RuntimeError(f"исчерпаны ретраи: {last}")
