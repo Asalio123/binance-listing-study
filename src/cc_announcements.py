@@ -26,10 +26,11 @@ def log(msg):
     print(f"{time.strftime('%m-%d %H:%M:%S')} {msg}", flush=True)
 
 
-def fetch_page(url, tries=10):
+def fetch_page(url, tries=15):
     """Тело ответа; '' при 404 (сервер так отвечает на нулевую выдачу и отсутствующий индекс).
 
-    Сервер под нагрузкой эпизодически отдаёт 400/502/504/504-подобный мусор — их ретраим.
+    Сервер под нагрузкой эпизодически отдаёт 400/502/504-подобный мусор;
+    окна длились до ~13 минут (2026-08-24), поэтому бюджет ретраев ~25 мин.
     """
     last = None
     for attempt in range(tries):
@@ -40,12 +41,12 @@ def fetch_page(url, tries=10):
             if e.code == 404:
                 return ""
             last = e
-            wait = min(20 * (attempt + 1), 90) + random.uniform(0, 10)
+            wait = min(30 * (attempt + 1), 120) + random.uniform(0, 15)
             log(f"    ретрай {attempt + 1}/{tries} через {wait:.0f}с: HTTP {e.code}")
             time.sleep(wait)
         except Exception as e:
             last = e
-            wait = min(20 * (attempt + 1), 90) + random.uniform(0, 10)
+            wait = min(30 * (attempt + 1), 120) + random.uniform(0, 15)
             log(f"    ретрай {attempt + 1}/{tries} через {wait:.0f}с: {str(e)[:120]}")
             time.sleep(wait)
     raise RuntimeError(f"исчерпаны ретраи: {last}")
