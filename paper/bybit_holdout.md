@@ -59,9 +59,9 @@ Terciles: top MAX median fwd_30 = **-6.74%** vs bottom = **-17.81%** (MW p = 0.0
 
 ## H4 — Survivorship decomposition (Binance death-inclusive panel)
 
-N=472 events with archived day-0 USD turnover (death-inclusive source: data.binance.vision monthly klines, quoteAssetVolume field).
+N=470 events with archived day-0 USD turnover (death-inclusive source: data.binance.vision monthly klines, quoteAssetVolume field).
 
-- Survivor-only median fwd_7 shift: **+0.35 pp**, bootstrap 95% CI [-1.32, +2.16] on 10000 draws (frozen prediction >= +1 pp)
+- Survivor-only median fwd_7 shift: **+0.35 pp**, bootstrap 95% CI [-1.27, +2.15] on 10000 draws (frozen prediction >= +1 pp)
 - EW median fwd_7 = -11.45% vs USD-weighted median full = -28.72% (EW - VW = +17.27 pp)
 - USD-weighted median survivors-only = **-27.77%** -> delisting-attributable VW component = **+0.96 pp**
 - USD-weight concentration top-5: 20% (healthy; base-unit weights were degenerate — SHIB alone held 56% — hence the dedicated turnover refetch)

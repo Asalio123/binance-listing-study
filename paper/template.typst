@@ -1,6 +1,6 @@
 // Minimalist economics working-paper template (Michaillat-style).
-// Expects pandoc metadata: title, author, date, abstract, keywords.
-// Typography hardcoded: Source Serif Pro, 11pt, US Letter, 1.3in side margins.
+// Expects pandoc metadata: title, subtitle, author, affiliation, email,
+// orcid, date, abstract, keywords. No conditionals — fields are mandatory.
 
 #set page(
   paper: "us-letter",
@@ -13,17 +13,13 @@
 #set par(justify: true, leading: 0.6em)
 #set heading(numbering: none)
 
-#show heading.where(level: 1): it => {
-  align(center)
-  text(size: 12pt, weight: "bold")
-  v(0.4em)
-  it
-  v(0.15em)
-}
+#show heading.where(level: 1): set align(center)
+#show heading.where(level: 1): set text(size: 12pt, weight: "bold")
+#show heading.where(level: 1): it => { v(0.4em); it; v(0.15em) }
 #show heading.where(level: 2): set text(size: 11pt)
 #show link: set text(fill: black)
 
-#set table.hline(stroke: (top: 1pt, bottom: 1pt))
+#set table.hline(stroke: 0.6pt)
 #show table: set text(size: 9pt)
 
 #show figure.caption: set text(size: 9pt)
@@ -36,7 +32,13 @@
   #text(size: 19pt, weight: "bold")[$title$\ ]
 ]
 
+#align(center)[#text(size: 12pt, style: "italic")[$subtitle$\ ]]
+
+#v(0.5em)
 #align(center)[#text(size: 12pt)[$author$]]
+#align(center)[#text(size: 10pt)[$affiliation$]]
+#align(center)[#text(size: 10pt)[$email$]]
+#align(center)[#text(size: 10pt)[ORCID: $orcid$]]
 
 #align(center)[#text(size: 11pt, style: "italic")[$date$]]
 #v(0.7em)
@@ -48,5 +50,9 @@
   #text(style: "italic")[Keywords:] $for(keywords)$$keywords$$sep$, $endfor$
 ]
 #v(0.8em)
+
+// Contents ---------------------------------------------------------------
+#outline(title: [Contents], depth: 2)
+#pagebreak()
 
 $body$
