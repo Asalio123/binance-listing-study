@@ -1,4 +1,4 @@
-"""Генерирует графики для README репозитория binance-listing-study."""
+"""Publication figures for the binance-listing-study preprint (English, light theme)."""
 import warnings
 
 warnings.filterwarnings("ignore")
@@ -9,66 +9,136 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 
-DATA = Path.home() / "[private-repo]" / "data"
-REPO = Path.home() / "binance-listing-study" / "charts"
-REPO.mkdir(exist_ok=True)
+REPO = Path.home() / "binance-listing-study"
+DATA = REPO / "data"
+CHARTS = REPO / "charts"
+CHARTS.mkdir(exist_ok=True)
 
-plt.rcParams.update({"figure.facecolor": "#0d1117", "axes.facecolor": "#0d1117", "axes.edgecolor": "#30363d",
-                     "axes.labelcolor": "#c9d1d9", "text.color": "#c9d1d9", "xtick.color": "#8b949e",
-                     "ytick.color": "#8b949e", "font.size": 11, "grid.color": "#21262d"})
+plt.rcParams.update({
+    "font.family": "DejaVu Serif",
+    "figure.facecolor": "white",
+    "axes.facecolor": "white",
+    "axes.edgecolor": "#444444",
+    "axes.labelcolor": "#111111",
+    "text.color": "#111111",
+    "xtick.color": "#333333",
+    "ytick.color": "#333333",
+    "font.size": 11,
+    "axes.grid": True,
+    "grid.color": "#dddddd",
+    "grid.linewidth": 0.6,
+})
 
-ev = pd.read_csv(DATA / "listing_event_returns.csv")
-cal = pd.read_csv(Path.home() / "binance-listing-study" / "data" / "listing_calendar_binance.csv")
+RED, BLUE, GREEN, GRAY = "#c0392b", "#2471a3", "#1e8449", "#7f8c8d"
 
-# 1. Медианная траектория после листинга
-horizons = ["fwd_1", "fwd_3", "fwd_7", "fwd_14", "fwd_30"]
-labels = ["+1д", "+3д", "+7д", "+14д", "+30д"]
-med = ev[horizons].median() * 100
-pos = (ev[horizons] > 0).mean() * 100
-fig, ax = plt.subplots(figsize=(9, 5))
-colors = ["#f85149" if v < 0 else "#3fb950" for v in med]
-bars = ax.bar(labels, med, color=colors, alpha=0.85)
-for b, p in zip(bars, pos):
-    ax.text(b.get_x() + b.get_width() / 2, b.get_height(), f"{p:.0f}% в плюсе",
-            ha="center", va="bottom" if b.get_height() >= 0 else "top", fontsize=10, color="#8b949e")
-ax.axhline(0, color="#30363d")
-ax.set_title(f"Что происходит после первого дня листинга Binance (n={len(ev)}, включая делистнутые)")
-ax.set_ylabel("Медианная доходность от закрытия дня 0, %")
-plt.tight_layout()
-plt.savefig(REPO / "post_listing_drift.png", dpi=130)
-plt.close()
+ev = pd.read_csv(DATA / "listing_events_enriched.csv")
+to = pd.read_csv(DATA / "day0_turnover.csv")
+pw = pd.read_csv(DATA / "post_window_car.csv")
 
-# 2. Градиент: сила пампа -> глубина слива
-ev["bucket"] = pd.qcut(ev.pop_day0, 4, labels=["слабый\nпамп", "средний", "сильный", "безумный"])
-g = ev.groupby("bucket", observed=True).agg(pop=("pop_day0", "median"), fwd7=("fwd_7", "median")) * 100
-fig, ax = plt.subplots(figsize=(9, 5))
-x = range(len(g))
-ax.bar([i - 0.2 for i in x], g["pop"], width=0.4, label="памп дня 0 (медиана)", color="#58a6ff", alpha=0.85)
-ax.bar([i + 0.2 for i in x], g["fwd7"], width=0.4, label="+7 дней (медиана)", color="#f85149", alpha=0.85)
-ax.set_xticks(list(x))
-ax.set_xticklabels(g.index)
-ax.axhline(0, color="#30363d")
-ax.legend(frameon=False)
-ax.set_title("Чем сильнее памп в день листинга — тем жёстче слив на неделе")
-ax.set_ylabel("%")
-plt.tight_layout()
-plt.savefig(REPO / "pop_fade_gradient.png", dpi=130)
-plt.close()
 
-# 3. Листинги по годам + доля делистнутых
-usdt = cal[cal.symbol.str.endswith("USDT") & (cal.first_month >= "2021-01")].copy()
+def save(fig, name):
+    fig.tight_layout()
+    fig.savefig(CHARTS / name, dpi=300)
+    plt.close(fig)
+    print("saved", name)
+
+
+# --- Fig 1: listings per year + mortality -----------------------------------
+usdt = ev.copy()
 usdt["year"] = usdt.first_month.str[:4]
 yearly = usdt.groupby("year").agg(total=("symbol", "size"), dead=("delisted", "sum"))
-fig, ax = plt.subplots(figsize=(9, 5))
-ax.bar(yearly.index, yearly["total"], color="#238636", alpha=0.8, label="листингов USDT")
-ax.bar(yearly.index, yearly["dead"], color="#f85149", alpha=0.8, label="из них уже делистнуто")
-ax.set_title("Новые листинги Binance по годам и их смертность")
+fig, ax = plt.subplots(figsize=(8, 4.2))
+ax.bar(yearly.index, yearly["total"], color=BLUE, alpha=0.85, label="USDT listings")
+ax.bar(yearly.index, yearly["dead"], color=RED, alpha=0.85, label="already delisted")
+ax.set_ylabel("Number of listings")
 ax.legend(frameon=False)
-ax.set_ylabel("штук")
-plt.tight_layout()
-plt.savefig(REPO / "listings_per_year.png", dpi=130)
-plt.close()
+save(fig, "listings_per_year.png")
 
-print("OK:", list(p.name for p in REPO.glob('*.png')))
+# --- Fig 2: post-listing drift -----------------------------------------------
+horizons = ["fwd_1", "fwd_3", "fwd_7", "fwd_14", "fwd_30"]
+labels = ["+1d", "+3d", "+7d", "+14d", "+30d"]
+med = ev[horizons].median() * 100
+pos = (ev[horizons] > 0).mean() * 100
+fig, ax = plt.subplots(figsize=(8, 4.2))
+bars = ax.bar(labels, med, color=[RED if v < 0 else GREEN for v in med], alpha=0.85, width=0.62)
+for b, p, m in zip(bars, pos, med):
+    ax.text(b.get_x() + b.get_width() / 2, m, f"{p:.0f}% positive",
+            ha="center", va="bottom" if m >= 0 else "top", fontsize=10, color="#555555")
+ax.axhline(0, color="#444444", linewidth=0.8)
+ax.set_ylabel("Median return from day-0 close (%)")
+ax.set_ylim(min(med) * 1.25, 4)
+save(fig, "post_listing_drift.png")
+
+# --- Fig 3: pop vs fade gradient ---------------------------------------------
+ev["bucket"] = pd.qcut(ev.pop_day0, 4,
+                       labels=["weakest\npop", "Q2", "Q3", "strongest\npop"])
+g = ev.groupby("bucket", observed=True).agg(pop=("pop_day0", "median"),
+                                            fwd7=("fwd_7", "median")) * 100
+fig, ax = plt.subplots(figsize=(8, 4.2))
+x = np.arange(len(g))
+ax.bar(x - 0.2, g["pop"], width=0.4, label="Day-0 pop (median)", color=BLUE, alpha=0.85)
+ax.bar(x + 0.2, g["fwd7"], width=0.4, label="+7 days (median)", color=RED, alpha=0.85)
+ax.set_xticks(x)
+ax.set_xticklabels(g.index)
+ax.axhline(0, color="#444444", linewidth=0.8)
+ax.legend(frameon=False)
+ax.set_ylabel("%")
+save(fig, "pop_fade_gradient.png")
+
+# --- Fig 4: token-typical vs dollar-typical week one -------------------------
+d = pw.merge(to, on="symbol").dropna(subset=["madj_7"]).copy()
+
+
+def vw_median(x, w):
+    o = np.argsort(w)
+    xs, ws = np.asarray(x)[o], np.asarray(w)[o]
+    cw = np.cumsum(ws)
+    return float(xs[np.searchsorted(cw, ws.sum() / 2)])
+
+
+ew_m = float(d.madj_7.median()) * 100
+vw_m = vw_median(d.madj_7.values * 100, d.usd_turnover.clip(lower=1).values)
+raw_ew = float(ev.fwd_7.median()) * 100
+raw_vw = None
+dv = ev.merge(to, on="symbol").dropna(subset=["fwd_7"])
+raw_vw = vw_median(dv.fwd_7.values * 100, dv.usd_turnover.clip(lower=1).values)
+
+fig, ax = plt.subplots(figsize=(8, 4.2))
+cats = ["Token-counted\n(equal weight)", "Dollar-weighted\n(day-0 turnover)"]
+raw_vals = [raw_ew, raw_vw]
+adj_vals = [ew_m, vw_m]
+x = np.arange(2)
+ax.bar(x - 0.2, raw_vals, width=0.38, label="Raw returns", color=BLUE, alpha=0.85)
+ax.bar(x + 0.2, adj_vals, width=0.38, label="BTC-adjusted", color=RED, alpha=0.85)
+for xi, v in zip(x - 0.2, raw_vals):
+    ax.text(xi, v - 1.5, f"{v:+.1f}%", ha="center", va="top", fontsize=11, fontweight="bold")
+for xi, v in zip(x + 0.2, adj_vals):
+    ax.text(xi, v - 1.5, f"{v:+.1f}%", ha="center", va="top", fontsize=11, fontweight="bold")
+ax.set_xticks(x)
+ax.set_xticklabels(cats)
+ax.axhline(0, color="#444444", linewidth=0.8)
+ax.legend(frameon=False)
+ax.set_ylabel("Median week-one return (%)")
+ax.set_ylim(min(raw_vals + adj_vals) * 1.18, 2)
+save(fig, "dollar_vs_token.png")
+
+# --- Fig 5: fade monotone in day-0 turnover ----------------------------------
+d["q"] = pd.qcut(d.usd_turnover, 5,
+                 labels=["Q1\nlowest", "Q2", "Q3", "Q4", "Q5\nhighest"])
+q = d.groupby("q", observed=True).agg(madj=("madj_7", lambda x: x.median() * 100),
+                                      n=("madj_7", "size"))
+fig, ax = plt.subplots(figsize=(8, 4.2))
+bars = ax.bar(q.index.astype(str), q["madj"], color=RED, alpha=0.85, width=0.6)
+for b, v in zip(bars, q["madj"]):
+    ax.text(b.get_x() + b.get_width() / 2, v - 1.2, f"{v:+.1f}%",
+            ha="center", va="top", fontsize=11, fontweight="bold")
+ax.axhline(0, color="#444444", linewidth=0.8)
+ax.set_ylabel("Median BTC-adjusted return,\nfirst week (%)")
+ax.set_xlabel("Day-0 USD turnover quintile")
+ax.set_ylim(q["madj"].min() * 1.22, 3)
+save(fig, "turnover_quintiles.png")
+
+print("OK:", sorted(p.name for p in CHARTS.glob("*.png")))
