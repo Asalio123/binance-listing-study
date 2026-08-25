@@ -1,0 +1,52 @@
+// Minimalist economics working-paper template (Michaillat-style).
+// Expects pandoc metadata: title, author, date, abstract, keywords.
+// Typography hardcoded: Source Serif Pro, 11pt, US Letter, 1.3in side margins.
+
+#set page(
+  paper: "us-letter",
+  margin: (x: 1.3in, top: 1in, bottom: 1.15in),
+  numbering: "1",
+  number-align: center,
+)
+
+#set text(font: ("Source Serif Pro", "Palatino", "Times New Roman"), size: 11pt, lang: "en")
+#set par(justify: true, leading: 0.6em)
+#set heading(numbering: none)
+
+#show heading.where(level: 1): it => {
+  align(center)
+  text(size: 12pt, weight: "bold")
+  v(0.4em)
+  it
+  v(0.15em)
+}
+#show heading.where(level: 2): set text(size: 11pt)
+#show link: set text(fill: black)
+
+#set table.hline(stroke: (top: 1pt, bottom: 1pt))
+#show table: set text(size: 9pt)
+
+#show figure.caption: set text(size: 9pt)
+
+#set list(indent: 1em, spacing: 0.85em)
+#show list: set par(hanging-indent: 1em)
+
+// Title block ------------------------------------------------------------
+#align(center)[
+  #text(size: 19pt, weight: "bold")[$title$\ ]
+]
+
+#align(center)[#text(size: 12pt)[$author$]]
+
+#align(center)[#text(size: 11pt, style: "italic")[$date$]]
+#v(0.7em)
+
+#block(width: 92%, inset: (x: 0.35in))[
+  #text(weight: "bold")[Abstract.] $abstract$
+
+  #v(0.5em)
+  #text(style: "italic")[Keywords:] $for(keywords)$$keywords$$sep$, $endfor$
+]
+#v(0.8em)
+
+$body$

@@ -93,7 +93,7 @@ d = pw.merge(to, on="symbol").dropna(subset=["madj_7"]).copy()
 
 
 def vw_median(x, w):
-    o = np.argsort(w)
+    o = np.argsort(x)
     xs, ws = np.asarray(x)[o], np.asarray(w)[o]
     cw = np.cumsum(ws)
     return float(xs[np.searchsorted(cw, ws.sum() / 2)])
