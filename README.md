@@ -10,14 +10,14 @@ This project rebuilds the listing calendar **point-in-time from the raw
 [data.binance.vision](https://data.binance.vision) archive — including delisted pairs —**
 and measures what actually happens after a token starts trading.
 
-## Key findings (n = 472 USDT listings, incl. delisted coins)
+## Key findings (n = 470 USDT listings, incl. delisted coins)
 
 | Horizon after first trading day | Median return | % positive |
 |---|---|---|
-| Day 0 pop (first print → day close) | **+27.6%** | 79% |
+| Day 0 pop (first print → day close) | **+28.1%** | 79% |
 | +1 day | −4.5% | 33% |
 | +7 days | **−11.5%** | 29% |
-| +30 days | −21.6% | 29% |
+| +30 days | −21.5% | 29% |
 
 **The stronger the day-0 pop, the harder the fade:**
 
