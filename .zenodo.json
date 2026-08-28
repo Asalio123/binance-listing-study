@@ -1,0 +1,28 @@
+{
+  "title": "binance-listing-study: Death-Inclusive Event Dataset for Every Binance Spot USDT Listing, 2021-2026",
+  "upload_type": {
+    "type": "dataset"
+  },
+  "publication_date": "2026-08-28",
+  "creators": [
+    {
+      "name": "Bakhtiev, Said",
+      "affiliation": "Gymnasium of Aznakayevo, Republic of Tatarstan, Russia",
+      "orcid": "0009-0009-6357-3168"
+    }
+  ],
+  "description": "<p>Companion repository for the preprint <em>Post-Listing Underperformance in Cryptocurrency Markets: Evidence from Every Binance USDT Listing, 2021-2026</em>. The release contains the point-in-time listing calendars rebuilt from the raw data.binance.vision archive (3,682 archived symbols; 470 Binance spot USDT events retained, delisted tokens included; 829 Bybit USDT listings), the enriched 470&times;28 event panel used for all reported estimates, the day-0 USD turnover extract, the event-study and holdout code with the raw kline caches required for replication, and a claim-by-claim falsification matrix for the prior listing literature.</p>",
+  "access_right": "open",
+  "license": "mit",
+  "keywords": [
+    "cryptocurrency",
+    "event study",
+    "survivorship bias",
+    "Binance",
+    "Bybit",
+    "listing effect",
+    "dollar-weighted returns"
+  ],
+  "language": "eng",
+  "version": "v1.0.0"
+}

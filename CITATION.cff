@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+title: >-
+  binance-listing-study: death-inclusive event dataset for every Binance spot
+  USDT listing, 2021-2026
+message: >-
+  If you use this dataset or code, please cite both this repository and the
+  companion preprint (see preferred-citation).
+authors:
+  - family-names: Bakhtiev
+    given-names: Said
+    affiliation: Gymnasium of Aznakayevo, Republic of Tatarstan, Russia
+    orcid: "https://orcid.org/0009-0009-6357-3168"
+version: v1.0.0
+date-released: "2026-08-28"
+license: MIT
+keywords:
+  - cryptocurrency
+  - event study
+  - survivorship bias
+  - Binance
+  - Bybit
+  - listing effect
+preferred-citation:
+  type: article
+  title: >-
+    Post-Listing Underperformance in Cryptocurrency Markets: Evidence from
+    Every Binance USDT Listing, 2021-2026
+  authors:
+    - family-names: Bakhtiev
+      given-names: Said
+      affiliation: Gymnasium of Aznakayevo, Republic of Tatarstan, Russia
+      orcid: "https://orcid.org/0009-0009-6357-3168"
+  year: 2026
+  notes: Preprint; SSRN DOI added after deposit
