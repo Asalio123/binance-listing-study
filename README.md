@@ -23,9 +23,13 @@ and measures what actually happens after a token starts trading.
 
 | Day-0 pop quartile | Median fwd 7d |
 |---|---|
-| weak (−4%) | −0.9% |
-| strong (+59%) | **−20.4%** |
+| weak (−4%) | −1.4% |
+| strong (+59%) | −20.5% |
 | extreme (+880%) | −16.1% |
+
+(The gradient peaks at the third quartile and reverses for the most extreme
+pops — one more reason the intraday *range*, not the signed pop, is the real
+flag.)
 
 Practical consequence: *buying listings and holding* has lottery-profile economics
 (positive mean, negative median). The only robust use found so far is defensive:
@@ -44,7 +48,7 @@ src/build_calendar.py   # walks the S3 archive index -> listing_calendar_binance
                         # (symbol, first_month, last_month, delisted flag)
 src/event_study.py      # price paths per event (REST for survivors,
                         # archive zips for delisted) -> event-level returns
-data/listing_calendar_binance.csv   # prebuilt calendar, 3683 symbols
+data/listing_calendar_binance.csv   # prebuilt calendar, 3682 symbols
 ```
 
 ## Usage

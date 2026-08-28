@@ -1,5 +1,10 @@
 # Root causes of the USD-weighted vs equal-weighted gap (exploratory)
 
+> **УСТАРЕЛА (2026-08-28):** посчитано на панели 472. Рукопись v4 использует
+> пересчитанные 470-значения (квинтили −0.60/−4.99/−14.50/−16.78/−23.54;
+> клин +0.96 п.п.; log_turnover b = −2.41, t = −2.63 — верифицировано,
+> см. `verification_2026-08-28.md`). Качественные выводы не меняются.
+
 Question: why does the dollar-typical listing lose −28.7% in week 1 while the
 token-typical loses only −11.45%? All numbers from data/day0_turnover.csv +
 listing_events_enriched.csv (n=472, death-inclusive). Declared exploratory —
