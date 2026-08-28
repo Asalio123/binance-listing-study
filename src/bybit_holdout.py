@@ -188,10 +188,10 @@ def main():
     md("The [−15, −5] band was imported from a Binance regression that *included* an "
        "annualized-volatility control absent from the frozen set — and on Binance that "
        "estimate is itself specification-fragile: without the ann_vol control the full-panel "
-       "coefficient is only −3.19 pp (t = −1.65). Both venues, both specs:\n")
+       "coefficient is only −3.23 pp (t = −1.67). Both venues, both specs:\n")
     md("| Sample | w/o ann_vol | w/ ann_vol |")
     md("|---|---|---|")
-    md("| Binance full (n=472) | −3.19 (t=−1.65) | −8.21 (t=−5.01) |")
+    md("| Binance full (n=470) | −3.23 (t=−1.67) | −8.40 (t=−5.14) |")
     md("| Binance survivors (n=371) | −4.52 (t=−2.02) | — |")
     byb_ann = []
     for cf in sorted(CACHE.glob("*.json")):

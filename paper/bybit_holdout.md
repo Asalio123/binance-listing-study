@@ -30,11 +30,11 @@ N=415 | log_range coef = **+4.65 pp**, t = **2.69** (criterion t < −2; predict
 
 ### H2 robustness (declared exploratory, not part of frozen verdict)
 
-The [−15, −5] band was imported from a Binance regression that *included* an annualized-volatility control absent from the frozen set — and on Binance that estimate is itself specification-fragile: without the ann_vol control the full-panel coefficient is only −3.19 pp (t = −1.65). Both venues, both specs:
+The [−15, −5] band was imported from a Binance regression that *included* an annualized-volatility control absent from the frozen set — and on Binance that estimate is itself specification-fragile: without the ann_vol control the full-panel coefficient is only −3.23 pp (t = −1.67). Both venues, both specs:
 
 | Sample | w/o ann_vol | w/ ann_vol |
 |---|---|---|
-| Binance full (n=472) | −3.19 (t=−1.65) | −8.21 (t=−5.01) |
+| Binance full (n=470) | −3.23 (t=−1.67) | −8.40 (t=−5.14) |
 | Binance survivors (n=371) | −4.52 (t=−2.02) | — |
 | Bybit survivors (n=415) | +4.65 (t=+2.69) | +1.43 (t=+0.90) |
 

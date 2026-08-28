@@ -41,14 +41,14 @@ n_binance_first = int((both.gap_months < 0).sum())
 n_bybit_first = int((both.gap_months > 0).sum())
 n_same = int((both.gap_months == 0).sum())
 md(f"| Порядок | N | Медианный fwd_7 % |\n|---|---|---|")
-for name, sub in [("Binance раньше", both[both.gap_months < 0]),
-                  ("один месяц", both[both.gap_months == 0]),
-                  ("Bybit раньше", both[both.gap_months > 0])]:
+for name, sub in [("Bybit first", both[both.gap_months < 0]),
+                  ("same month", both[both.gap_months == 0]),
+                  ("Binance first", both[both.gap_months > 0])]:
     md(f"| {name} | {len(sub)} | {sub.fwd_7.median()*100:+.1f} |")
 mw = stats.mannwhitneyu(
     both[both.gap_months <= 0].fwd_7.dropna(),
     both[both.gap_months > 0].fwd_7.dropna()).pvalue if n_bybit_first > 10 else np.nan
-md(f"\nMann-Whitney p (ранний Bybit vs поздний): {mw:.3f}\n")
+md(f"\nMann-Whitney p (Bybit-first vs Binance-first-or-same-month): {mw:.3f}\n")
 
 # MAX-эффект на Binance выборке
 md("## C2. Lottery/MAX features (first week daily extremes)\n")
