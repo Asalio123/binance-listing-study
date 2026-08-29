@@ -16,9 +16,13 @@
 #show heading.where(level: 1): set align(center)
 #show heading.where(level: 1): set text(size: 12pt, weight: "bold")
 #show heading.where(level: 1): it => { v(0.4em); it; v(0.15em) }
-#show heading.where(level: 2): set text(size: 11pt)
+#show heading.where(level: 2): set align(center)
+#show heading.where(level: 2): set text(size: 12pt, weight: "bold")
+#show heading.where(level: 2): it => { v(0.4em); it; v(0.15em) }
+#show heading.where(level: 3): set text(size: 11pt)
 #show link: set text(fill: black)
 
+#set table(stroke: (top: 1pt, bottom: 1pt, rest: none))
 #set table.hline(stroke: 0.6pt)
 #show table: set text(size: 9pt)
 
