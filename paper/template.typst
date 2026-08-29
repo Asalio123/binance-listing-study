@@ -47,11 +47,14 @@
 #align(center)[#text(size: 11pt, style: "italic")[$date$]]
 #v(0.7em)
 
-#block(width: 92%, inset: (x: 0.35in))[
-  #text(weight: "bold")[Abstract.] $abstract$
+#align(center)[
+  #block(width: 92%, inset: (x: 0.35in))[
+    #set align(start)
+    #text(weight: "bold")[Abstract.] $abstract$
 
-  #v(0.5em)
-  #text(style: "italic")[Keywords:] $for(keywords)$$keywords$$sep$, $endfor$
+    #v(0.5em)
+    #text(style: "italic")[Keywords:] $for(keywords)$$keywords$$sep$, $endfor$
+  ]
 ]
 #v(0.8em)
 
