@@ -20,7 +20,7 @@ Binance USDT Listing, 2021–2026"** (Said Bakhtiev, August 2026).
 - `data/listing_events_enriched.csv` — the analysis panel: 470 events × 28
   features (delisted tokens included)
 - `data/day0_turnover.csv` — day-0 quote-asset (USD) turnover for all 470 events
-- `data/post_window_car.csv`, `data/caar_panel.csv` — event-study outputs
+- `data/post_window_car.csv` — event-study outputs
 - `data/binance_day_closes/`, `data/bybit_klines_cache/` — raw daily closes and
   holdout klines cache for exact replication
 
