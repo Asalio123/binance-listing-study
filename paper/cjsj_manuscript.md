@@ -450,6 +450,17 @@ price, and dollars systematically buy that peak.
 
 ![**Fig. 5.** Median week-one return from the day-0 close across day-0 USD turnover quintiles (n = 470): −0.6%, −5.0%, −14.5%, −16.8%, −23.5%. The fade is monotone in turnover; the quietest quintile shows no fade at all.](../charts/turnover_quintiles.png){width=100%}
 
+An exploratory third-venue check reinforces the holdout. Coinbase Exchange
+keeps delisted instruments in its public API, so a second death-inclusive
+calendar can be built: 566 USD- and USDT-quoted listings from January 2021
+onward, 171 of them since delisted. The fade replicates almost exactly:
+median forward returns from the day-0 close of −4.49% at +1d, −12.24% at +7d
+(Wilcoxon p = 6.6×10⁻³⁵) and −22.26% at +30d, against −4.45%, −11.45% and
+−21.53% on Binance. The estimate is robust to base-asset deduplication
+(n = 456, −11.76% at +7d), to the 2021–2023 versus 2024+ split, and to the
+survivors-only subsample (−11.68% at +7d), so it is not an artifact of
+delistings. This check was not pre-specified; we report it as exploratory.
+
 # IV. Discussion
 
 For the literature, the widely cited listing premium, whilst real as a
@@ -495,15 +506,15 @@ the dip after the dump" fails on the panel (median no recovery to even by day
 result. The full matrix, claim by claim with verbatim quotes and replication
 verdicts, lives in the companion repository (`FALSIFICATION.md`).
 
-**Limitations.** (1) Primary panel: one venue. Because of technical
-limitations of the API, the Bybit holdout is restricted to tokens that remain
-on the market; only the Binance archive allows an analysis that accounts for
-"vanishing" tokens. (2) Announcement timestamps could not be reconstructed
-from public archives (Section III.G); the announcement premium is outside
-this paper's scope. (3) The range→fade sign flip across venues (H2) is
-documented, not explained. (4) No historical order-book depth exists
-publicly; liquidity enters only through volume proxies. (5) Backtest costs
-(8 bps round-trip) likely understate slippage in stress regimes.
+**Limitations.** (1) The primary panel is one venue; the Bybit holdout is
+restricted to survivors by that venue's API, and the Coinbase check (Section
+III.H) is exploratory and mostly USD-quoted. (2) Announcement timestamps
+could not be reconstructed from public archives (Section III.G); the
+announcement premium is outside this paper's scope. (3) The range→fade sign
+flip across venues (H2) is documented, not explained. (4) No historical
+order-book depth exists publicly; liquidity enters only through volume
+proxies. (5) Backtest costs (8 bps round-trip) likely understate slippage in
+stress regimes.
 
 # V. Conclusion
 
@@ -513,7 +524,9 @@ sample) shows that prices tend to fall during the first week after listing
 (−11.45% in token terms, −28.72% in dollar terms). Furthermore, the decline
 is concentrated monotonically where attention and trading volume
 peaked. A pre-specified holdout confirms the fade and the continuation effect
-of first-week extremes on a second venue. The volatility-fade gradient fails
+of first-week extremes on a second venue, and an exploratory death-inclusive
+check on Coinbase (566 listings) reproduces the fade almost exactly. The
+volatility-fade gradient fails
 to confirm: the estimate is fragile in both venues' data. Survivorship bias has long been regarded as a "negative factor" in this field.
 In fact it operates through a "gateway" mechanism: it determines from the
 outset which tokens will be included in the sample at all. In other words, it
@@ -546,9 +559,11 @@ not registration with an external registry; we state the distinction plainly.
 # Data and Code Availability
 
 Everything in the companion repository (binance-listing-study) is released
-under the MIT licence: the calendar builders for Binance and Bybit, the
+under the MIT licence: the calendar builders for Binance, Bybit and Coinbase,
+the
 event-study engine, the enriched dataset (470 × 28), the Bybit holdout script
-with its raw-kline cache, the day-0 turnover data, the statistical appendices,
+with its raw-kline cache, the Coinbase calendar and event panel, the minute-level
+day-0 anatomy extract, the day-0 turnover data, the statistical appendices,
 the claim-by-claim falsification matrix for the prior literature, and the
 chart-generation code.
 [Editorial note, remove before submission: insert public GitHub URL and

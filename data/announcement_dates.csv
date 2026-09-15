@@ -1,0 +1,468 @@
+symbol,announce_ts_utc,trading_open_text,article_code,match_pattern,source,confidence,notes
+TWTUSDT,2021-01-27T05:00:06Z,"open trading for TWT/BTC, TWT/BUSD and TWT/USDT trading pairs at 2021-01-27 8:00 AM (UTC)",f6d7c24dc4cc4143b04ca6186d184280,will_list,cms,high,
+FIROUSDT,2021-01-15T10:16:11Z,,4a06d6ab6abb4f08b12bb93d6fec30ec,rebrand,cms,medium,rebrand_swap
+CELOUSDT,2021-01-05T03:36:25Z,,61735e6cf5f4434593a502c5a16a9efb,will_list,cms,high,
+CKBUSDT,2021-01-26T07:00:08Z,"open trading for CKB/BTC, CKB/BUSD and CKB/USDT trading pairs at 2021-01-26 12:00 PM (UTC)",71d82e6debf3469e9aefaafba3f9779e,will_list,cms,high,
+TRUUSDT,2021-01-19T04:00:28Z,,26aba13db00c473085bf51ddd2c81839,will_list,cms,high,
+BTCSTUSDT,2021-01-07T10:00:05Z,,ccc3db0c88734132b07ce4c2e02cf973,launchpool,cms,high,
+RIFUSDT,2021-01-07T05:00:06Z,,31a36b80e92f4823a63078dc4a7e1bdc,will_list,cms,high,
+DODOUSDT,2021-02-18T10:00:14Z,,020710be61de4e259b1420c59b790c2d,launchpool,cms,high,
+CAKEUSDT,2021-02-18T11:15:06Z,"open trading for FRONT/BTC, EASY/BTC, CAKE/BTC, CAKE/USDT &amp;&nbsp; BAKE/BUSD trading pairs at 2021-02-19 06:00 AM (UTC)",b769e0e2da5d46bb96c50f8e4fb03f23,adds_pairs,cms,medium,
+SFPUSDT,2021-02-08T04:00:08Z,,f410bfa9e5ae452eba0c2d2912f27800,launchpad,cms,high,
+LITUSDT,2021-01-28T10:00:05Z,,2f63e7cee26b4560968c7eddf6297edb,launchpool,cms,high,
+ACMUSDT,2021-02-24T04:01:08Z,"open trading for ACM/BTC, ACM/BUSD and ACM/USDT trading pairs at 2021-02-24 11:00 AM (UTC)",b7f145caed29417982bd8bf253bdbcfb,will_list,cms,high,
+PERPUSDT,2021-03-19T04:54:25Z,,1d7f2144fce04615aa78eeb93331adc0,tg_text,tg,low,
+SUPERUSDT,2021-03-25T07:23:50Z,"open trading for SUPER/BTC, SUPER/BUSD and SUPER/USDT trading pairs at 2021-03-25 10:00 AM (UTC)",5a39df5ea166490f91f04c85cf37f76c,will_list,cms,high,
+RAMPUSDT,2021-03-22T05:56:12Z,"open trading for RAMP/BTC, RAMP/BUSD and RAMP/USDT trading pairs at 2021-03-22 9:00 AM (UTC)",a5da7668d80a407595a18c6b729fa55a,will_list,cms,high,
+DEGOUSDT,2021-03-10T04:00:07Z,"open trading for DEGO/BTC, DEGO/BUSD and DEGO/USDT trading pairs at 2021-03-10 11:00 AM (UTC)",7a11ed69a25744fe9e08f8aedea019c6,will_list,cms,high,
+OMUSDT,2021-03-08T06:00:07Z,"open trading for OM/BTC, OM/BUSD and OM/USDT trading pairs at 2021-03-08 9:00 AM (UTC)",8ccb514ecc664a7d93c71ea9eb173905,will_list,cms,high,
+ALICEUSDT,2021-03-09T10:00:05Z,,35c213a6b14f40d1a14376bfe9f417b1,launchpool,cms,high,
+BADGERUSDT,2021-03-02T05:00:06Z,"open trading for BADGER/BTC, BADGER/BUSD and BADGER/USDT trading pairs at 2021-03-02 8:00 AM (UTC)",a2aa2ee0e80e4291aa8d3f22f9793948,will_list,cms,high,
+LINAUSDT,2021-03-18T04:00:09Z,"open trading for LINA/BTC, LINA/BUSD and LINA/USDT trading pairs at 2021-03-18 12:00 PM (UTC)",c127757cde714989947d673777e1d5a4,will_list,cms,high,
+FISUSDT,2021-03-03T05:00:05Z,"open trading for FIS/BTC, FIS/BUSD and FIS/USDT trading pairs at 2021-03-03 8:00 AM (UTC)",4dfae5ce3d894504bc50c423356846f0,will_list,cms,high,
+CFXUSDT,2021-03-29T06:54:02Z,"open trading for CFX/BTC, CFX/BUSD and CFX/USDT trading pairs at 2021-03-29 11:00 AM (UTC)",cd4d635399374a68ace90874ce8b9eb2,will_list,cms,high,
+PONDUSDT,2021-03-09T05:00:09Z,"open trading for POND/BTC, POND/BUSD and POND/USDT trading pairs at 2021-03-09 8:00 AM (UTC)",70f7134ad2bd493db68df020623f39ea,will_list,cms,high,
+TLMUSDT,2021-04-06T08:00:27Z,,8d10c09ef69e4287ba01d8840178fcfd,launchpool,cms,high,
+MIRUSDT,2021-04-19T08:41:56Z,"open trading for MIR/BTC, MIR/BUSD and MIR/USDT trading pairs at 2021-04-19 11:00 AM (UTC)",62a72f3052674fc589ad401e973ce9ab,will_list,cms,high,
+BURGERUSDT,2021-04-30T06:00:12Z,,5512c20815c940aab220398a4693a6ab,tg_adds,tg,low,
+TKOUSDT,2021-04-07T04:00:18Z,,6ec186aa6e4d4ef8a60ad0860dd72338,launchpad,cms,high,
+BAKEUSDT,2021-04-30T06:00:12Z,,5512c20815c940aab220398a4693a6ab,tg_adds,tg,low,
+EPSUSDT,2021-04-02T05:00:16Z,"open trading for EPS/BTC, EPS/BUSD, EPS/USDT, AUTO/BTC, AUTO/BUSD and AUTO/USDT trading pairs at 2021-04-02 9:00 AM (UTC)",1bd8869e95ec4bf9b01b6b31361d7f84,will_list,cms,high,
+FORTHUSDT,2021-04-23T06:04:44Z,"open trading for FORTH/BTC, FORTH/BUSD and FORTH/USDT trading pairs at 2021-04-23 9:00 AM (UTC)",272f913f85b8430d92f520ec04feee38,will_list,cms,high,
+PUNDIXUSDT,2021-03-31T03:21:48Z,,8bdcb060635b491d912247fb00603d4d,rebrand,cms,medium,rebrand_swap
+SLPUSDT,2021-04-30T06:00:12Z,,5512c20815c940aab220398a4693a6ab,tg_adds,tg,low,proximity_override
+AUTOUSDT,2021-04-02T05:00:16Z,"open trading for EPS/BTC, EPS/BUSD, EPS/USDT, AUTO/BTC, AUTO/BUSD and AUTO/USDT trading pairs at 2021-04-02 9:00 AM (UTC)",1bd8869e95ec4bf9b01b6b31361d7f84,will_list,cms,high,
+BARUSDT,2021-04-21T04:00:09Z,"open trading for BAR/BTC, BAR/BUSD and BAR/USDT trading pairs at 2021-04-21 11:00 AM (UTC)",bc5b4c305f0a4dcdbef2796b39e252d3,will_list,cms,high,
+BTGUSDT,2021-04-16T02:57:24Z,"open trading for BTG/BUSD, BTG/USDT and HOT/BUSD trading pairs at 2021-04-16 7:00 AM (UTC)",07e08d63eacf49cb9e61b47287fdfc88,adds_pairs,cms,medium,
+MDXUSDT,2021-05-24T05:54:54Z,"open trading for MDX/BTC, MDX/BNB, MDX/BUSD and MDX/USDT trading pairs at 2021-05-24 09:00 AM (UTC)",b8f30e3a15f6493185c32398184871c6,will_list,cms,high,
+LPTUSDT,2021-05-28T02:12:58Z,"open trading for LPT/BTC, LPT/BNB, LPT/BUSD and LPT/USDT trading pairs at 2021-05-28 05:00 AM (UTC)",a5ba29e416bc4bc2900c0f3d4d1bfa8a,will_list,cms,high,
+SHIBUSDT,2021-05-10T07:44:39Z,open trading for SHIB/BUSD and SHIB/USDT trading pairs at 2021-05-10 11:00 AM (UTC),f1fe616e688b452f9d736753cb2d947a,will_list,cms,high,
+ICPUSDT,2021-05-10T13:52:54Z,,33b6e8116ce54705ac89e898d1a05510,will_list,cms,high,
+MASKUSDT,2021-05-25T03:10:03Z,"open trading for MASK/BNB, MASK/BUSD and MASK/USDT trading pairs at 2021-05-25 06:00 AM (UTC)",36bf2dc22d544ee09bc8760011bdebd3,will_list,cms,high,
+POLSUSDT,2021-05-19T03:58:05Z,"open trading for POLS/BTC, POLS/BNB, POLS/BUSD and POLS/USDT trading pairs at 2021-05-19 07:00 AM (UTC)",7335f149d9c14da199298505cf0375b6,will_list,cms,high,
+ARUSDT,2021-05-14T04:36:52Z,"open trading for AR/BTC, AR/BNB, AR/BUSD and AR/USDT trading pairs at 2021-05-14 12:00 PM (UTC)",169a715af77a419c918c932897e65b2c,will_list,cms,high,
+TORNUSDT,2021-06-11T02:32:03Z,"open trading for TORN/BTC, TORN/BNB, TORN/BUSD and TORN/USDT trading pairs at 2021-06-11 06:00 AM (UTC)",2d4e19b8c4854f969d95dd35bf65b182,will_list,cms,high,
+GTCUSDT,2021-06-10T06:35:38Z,"open trading for GTC/BTC, GTC/BNB, GTC/BUSD and GTC/USDT trading pairs at 2021-06-10 10:00 AM (UTC)",df28017f9ea34d2f9d58c4ad467e0b88,will_list,cms,high,
+XVGUSDT,2021-06-04T06:32:25Z,"open trading for XVG/USDT, ATM/BUSD, CELR/BUSD, FTM/BUSD, KAVA/BUSD, RLC/BUSD, THETA/BUSD, WIN/BUSD, XEM/BUSD and ZEN/BUSD&nbsp; trading pairs at 2021-06-06 10:00 AM (UTC)",32569413cb7e400f8a25514fbdb37d4d,adds_pairs,cms,medium,
+ERNUSDT,2021-06-22T02:38:12Z,"open trading for ERN/BNB, ERN/BUSD and ERN/USDT trading pairs at 2021-06-22 06:00 AM (UTC)",829faf920da247999d33700fb1068795,will_list,cms,high,
+PHAUSDT,2021-02-25T05:30:14Z,open trading for PHA/BTC and PHA/BUSD trading pairs at 2021-02-25 9:00 AM (UTC),d6baaf7a59d74cb4bcf1d95efd2bf19c,will_list,cms,high,anomaly:lag_gt_30d
+NUUSDT,2021-06-04T02:27:05Z,"open trading for NU/BTC, NU/BNB, NU/BUSD and NU/USDT trading pairs at 2021-06-04 05:30 AM (UTC)",42b8a2c991a54523a8249d4691b6154c,will_list,cms,high,
+KLAYUSDT,2021-06-24T03:42:15Z,"open trading for KLAY/BTC, KLAY/BNB, KLAY/BUSD and KLAY/USDT trading pairs at 2021-06-24 08:00 AM (UTC)",524db9d9791a4a989f6c242508e26dd3,will_list,cms,high,
+ATAUSDT,2021-06-01T08:00:06Z,,aff3429ff6c74775b4e20fc23377f142,launchpool,cms,high,
+KEEPUSDT,2021-06-17T02:34:50Z,"open trading for KEEP/BTC, KEEP/BNB, KEEP/BUSD and KEEP/USDT trading pairs at 2021-06-17 06:00 AM (UTC)",ed88b0ac99554ad7a5c7cae58fb0f492,will_list,cms,high,
+QNTUSDT,2021-07-29T02:01:44Z,"open trading for CLV/BTC, CLV/BNB, CLV/BUSD, CLV/USDT, QNT/BTC, QNT/BNB, QNT/BUSD and QNT/USDT trading pairs at 2021-07-29 06:00 AM (UTC)",053a6010adc844e29e3859a460e32d12,will_list,cms,high,
+BONDUSDT,2021-07-05T02:05:10Z,"open trading for BOND/BTC, BOND/BNB, BOND/BUSD, BOND/USDT, MLN/BTC, MLN/BNB, MLN/BUSD and MLN/USDT trading pairs at 2021-07-05 06:00 AM (UTC)",3b3a5b445d87445693c95bea59186276,will_list,cms,high,
+FLOWUSDT,2021-07-30T07:00:15Z,"open trading for FLOW/BTC, FLOW/BNB, FLOW/BUSD, FLOW/USDT trading pairs at 2021-07-30 13:00 (UTC)",d00fe25c21ef4db5afe5c12e32b4fe27,will_list,cms,high,
+DEXEUSDT,2021-07-22T08:02:33Z,,5975e8602a474005bdf76cfdceb7ea68,tg_adds,tg,low,proximity_override
+CLVUSDT,2021-07-29T02:01:44Z,"open trading for CLV/BTC, CLV/BNB, CLV/BUSD, CLV/USDT, QNT/BTC, QNT/BNB, QNT/BUSD and QNT/USDT trading pairs at 2021-07-29 06:00 AM (UTC)",053a6010adc844e29e3859a460e32d12,will_list,cms,high,
+MLNUSDT,2021-07-05T02:05:10Z,"open trading for BOND/BTC, BOND/BNB, BOND/BUSD, BOND/USDT, MLN/BTC, MLN/BNB, MLN/BUSD and MLN/USDT trading pairs at 2021-07-05 06:00 AM (UTC)",3b3a5b445d87445693c95bea59186276,will_list,cms,high,
+C98USDT,2021-07-23T06:00:04Z,,1448267236e642f6b323278baa9a91d3,launchpad,cms,high,
+QUICKUSDT,2021-07-23T04:00:36Z,,705e87b0886d4a3c87b04ac3cf2119e5,will_list,cms,high,
+WAXPUSDT,2021-08-23T02:30:28Z,"open trading for WAXP/BTC, WAXP/BNB, WAXP/BUSD, WAXP/USDT trading pairs at 2021-08-23 06:30 (UTC)",3c5c8af23a624818a75bf18b1faeb7c0,will_list,cms,high,
+TVKUSDT,2021-08-05T03:01:45Z,,2b940ba95e7d40b2b17f70ca2545b427,tg_adds,tg,low,proximity_override
+FORUSDT,2021-08-19T05:02:49Z,"open trading for FIS/BRL, FOR/USDT, GHST/USDT, REQ/USDT and TRU/RUB trading pairs at 2021-08-20 10:00 AM (UTC)",ab91c1944cb54e9392b151467ebb1e95,adds_pairs,cms,medium,proximity_override
+GHSTUSDT,2021-08-19T05:02:49Z,"open trading for FIS/BRL, FOR/USDT, GHST/USDT, REQ/USDT and TRU/RUB trading pairs at 2021-08-20 10:00 AM (UTC)",ab91c1944cb54e9392b151467ebb1e95,adds_pairs,cms,medium,proximity_override
+TRIBEUSDT,2021-08-24T01:59:02Z,"open trading for TRIBE/BTC, TRIBE/BNB, TRIBE/BUSD and TRIBE/USDT trading pairs at 2021-08-24 06:00 (UTC)",d22b03e28ba64f3cbde5e8a0aea55c66,will_list,cms,high,
+GNOUSDT,2021-08-30T02:01:32Z,"open trading for GNO/BTC, GNO/BNB, GNO/BUSD, and GNO/USDT trading pairs at 2021-08-30 06:00 (UTC)",fdd3140e7acc46a79cd19afa3e0b8136,will_list,cms,high,
+ALPACAUSDT,2021-08-11T03:30:47Z,"open trading for ALPACA/BTC, ALPACA/BNB, ALPACA/BUSD, ALPACA/USDT, FARM/BTC, FARM/BNB, FARM/BUSD and FARM/USDT trading pairs at 2021-08-11 08:00 AM (UTC)",df5d03f70fb446fd9f0948fed8b5d7eb,will_list,cms,high,
+RAYUSDT,2021-08-10T01:55:38Z,"open trading for MINA/BTC, MINA/BNB, MINA/BUSD, MINA/USDT, RAY/BNB, RAY/BUSD and RAY/USDT trading pairs at 2021-08-10 06:00 AM (UTC)",1109860f79f14ebaabe7086b863a90a2,will_list,cms,high,
+REQUSDT,2021-08-19T05:02:49Z,"open trading for FIS/BRL, FOR/USDT, GHST/USDT, REQ/USDT and TRU/RUB trading pairs at 2021-08-20 10:00 AM (UTC)",ab91c1944cb54e9392b151467ebb1e95,adds_pairs,cms,medium,
+MINAUSDT,2021-08-10T01:55:38Z,"open trading for MINA/BTC, MINA/BNB, MINA/BUSD, MINA/USDT, RAY/BNB, RAY/BUSD and RAY/USDT trading pairs at 2021-08-10 06:00 AM (UTC)",1109860f79f14ebaabe7086b863a90a2,will_list,cms,high,
+MBOXUSDT,2021-08-19T02:59:18Z,,1423a4dfd8a247a0a94acf20ac47d111,will_list,cms,high,
+FARMUSDT,2021-08-11T03:30:47Z,"open trading for ALPACA/BTC, ALPACA/BNB, ALPACA/BUSD, ALPACA/USDT, FARM/BTC, FARM/BNB, FARM/BUSD and FARM/USDT trading pairs at 2021-08-11 08:00 AM (UTC)",df5d03f70fb446fd9f0948fed8b5d7eb,will_list,cms,high,
+USDPUSDT,2021-08-30T08:14:10Z,,c313480177e4457bb1e1b848c88bbf78,tg_rebrand,tg,low,rebrand_swap
+VIDTUSDT,2021-09-09T05:08:54Z,"open trading for AXS/BIDR, ELF/BUSD, IDEX/USDT, POLY/USDT, SOL/BIDR and VIDT/USDT trading pairs at 2021-09-09 08:00 AM (UTC)",cb9af400adb64fb0a5f5cdccd001e615,adds_pairs,cms,medium,proximity_override
+ILVUSDT,2021-09-22T03:26:38Z,"open trading for ILV/BTC, ILV/BNB, ILV/BUSD, and ILV/USDT trading pairs at 2021-09-22 06:00 (UTC)",4695824836c64d5f8b621c93c2bb13a3,will_list,cms,high,
+POLYUSDT,2021-09-09T05:08:54Z,"open trading for AXS/BIDR, ELF/BUSD, IDEX/USDT, POLY/USDT, SOL/BIDR and VIDT/USDT trading pairs at 2021-09-09 08:00 AM (UTC)",cb9af400adb64fb0a5f5cdccd001e615,adds_pairs,cms,medium,proximity_override
+SYSUSDT,2021-09-24T04:06:27Z,"open trading for ARPA/RUB, DF/USDT, FET/BUSD, LTC/UAH, SOL/USDC, STX/BUSD and SYS/USDT trading pairs at 2021-09-24 10:00 AM (UTC)",1acb1631e9f34681b4131586d4731448,adds_pairs,cms,medium,proximity_override
+IDEXUSDT,2021-09-09T05:08:54Z,"open trading for AXS/BIDR, ELF/BUSD, IDEX/USDT, POLY/USDT, SOL/BIDR and VIDT/USDT trading pairs at 2021-09-09 08:00 AM (UTC)",cb9af400adb64fb0a5f5cdccd001e615,adds_pairs,cms,medium,proximity_override
+DFUSDT,2021-09-24T04:06:27Z,"open trading for ARPA/RUB, DF/USDT, FET/BUSD, LTC/UAH, SOL/USDC, STX/BUSD and SYS/USDT trading pairs at 2021-09-24 10:00 AM (UTC)",1acb1631e9f34681b4131586d4731448,adds_pairs,cms,medium,proximity_override
+YGGUSDT,2021-09-24T01:58:50Z,,0d1799104b494a93956bd4dcbfa442a7,will_list,cms,high,
+DYDXUSDT,2021-09-08T14:59:46Z,,f932763eb4854916b8456497ccd8ff88,will_list,cms,high,
+GALAUSDT,2021-09-13T02:00:40Z,,e01f0f9ff68c4150b7fb6ee2fcd5159b,will_list,cms,high,
+ELFUSDT,2021-09-08T02:19:51Z,open trading for ELF/USDT and POLY/BUSD trading pairs at 2021-09-08 08:00 AM (UTC),d3369d89bc6b41f992546b1395fce474,adds_pairs,cms,medium,proximity_override
+FIDAUSDT,2021-09-30T02:29:21Z,"open trading for FIDA/BTC, FIDA/BNB, FIDA/BUSD, and FIDA/USDT trading pairs at 2021-09-30 06:00 (UTC)",817e2583e2314d9eaa0b4f3b5136387c,will_list,cms,high,
+XECUSDT,2021-09-03T04:41:13Z,,cc85f83ab7d2459ab20d67dcb88ce9ce,tg_adds,tg,low,
+RADUSDT,2021-10-07T03:24:22Z,"open trading for RAD/BTC, RAD/BNB, RAD/BUSD, and RAD/USDT trading pairs at 2021-10-07 07:00 (UTC)",fb2941023f6f4612b51a3e659319a9ef,will_list,cms,high,
+LAZIOUSDT,2021-10-21T06:00:16Z,,7062300c06bb405ba0725796e65a4cd6,launchpad,cms,high,
+CVPUSDT,2021-10-04T05:02:13Z,,789960be49034d57ba1e77a3aff8778f,tg_adds,tg,low,proximity_override
+RAREUSDT,2021-10-11T02:03:58Z,"open trading for RARE/BTC, RARE/BNB, RARE/BUSD, and RARE/USDT trading pairs at 2021-10-11 06:00 (UTC)",abccb898c2144bfda3647031b2a60bc7,will_list,cms,high,
+BETAUSDT,2021-10-08T06:00:28Z,,3d3fc51a35fe4fe3b563db02deb622c3,launchpad,cms,high,
+ADXUSDT,2021-10-29T03:54:19Z,"open trading for ADX/USDT, AUCTION/USDT, CELO/BUSD, FTM/RUB, NU/AUD, NU/RUB, REEF/BIDR and REEF/TRY trading pairs at 2021-10-29 10:00 AM (UTC)",eabde816eb1043f6b1cb04215902b7c1,adds_pairs,cms,medium,
+AGLDUSDT,2021-10-05T02:38:02Z,,4a0b5201a6874cfe98adad4f74b6a75b,will_list,cms,high,
+CHESSUSDT,2021-10-22T02:36:39Z,,75ee0166b3ec43aba2266ef98893dd56,will_list,cms,high,
+AUCTIONUSDT,2021-10-29T03:54:19Z,"open trading for ADX/USDT, AUCTION/USDT, CELO/BUSD, FTM/RUB, NU/AUD, NU/RUB, REEF/BIDR and REEF/TRY trading pairs at 2021-10-29 10:00 AM (UTC)",eabde816eb1043f6b1cb04215902b7c1,adds_pairs,cms,medium,
+FRONTUSDT,2021-10-04T05:02:13Z,,789960be49034d57ba1e77a3aff8778f,tg_adds,tg,low,proximity_override
+KP3RUSDT,2021-11-12T06:04:04Z,"open trading for ANKR/BUSD, DOT/ETH, KP3R/USDT, MANA/BRL, MATIC/ETH, SAND/ETH, SAND/TRY and STORJ/BUSD trading pairs at 2021-11-12 10:00 AM (UTC)",b5608a7f480b4348b8e29d6e7476c206,adds_pairs,cms,medium,proximity_override
+ENSUSDT,2021-11-10T03:12:09Z,,6dcf651bba03484b87666d49474f8c07,will_list,cms,high,
+RNDRUSDT,2021-11-27T05:57:44Z,,75041025aefd416596f12fbdb90b3521,will_list,cms,high,
+MOVRUSDT,2021-11-08T01:59:13Z,,cfef2fc1127d4a9fbeb8f29f4f223cf8,will_list,cms,high,
+RGTUSDT,2021-11-05T02:09:02Z,"open trading for RGT/BTC, RGT/BNB, RGT/BUSD, and RGT/USDT trading pairs at 2021-11-05 06:00 (UTC)",f9e1123ffc12458795716a0e027ff07a,will_list,cms,high,
+PLAUSDT,2021-11-23T01:59:19Z,"open trading for AMP/BTC, AMP/BNB, AMP/BUSD, AMP/USDT, PLA/BTC, PLA/BNB, PLA/BUSD, and PLA/USDT trading pairs at 2021-11-23 06:00 (UTC)",a84409552a2e4e5bb8f0a0459facd3bd,will_list,cms,high,
+PYRUSDT,2021-11-26T03:45:01Z,"open trading for PYR/BTC, PYR/BUSD, and PYR/USDT trading pairs at 2021-11-26 08:00 (UTC)",1be990aec041437baf2bd1b132c3992a,will_list,cms,high,
+QIUSDT,2021-11-15T01:58:25Z,"open trading for QI/BTC, QI/BNB, QI/BUSD, and QI/USDT trading pairs at 2021-11-15 08:00 (UTC)",2c26b9c367a34812bfd21722db38aba7,will_list,cms,high,
+JASMYUSDT,2021-11-22T07:59:42Z,"open trading for JASMY/BTC, JASMY/BNB, JASMY/BUSD, and JASMY/USDT trading pairs at 2021-11-22 12:00 (UTC)",f86958f1977248a691d752da735be408,will_list,cms,high,
+BNXUSDT,2021-11-04T06:55:45Z,,0337a0095c5b47f09a4882b6af624bdd,will_list,cms,high,
+VGXUSDT,2021-11-22T02:00:17Z,open trading for GALA/ETH and VGX/USDT trading pairs at 2021-11-22 07:00 AM (UTC),ffdf598e6904480d886ca7b6b6cd3bd0,adds_pairs,cms,medium,
+CITYUSDT,2021-11-10T02:03:02Z,"open trading for CITY/BTC, CITY/BNB, CITY/BUSD, and CITY/USDT trading pairs at 2021-11-10 08:00 (UTC)",737d3e387d9c450e91621e65a1206a95,will_list,cms,high,
+ALCXUSDT,2021-11-30T01:59:06Z,"open trading for ALCX/BTC, ALCX/BUSD, and ALCX/USDT trading pairs at 2021-11-30 06:00 (UTC)",946b303fef6c4b4386f9d06d5486c776,will_list,cms,high,
+POWRUSDT,2021-11-17T02:00:15Z,open trading for POWR/BUSD and POWR/USDT trading pairs at 2021-11-17 06:00 AM (UTC),0c574bdc22ce455d82c7d352eab13831,adds_pairs,cms,medium,
+PORTOUSDT,2021-11-16T06:00:01Z,,7a27ce5d7e5c4510883825a6db7995a9,launchpad,cms,high,
+AMPUSDT,2021-11-23T01:59:19Z,"open trading for AMP/BTC, AMP/BNB, AMP/BUSD, AMP/USDT, PLA/BTC, PLA/BNB, PLA/BUSD, and PLA/USDT trading pairs at 2021-11-23 06:00 (UTC)",a84409552a2e4e5bb8f0a0459facd3bd,will_list,cms,high,
+DARUSDT,2021-10-28T08:00:06Z,,28c68286fe9340cd97740774b4e13af9,launchpool,cms,high,
+FLUXUSDT,2021-12-10T01:58:59Z,,17855992b37d4057aba20eb8da980d68,will_list,cms,high,
+VOXELUSDT,2021-12-14T06:00:08Z,"open trading for VOXEL/BTC, VOXEL/USDT, VOXEL/BUSD and VOXEL/BNB trading pairs at 2021-12-14 12:00 PM (UTC)",1d8ce3f9ac1b4e94becdbe8121fe2969,launchpad,cms,high,
+BICOUSDT,2021-12-09T01:56:14Z,,2bd41061311e4ae287ec3e21db9a1fcf,will_list,cms,high,
+HIGHUSDT,2021-12-17T01:56:49Z,,2647bcc9c3d6493680f287529e2d0ecc,will_list,cms,high,
+USTUSDT,2021-12-24T01:58:22Z,,43d0f0d01c6a42a7941c9ecd1a1ae94b,will_list,cms,high,
+PEOPLEUSDT,2021-12-23T02:03:15Z,,52a591aab2a44b969187a00a15ca812e,will_list,cms,high,
+MCUSDT,2021-12-02T04:02:48Z,,3a60c4b165264424a5690807a30bd40a,will_list,cms,high,
+ANYUSDT,2021-12-04T02:01:36Z,"open trading for ANY/BTC, ANY/BUSD, and ANY/USDT trading pairs at 2021-12-04 06:00 (UTC)",331e59fda31149618f697f628d08b6e7,will_list,cms,high,
+JOEUSDT,2021-12-28T04:56:50Z,,278d0e13f8484d2fb90d784b5277a0e5,will_list,cms,high,
+OOKIUSDT,2021-12-16T13:30:32Z,,dff27dc6bcbb432c902bcbea5e24ddfa,tg_rebrand,tg,low,rebrand_swap
+SPELLUSDT,2021-12-24T01:58:22Z,,43d0f0d01c6a42a7941c9ecd1a1ae94b,will_list,cms,high,
+CVXUSDT,2021-12-23T02:03:15Z,,52a591aab2a44b969187a00a15ca812e,will_list,cms,high,
+FXSUSDT,2021-12-09T07:25:24Z,"open trading for ALICE/TRY, FXS/USDT, GALA/BRL, GALA/TRY, LUNA/TRY, REQ/BUSD and SAND/BRL trading pairs at 2021-12-10 09:00 AM (UTC)",cb41b236c2174112be0a41be5d97fd5d,adds_pairs,cms,medium,proximity_override
+SANTOSUSDT,2021-11-26T13:00:03Z,,75b743ac71ea44be8eb5cac9848b859a,launchpool,cms,high,
+IMXUSDT,2022-01-10T05:56:16Z,,7a1f332b6a204dfda65840ae33047a0f,will_list,cms,high,
+BTTCUSDT,2022-01-10T11:15:59Z,,2722e6da4f5141dd9b2fb07b5b1f3f75,rebrand,cms,medium,rebrand_swap
+SCRTUSDT,2022-01-20T10:57:16Z,"open trading for ATOM/BRL, BNB/UST, CRV/ETH, HIGH/BNB, NEAR/RUB, ROSE/TRY and SCRT/USDT trading pairs at 2022-01-21 12:00 PM (UTC)",836af23f13f24be08d99ec157ed1edac,adds_pairs,cms,medium,
+ACAUSDT,2022-01-25T02:02:51Z,,5242f6cd0f89435b8617512e0a8c26c3,will_list,cms,high,
+API3USDT,2022-01-21T06:28:04Z,,43b644d339394646bf65bf5c1e70d031,will_list,cms,high,
+ANCUSDT,2022-01-25T04:52:16Z,,25dfef7a745d4e9d9eef111ed054c3d4,will_list,cms,high,
+GLMRUSDT,2022-01-11T06:15:20Z,,6a6a9b138e7549fb97379d89ef778cc0,will_list,cms,high,
+ACHUSDT,2022-01-10T05:56:16Z,,7a1f332b6a204dfda65840ae33047a0f,will_list,cms,high,
+XNOUSDT,2022-01-19T03:34:35Z,,3dc8f6de281f4781a246a1658a21cb80,rebrand,cms,medium,rebrand_swap
+LOKAUSDT,2022-01-20T06:00:02Z,"open trading for LOKA/BTC, LOKA/USDT, LOKA/BUSD and LOKA/BNB trading pairs at 2022-01-20 12:00 PM (UTC)",b75ab1b24b4a4df29247706897091fc0,launchpad,cms,high,
+TUSDT,2022-02-09T10:26:34Z,,96698a6a80f64cb1ae27f813032bfaa9,rebrand,cms,medium,rebrand_swap
+ASTRUSDT,2022-02-28T07:24:03Z,,e9542fb981594bb2831eedbd18056f6a,will_list,cms,high,
+ALPINEUSDT,2022-02-21T06:00:04Z,,7fcab3678b1e484892ba38c1d3946a4f,launchpad,cms,high,
+WOOUSDT,2022-02-08T02:20:33Z,,8bd474c77c55450fbe828ec536963162,will_list,cms,high,
+BSWUSDT,2022-03-21T09:36:04Z,,8cdabd95618c4e8aab7f0b9c347d8c70,will_list,cms,high,
+APEUSDT,2022-03-17T07:02:50Z,,089704e00ad1473dac72bf7bb9a5ce89,will_list,cms,high,
+GMTUSDT,2022-03-09T06:00:04Z,"open trading for GMT/BTC, GMT/USDT, GMT/BUSD and GMT/BNB trading pairs at 2022-03-09 12:00 PM (UTC)",de8a89ac404240ef9fb3629664740285,launchpad,cms,high,
+KDAUSDT,2022-03-11T05:17:07Z,,05519b80be9a48e188840f74b774469a,will_list,cms,high,
+MOBUSDT,2022-04-29T05:58:35Z,,1b82de6f419743e2ac940566e6639b8b,will_list,cms,high,
+NEXOUSDT,2022-04-29T05:58:35Z,,1b82de6f419743e2ac940566e6639b8b,will_list,cms,high,
+STEEMUSDT,2022-04-21T09:28:09Z,"open trading for ASTR/BTC, ASTR/ETH, BSW/TRY, FTT/ETH, FUN/BNB, PORTO/BUSD, STEEM/USDT and ZIL/EUR trading pairs at 2022-04-22 10:00 (UTC)",ee7d5a9304884bf19350d69fdf105073,adds_pairs,cms,medium,proximity_override
+BIFIUSDT,2022-03-31T08:46:26Z,"open trading for APE/AUD, AVAX/GBP, BIFI/USDT, GMT/EUR, IMX/BNB and RUNE/ETH trading pairs at 2022-04-01 09:00 (UTC)",521e26076b1941c3b480b9c70102766c,adds_pairs,cms,medium,proximity_override
+EPXUSDT,2022-04-22T05:00:02Z,,cf9526489aa041508f4cd57612f34119,rebrand,cms,medium,rebrand_swap;anomaly:lag_gt_30d
+REIUSDT,2022-04-14T13:17:24Z,,bdfb52830f2f4bfcba496f3f92876b5c,tg_rebrand,tg,low,rebrand_swap
+GALUSDT,2022-04-28T08:00:04Z,,ea7c702d59a84dc29e2ed7ab3ad24c38,launchpool,cms,high,
+LDOUSDT,2022-05-09T06:57:17Z,,b76eb4e952a94959afb5964c32ddbb7a,will_list,cms,high,
+OPUSDT,2022-06-01T01:00:14Z,,5071ca5162df4f5696f93df1dacd260a,will_list,cms,high,
+LEVERUSDT,2022-06-27T08:00:42Z,,0a445bbdac634512886df1bdce74f3da,tg_rebrand,tg,low,rebrand_swap
+STGUSDT,2022-08-19T06:11:26Z,"open trading for STG/BTC, STG/BUSD and STG/USDT trading pairs at 2022-08-19 09:00 (UTC)",04619e62e3784dc09b17fea81ad4d0fd,will_list,cms,high,
+LUNCUSDT,2022-09-08T07:30:16Z,,1e237033f63945d6b6acaf39f058d152,adds_pairs,cms,medium,
+APTUSDT,2022-10-18T01:04:00Z,open trading for these spot trading pairs at 2022-10-19 01:00 (UTC),1139c7e87dd84664abb62f73c5e1dea2,will_list,cms,high,
+POLYXUSDT,2022-09-26T09:00:23Z,,25556b2e078740f1b1e7357a7aa6a94d,tg_rebrand,tg,low,rebrand_swap
+GMXUSDT,2022-10-05T06:00:29Z,"open trading for GMX/BTC, GMX/BUSD and GMX/USDT trading pairs at 2022-10-05 10:00 (UTC)",766022428cf94796914209b44261d3a8,will_list,cms,high,
+NEBLUSDT,2022-10-13T02:20:09Z,,bbd519b952db40249b4ecc4643cb9021,adds_pairs,cms,medium,proximity_override
+OSMOUSDT,2022-10-28T04:00:52Z,open trading for these spot trading pairs at 2022-10-28 10:00 (UTC),0c5d8ebc2ce1441ebb86c350a9950b65,will_list,cms,high,
+PHBUSDT,2022-11-17T03:40:05Z,,9f4c6848cdcc44fd9db7ce24327453b1,adds_pairs,cms,medium,
+HFTUSDT,2022-10-31T09:30:14Z,,73d44e64598c446cb4ec2f83b776c2f0,launchpool,cms,high,
+HOOKUSDT,2022-12-01T06:07:22Z,,3491fd71a33f4213ab2416c22c0e5629,launchpad,cms,high,
+MAGICUSDT,2022-12-12T04:10:44Z,,d40748b0370b49a4a8fe46c73519005c,will_list,cms,high,
+PROSUSDT,2023-01-26T05:30:08Z,,36e7a18248e74577adc31fadd89764e1,adds_pairs,cms,medium,proximity_override
+HIFIUSDT,2022-12-20T09:06:28Z,,8d28d328f7b94cf89850fe7e796881d7,tg_rebrand,tg,low,rebrand_swap
+RPLUSDT,2023-01-18T04:00:06Z,,ee74e04671294f8786765415f8c287bb,will_list,cms,high,
+AGIXUSDT,2023-02-16T05:00:06Z,,d69904792a7a4d89aef5e96e81d104e8,adds_pairs,cms,medium,
+GNSUSDT,2023-02-17T07:34:20Z,,879934f2ae8c40b8a6fab68f713bb73a,will_list,cms,high,
+LQTYUSDT,2023-02-28T07:15:18Z,,7600fd9241174af2832e055cdb333cfb,will_list,cms,high,
+SYNUSDT,2023-02-22T06:30:19Z,,891a788211d9432e9c85b9b87f35ebfa,will_list,cms,high,
+SSVUSDT,2023-02-23T03:00:05Z,,877c3a75c9294e72813b4de107cd1b09,adds_pairs,cms,medium,
+VIBUSDT,2023-02-23T03:00:05Z,,877c3a75c9294e72813b4de107cd1b09,adds_pairs,cms,medium,
+UFTUSDT,2023-03-16T03:00:37Z,,1aede0b598724f359c1e273c63568277,adds_pairs,cms,medium,proximity_override
+USTCUSDT,2023-03-09T03:00:04Z,,8ef61bec1227429a910877be141c5af3,adds_pairs,cms,medium,
+QKCUSDT,2023-03-16T03:00:37Z,,1aede0b598724f359c1e273c63568277,adds_pairs,cms,medium,proximity_override
+BETHUSDT,2023-03-02T01:57:48Z,,c6157985e1d04bb89c85fa966dc46b26,adds_pairs,cms,medium,
+GLMUSDT,2023-03-16T03:00:37Z,,1aede0b598724f359c1e273c63568277,adds_pairs,cms,medium,
+RDNTUSDT,2023-03-30T03:20:54Z,,2fc7b93cb25040cea40a6c6e24573cce,will_list,cms,high,
+LOOMUSDT,2023-03-23T03:15:11Z,,3ad55e9aa5ce48e99d0db51efeb6a460,adds_pairs,cms,medium,proximity_override
+OAXUSDT,2023-03-23T03:15:11Z,,3ad55e9aa5ce48e99d0db51efeb6a460,adds_pairs,cms,medium,
+IDUSDT,2023-03-16T14:25:33Z,,81e9da9067c847dfa3afd959e521c32a,tg_text,tg,low,
+PROMUSDT,2023-03-16T03:00:37Z,,1aede0b598724f359c1e273c63568277,adds_pairs,cms,medium,proximity_override
+ARBUSDT,2023-03-20T10:02:41Z,,c9cae13aa4ed405e97af29da3e509b46,will_list,cms,high,
+GASUSDT,2023-03-16T03:00:37Z,,1aede0b598724f359c1e273c63568277,adds_pairs,cms,medium,
+AMBUSDT,2023-03-02T01:57:48Z,,c6157985e1d04bb89c85fa966dc46b26,adds_pairs,cms,medium,
+EDUUSDT,2023-04-28T06:00:42Z,,67b5985c1f0b411d8b5885d4045576aa,launchpad,cms,high,
+WBTCUSDT,2023-04-27T03:00:08Z,,23630cd14227410fae3543c6effad115,adds_pairs,cms,medium,proximity_override
+PEPEUSDT,2023-05-05T11:20:04Z,,f68a3bc6eb014ed9bacf1d6c71dc1134,will_list,cms,high,
+ASTUSDT,2023-05-18T03:35:03Z,,75627aa89f604ea5892568fac4db5ff8,adds_pairs,cms,medium,
+SNTUSDT,2023-05-18T03:35:03Z,,75627aa89f604ea5892568fac4db5ff8,adds_pairs,cms,medium,
+FLOKIUSDT,2023-05-05T11:20:04Z,,f68a3bc6eb014ed9bacf1d6c71dc1134,will_list,cms,high,
+AERGOUSDT,2023-05-04T03:00:05Z,,c4a4c03539c6428396fc40f058c02332,adds_pairs,cms,medium,proximity_override
+SUIUSDT,2023-04-30T16:00:31Z,,f76980d5d5e54d80b1348fd446e8f5d3,launchpool,cms,high,
+MAVUSDT,2023-06-13T11:55:00Z,,a28d005ed545464cbb9a3661c26e6b38,launchpool,cms,high,
+COMBOUSDT,2023-05-18T04:55:26Z,,45852dc155b641bc9e1c23bc41d8ded6,tg_rebrand,tg,low,rebrand_swap
+FDUSDUSDT,2023-07-26T04:00:03Z,,065a0d561cc147ffaa74554360b9a042,will_list,cms,high,
+ARKMUSDT,2023-07-17T06:00:33Z,,60ca3aab48464625bdb79716f5b2c0b0,launchpad,cms,high,
+WBETHUSDT,2023-07-18T04:00:08Z,,7d6520bcf5b44af1a585ee0f27e16e10,adds_pairs,cms,medium,
+WLDUSDT,2023-07-24T07:02:11Z,,9bc08522433c44b1b0b9978d65c4f5e5,will_list,cms,high,
+PENDLEUSDT,2023-07-03T06:22:15Z,,56c9c5899f3747b2b9a0452450f5eb24,will_list,cms,high,
+CYBERUSDT,2023-08-01T07:03:55Z,,7d1f62e7483d406584a754a38094358a,launchpool,cms,high,
+SEIUSDT,2023-08-01T07:03:24Z,,b1d3b4df9cb34f679783a4fdb891f643,launchpool,cms,high,
+IQUSDT,2020-06-18T07:00:23Z,,07da9b80ece143fca66be93863b367dc,will_list,cms,high,anomaly:lag_gt_30d
+CREAMUSDT,2020-09-16T10:38:18Z,,71c1c8f041dc4427bd21ce3e70e3eae6,lists,cms,high,anomaly:lag_gt_30d
+GFTUSDT,2023-01-16T06:10:30Z,,2300adb470e54d4ba8db292e54e85a93,tg_rebrand,tg,low,rebrand_swap;anomaly:lag_gt_30d
+TIAUSDT,2023-10-30T13:18:52Z,,4492f05f8b0e40f2a6dc9321aba0ba27,will_list,cms,high,
+NTRNUSDT,2023-10-10T07:45:17Z,,51b509f93a3245738b0c4ec2d64d1fa8,will_list,cms,high,
+BEAMXUSDT,2023-10-25T05:05:42Z,,0b171519f1824ee288af7343ec91ce33,tg_rebrand,tg,low,rebrand_swap
+PIVXUSDT,2018-01-23T03:10:45Z,,360000216591,lists,cms,high,anomaly:lag_gt_30d
+MEMEUSDT,2023-10-27T14:09:09Z,open trading with  2023-11-03 08:00 (UTC),90ccca2c5d6946ef9439dae41a517578,launchpool,cms,high,
+VICUSDT,2023-11-06T09:30:37Z,,034eee2293964e26b915b1ec5c42972a,tg_rebrand,tg,low,rebrand_swap
+BLURUSDT,2023-11-24T06:09:47Z,,85306854c60347a6a4131493ec8d26a6,will_list,cms,high,
+ORDIUSDT,2023-11-07T06:44:13Z,,4bd64404aa384fe5a00e0f9b131035db,will_list,cms,high,
+NFPUSDT,2023-12-19T10:37:39Z,,a5cb4da2b55b401fb0a9c32ca15e9ebd,launchpool,cms,high,
+JTOUSDT,2023-12-07T11:55:38Z,,6282d0aaa23040b6a68c1b9ad9fc3e74,will_list,cms,high,
+ACEUSDT,2023-12-11T12:05:11Z,,2cb7b8a617b548e5b765bcb0f3beb680,launchpool,cms,high,
+BONKUSDT,2023-12-15T03:58:33Z,,1592b7a6ec9a408daf4b778f50ab1ca6,will_list,cms,high,
+VANRYUSDT,2023-11-17T03:30:36Z,,1493a2222fa549ce93f7101abe0941bf,tg_rebrand,tg,low,rebrand_swap
+1000SATSUSDT,2023-12-12T06:09:30Z,,67d516a4ecec4c3ca17760d9afe04570,will_list,cms,high,
+AEURUSDT,2023-12-04T04:14:11Z,,e1f106b5767546faa4c16751d8410a89,will_list,cms,high,
+ALTUSDT,2024-01-17T11:36:50Z,,8415d71c5cce481fb8bdec3651972366,launchpool,cms,high,
+AIUSDT,2023-12-26T10:03:58Z,,1c5f644e22b44e0f90404e0aea216525,launchpool,cms,high,
+JUPUSDT,2024-01-31T07:06:53Z,,7b5c643c3d8a4c9a9d443b1ceefb0015,will_list,cms,high,
+XAIUSDT,2024-01-03T09:36:04Z,,dae94618815044679412f00409625d0a,launchpool,cms,high,
+MANTAUSDT,2024-01-15T12:24:45Z,,d408406a0b594b2d82206f7ea9ca60bc,launchpool,cms,high,
+STRKUSDT,2024-02-20T02:25:22Z,,cb15311b17c440d0b0cf077a9b9979a3,will_list,cms,high,
+PYTHUSDT,2024-02-02T07:50:07Z,,f36074f9caa6474fa44fdb18503183d6,will_list,cms,high,
+PORTALUSDT,2024-02-21T07:50:13Z,,0620f90f55f2420b89158808380b6c9d,launchpool,cms,high,
+RONINUSDT,2024-02-05T09:11:28Z,,dfea1e2ae7fd475196b215e673193c63,will_list,cms,high,
+PIXELUSDT,2024-02-08T02:35:53Z,,c055fa89dda84402b7b662f13b80fffe,launchpool,cms,high,
+DYMUSDT,2024-02-06T09:26:57Z,,00095277601046a38159f649b5f0e55b,will_list,cms,high,
+WIFUSDT,2024-03-05T10:01:37Z,,90ad67fe5be7483ea058191bfde677e4,will_list,cms,high,
+BOMEUSDT,2024-03-16T09:30:06Z,,bca0f355cf004367b90d7e48fee3470c,will_list,cms,high,
+METISUSDT,2024-03-11T07:59:30Z,,a73748f501dc48f6ba3d68d724052492,will_list,cms,high,
+ETHFIUSDT,2024-03-12T14:30:01Z,,043436c6551d4f67bf1565a253039b39,launchpool,cms,high,
+AEVOUSDT,2024-03-06T10:25:55Z,,3ff4cb81f21346a4a6b1c966e0b797f0,launchpool,cms,high,
+AXLUSDT,2024-03-01T07:18:57Z,,2eb66d061d214c31a096cff35ede9360,will_list,cms,high,
+PDAUSDT,2024-02-22T05:40:34Z,,f0fafa66fedf4e058aaacb57c206c597,tg_rebrand,tg,low,rebrand_swap
+ENAUSDT,2024-03-29T04:26:14Z,,6c216f219f0e42adb1849759dee3fbd9,launchpool,cms,high,
+REZUSDT,2024-04-23T10:22:03Z,,b1e64410cc9c4ab29687392f5581a61b,launchpool,cms,high,
+TAOUSDT,2024-04-11T06:43:58Z,,dd856efc9c1a4a209eb48992e190e4d6,will_list,cms,high,
+WUSDT,2024-04-02T10:39:26Z,,49b5a226723e407cb7044d749bfda5b2,will_list,cms,high,
+SAGAUSDT,2024-04-04T02:32:24Z,,22674210af2b4d35b7ddc62c243d66fa,launchpool,cms,high,
+TNSRUSDT,2024-04-08T11:44:17Z,,6eeb77d6863948eb8e79fc40bacabdbc,will_list,cms,high,
+OMNIUSDT,2024-04-12T05:52:44Z,,3954d04933da443ab539ca38616013de,launchpool,cms,high,
+NOTUSDT,2024-05-09T15:25:00Z,,b78921ecf7c94e50973850fc47f497b9,launchpool,cms,high,
+BBUSDT,2024-04-25T08:30:31Z,,a0a11e79467e4ee6a937348005f7c84f,megadrop,cms,high,
+ZKUSDT,2024-06-17T02:00:10Z,,d87a9b01d6634ad1a36d984cc54595ee,will_list,cms,high,
+ZROUSDT,2024-06-20T06:19:30Z,,28a21b10ed23416386b40d263b71cd99,will_list,cms,high,
+LISTAUSDT,2024-05-28T10:02:49Z,,181a7b54486d4d1a8f06d82567f5cf12,megadrop,cms,high,
+IOUSDT,2024-06-06T04:36:06Z,,6556e3b5aae54c76adb0fd267b105a15,launchpool,cms,high,
+BANANAUSDT,2024-07-18T16:46:00Z,,252eaa5e7a8646e6a4461f6057a06af4,hodler,cms,high,
+GUSDT,2024-07-05T02:02:14Z,,27449abd481b473493b9c058350b4e2e,tg_rebrand,tg,low,rebrand_swap
+RENDERUSDT,2024-07-10T06:32:22Z,,d1f2ae8d99b24439a7a900caa9bb6b3b,tg_rebrand,tg,low,rebrand_swap
+DOGSUSDT,2024-08-20T16:42:01Z,,fc967d5825774984829b96943a42fadf,launchpool,cms,high,
+TONUSDT,2024-08-08T05:39:28Z,,abba626aa0974b828f91c166bdc12afd,will_list,cms,high,
+EURIUSDT,2024-08-26T07:00:03Z,,e8c6134371e945df961ae1854e863a62,will_list,cms,high,
+SLFUSDT,2024-08-19T11:08:15Z,,3ab5488a00e04d4fb338c77ea28326a8,tg_rebrand,tg,low,rebrand_swap
+CATIUSDT,2024-09-13T12:32:48Z,,03b4921a44644da2880a290c0e254140,launchpool,cms,high,
+1MBABYDOGEUSDT,2024-09-16T05:45:02Z,,4336ae4908154736acff8302509f7a05,will_list,cms,high,
+HMSTRUSDT,2024-09-12T15:01:39Z,,4ff1ed79c8e44acfba1d8f4e5a23dd64,launchpool,cms,high,
+TURBOUSDT,2024-09-16T05:45:02Z,,4336ae4908154736acff8302509f7a05,will_list,cms,high,
+POLUSDT,2024-08-28T09:03:16Z,,6a6de383727f4659a3050f7982e1620f,tg_rebrand,tg,low,rebrand_swap
+NEIROUSDT,2024-09-16T05:45:02Z,,4336ae4908154736acff8302509f7a05,will_list,cms,high,
+KAIAUSDT,2024-10-16T08:01:24Z,,f75f933759ee49d0af1dfbce7e32144c,tg_rebrand,tg,low,rebrand_swap
+LUMIAUSDT,2024-09-30T06:01:17Z,,066ba1773ce4480492b983f8d4764c91,tg_rebrand,tg,low,rebrand_swap
+SCRUSDT,2024-10-08T08:15:33Z,,22df1ba38f4a4033924a1adecf93735e,launchpool,cms,high,
+BNSOLUSDT,2024-10-09T07:00:13Z,,56398cfbd9c4419d9c0b54a0d1da2a7b,will_list,cms,high,
+EIGENUSDT,2024-09-30T08:19:57Z,,29494a3db1034233b65522b9e122d079,will_list,cms,high,
+USUALUSDT,2024-11-14T07:32:09Z,,7c4bf0dac2de4842984fc7c066204b05,launchpool,cms,high,
+COWUSDT,2024-11-06T05:10:07Z,,2faa229be2ba4b758bbeb1859f63ba36,will_list,cms,high,
+ACTUSDT,2024-11-11T05:39:29Z,,d16d96c136154680a6373225d592bca1,will_list,cms,high,
+CETUSUSDT,2024-11-06T05:10:07Z,,2faa229be2ba4b758bbeb1859f63ba36,will_list,cms,high,
+PNUTUSDT,2024-11-11T05:39:29Z,,d16d96c136154680a6373225d592bca1,will_list,cms,high,
+THEUSDT,2024-11-26T07:57:32Z,,7c06e61804694408b3401e0a380f954f,hodler,cms,high,
+PENGUUSDT,2024-12-16T12:36:45Z,,b60b629a7396476ba3c3391b016074e1,hodler,cms,high,
+VELODROMEUSDT,2024-12-13T08:07:57Z,,4f8e9e0b5dd54e9095b7d718f289d9d4,will_list,cms,high,
+ORCAUSDT,2024-12-06T08:34:18Z,,b8b988973b88493192f2e43ba26da331,will_list,cms,high,
+ACXUSDT,2024-12-06T08:34:18Z,,b8b988973b88493192f2e43ba26da331,will_list,cms,high,
+1000CATUSDT,2024-12-16T12:36:45Z,,b60b629a7396476ba3c3391b016074e1,hodler,cms,high,
+VANAUSDT,2024-12-13T08:59:48Z,,f6c4a4567f5c42d2b0f632bfcdf89093,launchpool,cms,high,
+MOVEUSDT,2024-12-09T08:29:16Z,,8a585286abc547d293e269beeb6b9bf3,hodler,cms,high,
+MEUSDT,2024-12-10T07:22:20Z,,d4f72bdd82d44a0591ee40d41f0b44d5,will_list,cms,high,
+COOKIEUSDT,2025-01-10T08:55:27Z,,6a15c90f03434e5a8ff710b07ec9519e,will_list,cms,high,
+ANIMEUSDT,2025-01-22T10:02:43Z,,fe1f135ebcfd4668af8b4b8c629fbaf8,hodler,cms,high,
+BIOUSDT,2024-12-23T10:19:12Z,,f4717985d5d549c8adf284ef4fbd9107,launchpool,cms,high,
+CGPTUSDT,2025-01-10T08:55:27Z,,6a15c90f03434e5a8ff710b07ec9519e,will_list,cms,high,
+SOLVUSDT,2025-01-06T07:34:58Z,,a8eebdf7ca1248f6923f98c8356ac2de,megadrop,cms,high,
+SUSDT,2024-12-24T07:03:18Z,,aec6fcbc84b749eeab6690e6bcac2f3d,tg_rebrand,tg,low,rebrand_swap
+AIXBTUSDT,2025-01-10T08:55:27Z,,6a15c90f03434e5a8ff710b07ec9519e,will_list,cms,high,
+TRUMPUSDT,2025-01-19T04:05:42Z,,098d3a7afe5244b5ba6ea728f933817f,will_list,cms,high,
+DUSDT,2024-12-19T03:01:41Z,,21551cde98784f64b374f8d50ff2a438,tg_rebrand,tg,low,rebrand_swap
+KAITOUSDT,2025-02-19T10:31:06Z,,270d00295b854230a4fae344b64f36b4,hodler,cms,high,
+LAYERUSDT,2025-02-11T06:43:29Z,,f039547b84974b688a549d14779cebc4,hodler,cms,high,
+1000CHEEMSUSDT,2025-02-09T07:10:31Z,,8aa1b6610a534fcb95b46956f2ed4391,will_list,cms,high,
+REDUSDT,2025-02-25T09:11:14Z,,5e1eb05676a0492f889db144b46d439b,launchpool,cms,high,
+BERAUSDT,2025-02-05T12:19:06Z,,5a3a946a51674cc09132696645b42d79,hodler,cms,high,
+TSTUSDT,2025-02-09T07:10:31Z,,8aa1b6610a534fcb95b46956f2ed4391,will_list,cms,high,
+HEIUSDT,2025-01-22T09:01:01Z,,2a9feaa556f74dcdaa2192366f0e247c,tg_rebrand,tg,low,rebrand_swap
+SHELLUSDT,2025-02-27T05:15:20Z,,ad59b678944f4f83a45119b984fa28db,hodler,cms,high,
+MUBARAKUSDT,2025-03-27T17:27:12Z,,6e3391cffa774b2a9711e8597a618edb,will_list,cms,high,
+XUSDUSDT,2025-03-17T07:00:03Z,,65af5039eae04563b47e424b9cae77ed,will_list,cms,high,
+EPICUSDT,2025-02-28T04:01:59Z,,12a08da1cb944761a7517bf21d59d5af,tg_rebrand,tg,low,rebrand_swap
+GPSUSDT,2025-03-04T05:18:51Z,,63c1fcf1009e4bf08dc486c0ef10917b,hodler,cms,high,
+FORMUSDT,2025-02-26T02:00:50Z,,2f963977c7274e0583f16f2e26987b61,tg_rebrand,tg,low,rebrand_swap
+BMTUSDT,2025-03-18T09:52:05Z,,6539265e571540298fa4b7943140469d,hodler,cms,high,
+TUTUSDT,2025-03-27T17:27:12Z,,6e3391cffa774b2a9711e8597a618edb,will_list,cms,high,
+GUNUSDT,2025-03-27T13:29:21Z,,d9d307783a144d9b81772bc690454ba3,launchpool,cms,high,
+BANANAS31USDT,2025-03-27T17:27:12Z,,6e3391cffa774b2a9711e8597a618edb,will_list,cms,high,
+NILUSDT,2025-03-20T10:14:39Z,"open trading with&nbsp;NIL/USDT, NIL/BNB, NIL/FDUSD,  2025-03-24 13:00 (UTC)",2608d3a348a44a33b04a133b90d45dc2,launchpool,cms,high,
+PARTIUSDT,2025-03-24T15:56:48Z,,3ec6cdfea3394ffa9ce6bfeabe8191e5,hodler,cms,high,
+BROCCOLI714USDT,2025-03-27T17:27:12Z,,6e3391cffa774b2a9711e8597a618edb,will_list,cms,high,
+INITUSDT,2025-04-17T08:59:59Z,,c288d0d677304b9e9246eceae0237ff3,launchpool,cms,high,
+HYPERUSDT,2025-04-21T15:11:51Z,,cd31b4166f3047fe91889f1e83a99a79,hodler,cms,high,
+WCTUSDT,2025-04-10T10:15:06Z,,5a1eedebf6e54c418c326e44df8775b2,launchpool,cms,high,
+SIGNUSDT,2025-04-25T09:35:15Z,,4ed7b66008e247329bf255a383699ef4,hodler,cms,high,
+KERNELUSDT,2025-04-08T03:05:27Z,,85a30db60120420785629cfd93b9a82d,megadrop,cms,high,
+BABYUSDT,2025-04-09T08:42:17Z,,a2a116f48c0d412b9001d29ddf876464,hodler,cms,high,
+BIGTIMEUSDT,2025-04-11T10:08:34Z,,2216f0665d9542f69b2957933ad551d4,will_list,cms,high,
+ONDOUSDT,2025-04-11T10:08:34Z,,2216f0665d9542f69b2957933ad551d4,will_list,cms,high,
+VIRTUALUSDT,2025-04-11T10:08:34Z,,2216f0665d9542f69b2957933ad551d4,will_list,cms,high,
+USD1USDT,2025-05-22T03:30:01Z,,3eec9de75b1c4ab78efd1d53478e7340,will_list,cms,high,
+AUSDT,2025-05-14T09:01:03Z,,1e89a9ca957c4b0ca7502e60b993e201,tg_rebrand,tg,low,rebrand_swap
+KMNOUSDT,2025-05-06T11:25:20Z,,2ebd8f9d2acc4123a9f372a650760b66,will_list,cms,high,
+HAEDALUSDT,2025-05-21T10:04:15Z,,3e9a3673851341399455718549796f49,hodler,cms,high,
+AWEUSDT,2025-05-07T06:00:47Z,,f653fab995c348f8a7d510354f475023,tg_rebrand,tg,low,rebrand_swap
+NXPCUSDT,2025-05-15T04:36:30Z,,07c88538531d40d49492b314994bf6c5,hodler,cms,high,
+SYRUPUSDT,2025-05-06T11:25:20Z,,2ebd8f9d2acc4123a9f372a650760b66,will_list,cms,high,
+HUMAUSDT,2025-05-22T10:46:16Z,,515c45c283ea44c59b7f4623a3512666,launchpool,cms,high,
+STOUSDT,2025-05-02T10:21:22Z,,6c74537a512e4668bc731e8fb1a293da,hodler,cms,high,
+SXTUSDT,2025-05-05T14:14:13Z,trading opens 2025-05-08 12:00 (UTC),7d695afee5c14c789dd8accb05cda42a,launchpool,cms,high,
+SOPHUSDT,2025-05-28T07:16:56Z,,8ef18cf913ce42278b67f4cbe161a062,hodler,cms,high,
+NEWTUSDT,2025-06-23T14:08:19Z,,a77caa5645b94c6b8a421d96357bbb0b,hodler,cms,high,
+HOMEUSDT,2025-06-12T11:04:44Z,,b5210fb7261e46dba5b4a9a7a5f0cff6,hodler,cms,high,
+RESOLVUSDT,2025-06-11T10:24:40Z,,0a07cb5db68b41598cdc0f13f1606028,hodler,cms,high,
+SAHARAUSDT,2025-06-24T14:29:12Z,,c50d3bc55dc34b2984703b70aa344446,hodler,cms,high,
+SPKUSDT,2025-06-16T11:33:20Z,,6ff0fe8602d845488bd6a43aef3bbc0c,hodler,cms,high,
+A2ZUSDT,2025-07-10T09:02:10Z,,551eeaf9861c47b8ad3482f45abf3f38,tg_rebrand,tg,low,rebrand_swap
+LAUSDT,2025-07-09T09:58:15Z,,396441b6cb6d46b983d6475b0b77daf9,hodler,cms,high,
+ERAUSDT,2025-07-16T08:58:10Z,,5511fc0281c1459bbb8b9f0d2f1297dc,hodler,cms,high,
+TREEUSDT,2025-07-28T13:30:11Z,,76da2c4b79994a27aa65725505a7bb23,hodler,cms,high,
+CUSDT,2025-07-18T07:47:32Z,,b27427d0ed9e483da07deab9d5f1f211,hodler,cms,high,
+TOWNSUSDT,2025-08-04T09:12:55Z,,48614824082b4a7e99478827bdbadbc7,hodler,cms,high,
+PROVEUSDT,2025-08-05T01:59:17Z,,bbd0a134905646d485e35af4fdda3ee7,hodler,cms,high,
+PLUMEUSDT,2025-08-18T09:36:06Z,,82264d448a4e4c1abc29ec1df14509f7,hodler,cms,high,
+DOLOUSDT,2025-08-27T10:43:22Z,,2742ed6ae1034444875f397c7d4e6781,hodler,cms,high,
+MITOUSDT,2025-08-29T09:15:57Z,"trading opens, MITO will no longer be showcased on Binance Alpha, and its trading volume will no longer be counted towards  2025-08-29 11:30 (UTC)",292f47e6254144caa207a79d9edf2072,hodler,cms,high,
+BFUSDUSDT,2025-08-13T03:00:00Z,,724d348354b349bc9c0630a2184ee80b,will_list,cms,high,
+XPLUSDT,2025-09-24T08:00:04Z,,b00f28d55c924614b1953484c64dd6f9,hodler,cms,high,
+USDEUSDT,2025-09-09T07:00:01Z,,aebac85d4dd3470c9cd52df6f98d0811,will_list,cms,high,
+WLFIUSDT,2025-09-01T01:49:05Z,,503b79756ba04a1cac0dfd6216958422,will_list,cms,high,
+ZKCUSDT,2025-09-12T09:57:33Z,,51d8b9b9675a4bbdb5f963a09accd9e6,hodler,cms,high,
+OPENUSDT,2025-09-05T07:18:31Z,,e2faef7fe18f4da68451b311973da10a,hodler,cms,high,
+PUMPUSDT,2025-09-11T11:37:53Z,,94ab969a74a8480799d03934b4720411,will_list,cms,high,
+BARDUSDT,2025-09-17T09:57:50Z,,d309275c430f4b59b66736783fe1c2cd,hodler,cms,high,
+AVNTUSDT,2025-09-15T03:47:01Z,,50ff03bc1d94471181887c43b930d3f0,will_list,cms,high,
+MIRAUSDT,2025-09-25T10:00:03Z,,149617ae89a64ca4ac71ed2d296ab4e6,hodler,cms,high,
+HEMIUSDT,2025-09-23T05:09:17Z,"trading opens, HEMI will no longer be showcased on Binance Alpha, and its trading volume will no longer be counted towards  HEMI *Please note that users can now trade   2025-09-23 07:00 (UTC)",b978b48e31ef4b33886ef59c4d15c733,hodler,cms,high,
+HOLOUSDT,2025-09-10T05:11:59Z,,0bb3a75e5f724419a91cad5f7b6c5e6d,hodler,cms,high,
+FFUSDT,2025-09-26T07:52:42Z,,91b1298d151a4803b99720518751a95b,hodler,cms,high,
+LINEAUSDT,2025-09-08T14:26:09Z,,366ed788034d439fb59be294a59126ab,hodler,cms,high,
+EDENUSDT,2025-09-29T08:30:37Z,,feec6071453d4433bf251e8e17438c7c,hodler,cms,high,
+SKYUSDT,2025-07-18T09:01:05Z,,bf29506a33a94c17a5d5a01e74e646d2,tg_rebrand,tg,low,rebrand_swap;proximity_override;anomaly:lag_gt_30d
+SOMIUSDT,2025-09-01T08:59:32Z,,cea79d16737f4ae8960645c50cfef442,hodler,cms,high,
+0GUSDT,2025-09-21T08:58:17Z,,e7b441acff484d25a1120f8ae7ce6e54,hodler,cms,high,
+MORPHOUSDT,2025-10-03T09:51:47Z,"trading opens, MORPHO will no longer be showcased on Binance Alpha, and its trading volume will no longer be counted towards  2025-10-03 10:00 (UTC)",d625623188cf455ea2fea7cc48dcabfb,hodler,cms,high,
+WALUSDT,2025-10-10T02:21:21Z,,0c86561f0863419ca441b2a4c96e790d,hodler,cms,high,
+ASTERUSDT,2025-10-06T07:48:49Z,,ff209dd797b2418198c312a1a266e73a,will_list,cms,high,
+NOMUSDT,2025-09-10T03:01:01Z,,13d0a79f79ef4406963dcd7f9d1de325,tg_rebrand,tg,low,rebrand_swap
+FUSDT,2025-10-25T03:07:19Z,,9de462f111c64723ac54331163e2652c,tg_text,tg,low,
+TURTLEUSDT,2025-10-21T07:56:49Z,,d5e4381605934bb98919bf542d3d6afe,hodler,cms,high,
+ENSOUSDT,2025-10-14T02:58:32Z,,79ea046281db4d478a5f95049bd6546b,hodler,cms,high,
+2ZUSDT,2025-10-02T03:18:25Z,,ce383a4cd22743109da5c7f050457089,hodler,cms,high,
+EULUSDT,2025-10-13T09:22:48Z,"trading opens, EUL will no longer be showcased on Binance Alpha, and its trading volume will no longer be counted towards   2025-10-13 10:30 (UTC)",7d38f20e2d1e456dba84352d9284699e,hodler,cms,high,
+GIGGLEUSDT,2025-10-25T03:07:19Z,,9de462f111c64723ac54331163e2652c,tg_text,tg,low,
+ZBTUSDT,2025-10-17T09:53:33Z,,a6d3aaf1f6af443fb99386104551f5ad,hodler,cms,high,
+YBUSDT,2025-10-14T09:46:27Z,,8b48c0db0eeb472ab0314377938af2dc,hodler,cms,high,
+BANKUSDT,2025-11-13T10:00:26Z,,fd835b4cd95f4af89c461070994e684d,will_list,cms,high,
+KITEUSDT,2025-10-31T08:09:28Z,,48da65d095eb44e093d856948552c402,launchpool,cms,high,
+ATUSDT,2025-11-27T08:38:18Z,"trading opens, AT will no longer be showcased on Binance Alpha, and its trading volume will no longer be counted towards  2025-11-27 10:30 (UTC)",b0c65316e2bc4878838852b16291d07b,hodler,cms,high,
+SAPIENUSDT,2025-11-06T04:45:41Z,"trading opens, SAPIEN will no longer be showcased on Binance Alpha, and its trading volume will no longer be counted towards   2025-11-06 06:00 (UTC)",55ba4e6b3da34b50a637a6000a13a46b,hodler,cms,high,
+METUSDT,2025-11-13T10:00:26Z,,fd835b4cd95f4af89c461070994e684d,will_list,cms,high,
+ALLOUSDT,2025-11-11T04:58:30Z,,ea6c4d237ad14eb38169221c01fbd992,hodler,cms,high,
+MMTUSDT,2025-11-03T08:14:11Z,,105591654043469c97c4d545cbed182e,hodler,cms,high,
+KGSTUSDT,2025-12-22T07:00:01Z,,bfe438851d504c89b27df2ad25bb0cf6,will_list,cms,high,
+BREVUSDT,2026-01-05T10:04:14Z,,59a69279ee4148d5b267934a92319d33,hodler,cms,high,
+FRAXUSDT,2025-12-26T03:03:42Z,,a17352ba70414c96882cd881591dd36d,tg_rebrand,tg,low,rebrand_swap
+FOGOUSDT,2026-01-12T12:50:53Z,,4ba222e6a62e4544a408ff1689682404,will_list,cms,high,
+ZKPUSDT,2026-01-07T10:39:06Z,,51881f9d018242ce80bed6ce015de2a7,will_list,cms,high,
+币安人生USDT,2026-01-07T10:39:06Z,,51881f9d018242ce80bed6ce015de2a7,will_list,cms,high,
+UUSDT,2026-01-12T07:30:07Z,,54de0a1147d04cf382707002a30901fd,will_list,cms,high,
+SENTUSDT,2026-01-22T05:25:54Z,,85af9e52f60547dd8f7b67fd3dc2f7b4,will_list,cms,high,
+RLUSDUSDT,2026-01-21T08:30:01Z,,29ba8e4cfa1b45ea88653c029cedd0cd,will_list,cms,high,
+ESPUSDT,2026-02-12T07:28:23Z,,c8f9e4e1e7de458482a2af3cf64c9093,will_list,cms,high,
+ZAMAUSDT,2026-02-02T04:28:43Z,,c411646abd94488bba084537c5563beb,will_list,cms,high,
+CFGUSDT,2026-03-16T10:22:39Z,,bcd4473a511948bf8b305f0f6a695313,will_list,cms,high,
+NIGHTUSDT,2026-03-11T11:31:21Z,,e4af642d375846d793615f1a51f6ad77,hodler,cms,high,
+OPNUSDT,2026-03-02T12:45:51Z,,d5810276f8c44fa7ade2b93746cd6a0a,launchpool,cms,high,
+ROBOUSDT,2026-03-04T13:13:14Z,,82c9c8166a2a434681c20a23a346a5b8,will_list,cms,high,
+MANTRAUSDT,2026-02-13T10:05:55Z,,4d13052b4be943f5b155cb9150ca902c,tg_rebrand,tg,low,rebrand_swap
+XAUTUSDT,2026-03-26T10:45:28Z,,20861b38a9c246ff92db218bae2e83fa,will_list,cms,high,
+KATUSDT,2026-03-13T01:45:36Z,,01f1ef18ab314cc78cd3744760e4dc1f,will_list,cms,high,
+MEGAUSDT,2026-04-30T09:07:29Z,,506a7482e6b94bc58f3e275cb15c2861,will_list,cms,high,
+CHIPUSDT,2026-04-21T12:00:32Z,,fd57a395639b466ab8bfc792670c679d,will_list,cms,high,
+AIGENSYNUSDT,2026-05-14T10:00:03Z,,71f44e5e014c445697bb6a6f70315e35,will_list,cms,high,
+OPGUSDT,2026-05-22T07:18:35Z,,4de6272354be421ba51ea042fd273a8d,will_list,cms,high,
+GENIUSUSDT,2026-05-22T07:18:35Z,,4de6272354be421ba51ea042fd273a8d,will_list,cms,high,
+SPCXBUSDT,2026-06-12T16:00:00Z,,191cb96109f24c5c85362631a55a45d3,adds_pairs,cms,medium,bstock
+MUBUSDT,2026-06-11T14:05:06Z,,5646e3f9ea6b4c989cb76aa18bd99245,adds_pairs,cms,medium,bstock
+TSLABUSDT,2026-06-11T14:05:06Z,,5646e3f9ea6b4c989cb76aa18bd99245,adds_pairs,cms,medium,bstock
+MSFTBUSDT,2026-06-30T05:30:25Z,,03b264b679a646119d1a2415b9097bd6,adds_pairs,cms,medium,bstock
+MSTRBUSDT,2026-06-23T06:32:00Z,,d1343e10bc2648cd8302c83a5b1223a9,adds_pairs,cms,medium,bstock
+INTCBUSDT,2026-06-23T06:32:00Z,,d1343e10bc2648cd8302c83a5b1223a9,adds_pairs,cms,medium,bstock
+SNDKBUSDT,2026-06-11T14:05:06Z,,5646e3f9ea6b4c989cb76aa18bd99245,adds_pairs,cms,medium,bstock
+QQQBUSDT,2026-06-30T05:30:25Z,,03b264b679a646119d1a2415b9097bd6,adds_pairs,cms,medium,bstock
+NVDABUSDT,2026-06-11T14:05:06Z,,5646e3f9ea6b4c989cb76aa18bd99245,adds_pairs,cms,medium,bstock
+LITEBUSDT,2026-06-30T05:30:25Z,,03b264b679a646119d1a2415b9097bd6,adds_pairs,cms,medium,bstock
+CRCLBUSDT,2026-06-11T14:05:06Z,,5646e3f9ea6b4c989cb76aa18bd99245,adds_pairs,cms,medium,bstock
+AMDBUSDT,2026-06-23T06:32:00Z,,d1343e10bc2648cd8302c83a5b1223a9,adds_pairs,cms,medium,bstock
+EWYBUSDT,2026-06-23T06:32:00Z,,d1343e10bc2648cd8302c83a5b1223a9,adds_pairs,cms,medium,bstock
+REUSDT,2026-06-18T09:47:21Z,,4f90bec2f7984f71aaa9465830b1c6a6,will_list,cms,high,
+METABUSDT,2026-06-30T05:30:25Z,,03b264b679a646119d1a2415b9097bd6,adds_pairs,cms,medium,bstock
+PLTRBUSDT,2026-06-30T05:30:25Z,,03b264b679a646119d1a2415b9097bd6,adds_pairs,cms,medium,bstock
+GRAMUSDT,2026-06-12T06:02:13Z,,fe307fba935b44698fde4db01e84a7eb,tg_rebrand,tg,low,rebrand_swap
+DRAMBUSDT,2026-07-07T06:30:06Z,,6a55706a042c4a7ebedc2a0899744088,adds_pairs,cms,medium,bstock
+TQQQBUSDT,2026-07-22T06:30:04Z,,ea42cf41150f4e9ab7f1631fa21bba1e,adds_pairs,cms,medium,bstock
+AAPLBUSDT,2026-07-29T06:30:02Z,,fd3c0f17a7504eb5be1cb1911c6da0cd,adds_pairs,cms,medium,bstock
+AAOIBUSDT,2026-07-15T06:30:03Z,,f198d9602f3b4604a9b15cd0a1529e32,adds_pairs,cms,medium,bstock
+TSMBUSDT,2026-07-15T06:30:03Z,,f198d9602f3b4604a9b15cd0a1529e32,adds_pairs,cms,medium,bstock
+GLWBUSDT,2026-07-07T06:30:06Z,,6a55706a042c4a7ebedc2a0899744088,adds_pairs,cms,medium,bstock
+GOOGLBUSDT,2026-07-07T06:30:06Z,,6a55706a042c4a7ebedc2a0899744088,adds_pairs,cms,medium,bstock
+AEROUSDT,2026-07-17T07:30:01Z,,1631198cd282431bbb5fbd333106a413,will_list,cms,high,
+SPYBUSDT,2026-07-07T06:30:06Z,,6a55706a042c4a7ebedc2a0899744088,adds_pairs,cms,medium,bstock
+AVGOBUSDT,2026-07-15T06:30:03Z,,f198d9602f3b4604a9b15cd0a1529e32,adds_pairs,cms,medium,bstock
+AMZNBUSDT,2026-07-29T06:30:02Z,,fd3c0f17a7504eb5be1cb1911c6da0cd,adds_pairs,cms,medium,bstock
+PYPLBUSDT,2026-07-29T06:30:02Z,,fd3c0f17a7504eb5be1cb1911c6da0cd,adds_pairs,cms,medium,bstock
+BEBUSDT,2026-07-29T06:30:02Z,,fd3c0f17a7504eb5be1cb1911c6da0cd,adds_pairs,cms,medium,bstock
+ORCLBUSDT,2026-07-22T06:30:04Z,,ea42cf41150f4e9ab7f1631fa21bba1e,adds_pairs,cms,medium,bstock
+NOKBUSDT,2026-07-15T06:30:03Z,,f198d9602f3b4604a9b15cd0a1529e32,adds_pairs,cms,medium,bstock
+CBRSBUSDT,2026-07-07T06:30:06Z,,6a55706a042c4a7ebedc2a0899744088,adds_pairs,cms,medium,bstock
+QCOMBUSDT,2026-07-07T06:30:06Z,,6a55706a042c4a7ebedc2a0899744088,adds_pairs,cms,medium,bstock
+COINBUSDT,2026-07-07T06:30:06Z,,6a55706a042c4a7ebedc2a0899744088,adds_pairs,cms,medium,bstock
+WDCBUSDT,2026-07-07T06:30:06Z,,6a55706a042c4a7ebedc2a0899744088,adds_pairs,cms,medium,bstock
+DELLBUSDT,2026-07-29T06:30:02Z,,fd3c0f17a7504eb5be1cb1911c6da0cd,adds_pairs,cms,medium,bstock
+MRVLBUSDT,2026-07-15T06:30:03Z,,f198d9602f3b4604a9b15cd0a1529e32,adds_pairs,cms,medium,bstock
+NBISBUSDT,2026-07-07T06:30:06Z,,6a55706a042c4a7ebedc2a0899744088,adds_pairs,cms,medium,bstock
+MVLLBUSDT,2026-07-22T06:30:04Z,,ea42cf41150f4e9ab7f1631fa21bba1e,adds_pairs,cms,medium,bstock
+MUUBUSDT,2026-07-22T06:30:04Z,,ea42cf41150f4e9ab7f1631fa21bba1e,adds_pairs,cms,medium,bstock
+CRWVBUSDT,2026-07-22T06:30:04Z,,ea42cf41150f4e9ab7f1631fa21bba1e,adds_pairs,cms,medium,bstock
+AMATBUSDT,2026-07-29T06:30:02Z,,fd3c0f17a7504eb5be1cb1911c6da0cd,adds_pairs,cms,medium,bstock
+QNTBUSDT,2026-07-22T06:30:04Z,,ea42cf41150f4e9ab7f1631fa21bba1e,adds_pairs,cms,medium,bstock
+BABABUSDT,2026-07-15T06:30:03Z,,f198d9602f3b4604a9b15cd0a1529e32,adds_pairs,cms,medium,bstock
+ARMBUSDT,2026-07-15T06:30:03Z,,f198d9602f3b4604a9b15cd0a1529e32,adds_pairs,cms,medium,bstock
+SOXSBUSDT,2026-07-29T06:30:02Z,,fd3c0f17a7504eb5be1cb1911c6da0cd,adds_pairs,cms,medium,bstock
+SOXLBUSDT,2026-07-07T06:30:06Z,,6a55706a042c4a7ebedc2a0899744088,adds_pairs,cms,medium,bstock
+GSBUSDT,2026-07-29T06:30:02Z,,fd3c0f17a7504eb5be1cb1911c6da0cd,adds_pairs,cms,medium,bstock
+SNXXBUSDT,2026-07-22T06:30:04Z,,ea42cf41150f4e9ab7f1631fa21bba1e,adds_pairs,cms,medium,bstock
+SMHBUSDT,2026-07-29T06:30:02Z,,fd3c0f17a7504eb5be1cb1911c6da0cd,adds_pairs,cms,medium,bstock
+RKLBBUSDT,2026-07-15T06:30:03Z,,f198d9602f3b4604a9b15cd0a1529e32,adds_pairs,cms,medium,bstock
+SKHYBUSDT,2026-07-13T08:00:06Z,,c2e92c3c6c8347c197b9091851ec285e,adds_pairs,cms,medium,bstock
+IBMBUSDT,2026-07-15T06:30:03Z,,f198d9602f3b4604a9b15cd0a1529e32,adds_pairs,cms,medium,bstock
+INTWBUSDT,2026-07-22T06:30:04Z,,ea42cf41150f4e9ab7f1631fa21bba1e,adds_pairs,cms,medium,bstock
+FLNCBUSDT,2026-07-29T06:30:02Z,,fd3c0f17a7504eb5be1cb1911c6da0cd,adds_pairs,cms,medium,bstock
+KORUBUSDT,2026-07-22T06:30:04Z,,ea42cf41150f4e9ab7f1631fa21bba1e,adds_pairs,cms,medium,bstock
+AXTIBUSDT,2026-07-22T06:30:04Z,,ea42cf41150f4e9ab7f1631fa21bba1e,adds_pairs,cms,medium,bstock
+HOODBUSDT,2026-07-15T06:30:03Z,,f198d9602f3b4604a9b15cd0a1529e32,adds_pairs,cms,medium,bstock
