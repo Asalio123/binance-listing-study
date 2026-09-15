@@ -21,11 +21,24 @@ Binance USDT Listing, 2021–2026"** (Said Bakhtiev, August 2026).
   features (delisted tokens included)
 - `data/day0_turnover.csv` — day-0 quote-asset (USD) turnover for all 470 events
 - `data/post_window_car.csv` — event-study outputs
-- `data/binance_day_closes/`, `data/bybit_klines_cache/` — raw daily closes and
-  holdout klines cache for exact replication
+- `data/announcement_dates.csv` — announcement timestamps for 468 of 470 events
+  (Binance public content API + Telegram cross-validation), with match patterns
+  and confidence grades
+- `data/coinbase_calendar.csv`, `coinbase_events.csv`, `coinbase_overlap.csv` —
+  death-inclusive Coinbase Exchange calendar (603 products, 180 delisted) and
+  the 566-event replication panel
+- `data/intraday_day0.csv` — minute-level day-0 anatomy for all 470 events
+  (first-hour return, time-to-peak, volume share, listing open timestamp)
+- `data/announcement_premium_coinbase.csv` — returns around Binance announcement
+  timestamps measured on Coinbase (79 cross-listed events)
+- `data/binance_day_closes/`, `data/bybit_klines_cache/`,
+  `data/coinbase_candles_cache/`, `data/intraday_day0_cache/`,
+  `data/cms_details_cache/`, `data/tg_announcements_scrape.json` — raw caches
+  for exact replication
 
-**Code** (`src/`) — calendar builders (Binance + Bybit), event-study engine,
-statistics, preregistered Bybit holdout, chart generation.
+**Code** (`src/`) — calendar builders (Binance + Bybit + Coinbase), event-study
+engine, statistics, pre-specified Bybit holdout, announcement-date
+reconstruction (CMS + Telegram), intraday day-0 fetcher, chart generation.
 
 **Paper** (`paper/`) — preprint PDF and sources, the claim-by-claim
 falsification matrix for the prior listing literature (`FALSIFICATION.md`),
