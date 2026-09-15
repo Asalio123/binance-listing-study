@@ -222,7 +222,10 @@ quote-asset volume of the first daily candle) from the same archive. Most
 derived datasets do not carry this field. Without it there are no
 dollar-weighted results below. (A listing opens intra-day, so the first daily
 bar can be partial; the minute-level anatomy of day 0 is analysed in Section
-III.A.)
+III.A.) Dollar-typical outcomes below are weighted medians with weights equal
+to day-0 USD turnover: the smallest value at which cumulative weight reaches
+50%. This is a weighting choice, not an internal-rate-of-return measure in the
+sense of Dichev [11].
 
 # III. Results
 
@@ -328,7 +331,8 @@ in-sample upper bounds; live tracking continues.
 ## E. Robustness
 
 For +7 days, the median still lies within the interval [−11.52 per cent,
-−11.31 per cent] under a 2 per cent tail trim, winsorization, excluding 2021
+−11.31 per cent] under a 2 per cent tail trim, winsorization (capping
+extremes at the percentile boundary), excluding 2021
 (the meme craze) and excluding the fourth quarter of 2024. In every case the
 p-value of the Wilcoxon test is at most 1.5 × 10⁻¹³. Relative to round-trip retail spot costs of ~16 bps, the
 median absolute move is an order of magnitude larger. Monetizing the negative
@@ -435,7 +439,8 @@ The gap has anatomy. Split the panel into day-0 turnover quintiles and the
 median week-one return runs −0.6%, −5.0%, −14.5%, −16.8%, **−23.5%**
 (BTC-adjusted: −4.6%, −9.8%, −15.7%, −19.5%, −29.1%). The
 quietest quintile shows no fade at all. Turnover also correlates with day-0
-range (Spearman +0.84) and pop (+0.79), keeps incremental predictive power in
+range (Spearman rank correlation +0.84) and pop (+0.79), keeps incremental
+predictive power in
 cross-section (−2.4 pp per log-unit, t = −2.6), persists in every calendar
 year, and survives removal of the five heaviest events. This is the listing-day
 version of the divergence-of-opinion mechanism [6], [8]–[10]: record turnover
