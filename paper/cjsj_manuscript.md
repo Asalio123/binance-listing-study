@@ -12,16 +12,17 @@ abstract: |
   are never dropped. Median returns from
   the first-day close run to −11.45% after one week and −21.53% after a month,
   with Wilcoxon p-values below 10⁻¹⁶ at weekly horizons. The dollar-typical
-  outcome is roughly twice as bad: weighting listings by their day-0 USD
+  outcome is more than twice as bad: weighting listings by their day-0 USD
   turnover, the median week-one loss deepens to −28.7% (−35.5% BTC-adjusted),
   and subsequent delisting explains less than one percentage point of the gap.
   The funds do not disappear the moment the tokens are delisted; they are
   gradually depleted whilst the tokens still trade, fastest where day-0 volume
   peaked. The fade is monotone across turnover quintiles (−0.6% to −23.5%),
   matching the divergence-of-opinion mechanism known from IPO research. We then
-  freeze four directional predictions *before* touching any Bybit price data
-  and run a confirmatory holdout on the 415 surviving Bybit listings with
-  Benjamini-Hochberg correction: the fade replicates (−10.34%, BH
+  freeze four directional predictions *before* touching any Bybit price data;
+  three form the Benjamini-Hochberg-corrected family tested on the 415
+  surviving Bybit listings, and the fourth prices survivorship in dollars on
+  Binance: the fade replicates (−10.34%, BH
   p = 8×10⁻¹⁴), first-week extremes predict continuation rather than reversal
   (r = +0.37), and the volatility-predicts-fade gradient fails to replicate,
   flipping sign. An exploratory death-inclusive check on 566 Coinbase listings
@@ -115,7 +116,7 @@ archives and released openly with a 28-feature event dataset.
 
 **Evidence.** Taking the day-0 close as the reference point, the median
 forward return is negative at every horizon from +1 to +30 trading days, with
-nonparametric significance between 10⁻⁹ and 10⁻¹⁹, unchanged under tail
+nonparametric significance between 10⁻¹³ and 10⁻¹⁹, unchanged under tail
 trimming, winsorization, subsample exclusion or month-block clustered
 inference.
 
@@ -256,7 +257,8 @@ events at all horizons, so that day-0 timing carries no information, and
 compares each observed horizon median against the medians of 2,000 random
 draws from that pool: the +1d and +3d medians do not differ from
 the pooled distribution (p = 1.00; 0.79), whilst the +14d and +30d
-medians are rejected at p < 10⁻⁴. The late-horizon drift is genuinely
+medians exceed every draw (0 of 2,000; empirical p < 5×10⁻⁴, the resolution
+floor of the design). The late-horizon drift is genuinely
 event-specific, not a market-wide artifact.
 
 Zooming inside day 0 sharpens the picture. Across all 470 events
@@ -276,7 +278,7 @@ Univariate quartiles suggest listings with bigger day-0 pops fade harder:
 −1.4% median next week in the weakest pop quartile, −20.5% in the third. The
 trend then reverses. The quartile with the largest day-0 pop (median increase
 on day 0: +880 per cent) fades less (−16.1 per cent) than the third quartile.
-Regression separates the candidates:
+Regression separates the candidates (variable definitions in Table I):
 
 **Table III.** OLS, dependent variable fwd_7 (%). N=470, R²=0.35.
 
@@ -361,28 +363,31 @@ the nearest surfaces 70 days *after* the listing, and the median surfaces
 
 The exchange's own infrastructure solves the dating problem. Binance's public
 content API, the catalogue behind its announcement pages, returns a
-millisecond-precision publication timestamp for each of 2,255 listing-related
-articles back to 2017. Matching articles to panel events by title and body
+millisecond-precision publication timestamp for each of 2,255 catalogue
+articles back to 2017 (plus six rescue notices outside the catalogue).
+Matching articles to panel events by title and body
 patterns (direct listing announcements, HODLer Airdrops and Launchpool
 introductions, trading-pair additions, rebrand and migration notices) dates
 468 of 470 events (99.6%), cross-validated against the exchange's independent
-Telegram announcement channel (median absolute disagreement: 2 minutes). The
+Telegram announcement channel (20-event random subsample; median absolute
+disagreement: 2 minutes). The
 announcement falls on the listing day itself for 62.8% of events and within
 one day for 78.0%. The two undated events (NBT, MULTI, both delisted) appear
 to be quiet pair additions with no public announcement at all.
 
 With timestamps in hand, the pre-announcement premium becomes measurable on
-venues where the token already traded. For the 79 events with a Coinbase
-price history covering the announcement day, the median return on Coinbase is
-+12.9% in the day before the Binance announcement and +24.4% over the three
-days before it (Wilcoxon p = 2.4×10⁻⁹; 87.9% of events positive); the seven
-days after the announcement revert to a −17.9% median (Fig. 6). This
+venues where the token already traded. 79 events have a Coinbase price
+history around the announcement day (usable n varies by window: 54–62
+before, 78 after). The median return on Coinbase is
++12.9% on the day before the Binance announcement and +24.4% over the three
+days before it (Wilcoxon p = 2.4×10⁻⁹, n = 58; 87.9% positive); the seven
+days after the announcement revert to a −17.9% median (n = 78; Fig. 4). This
 subsample is selected (tokens already large enough to trade elsewhere) and
 the exercise is exploratory, but the direction is unambiguous: the premium
 accrues before the announcement, in someone else's market. The folk trade
 buys the tail of it.
 
-![**Fig. 6.** Returns on Coinbase around Binance announcement timestamps for the 79 cross-listed events (the token already traded on Coinbase when Binance announced). Median returns: +25.4% over the seven days before the announcement, +24.4% over three days, +12.9% on the day before; −17.9% over the seven days after. The premium accrues before the announcement, on the other venue.](../charts/announcement_premium.png){width=100%}
+![**Fig. 4.** Returns on Coinbase around Binance announcement timestamps for the 79 cross-listed events (the token already traded on Coinbase when Binance announced; n = 54–78 by window). Median returns: +25.4% over the seven days before the announcement, +24.4% over three days, +12.9% on the day before; −17.9% over the seven days after. The premium accrues before the announcement, on the other venue.](../charts/announcement_premium.png){width=100%}
 
 ## H. Pre-specified confirmatory holdout: Bybit
 
@@ -392,14 +397,15 @@ transplant the Binance findings to Bybit and form the multiple-testing family,
 corrected with Benjamini-Hochberg (q = 0.05); the decision rule is dual:
 adjusted p < 0.05 plus the predicted direction. The fourth (H4) is a
 survivorship decomposition on the Binance panel and sits outside the
-corrected family. The cohort is the frozen Bybit USDT calendar, cut down to
+corrected family (Table IV collects the family's raw and adjusted p-values).
+The cohort is the frozen Bybit USDT calendar, cut down to
 still-tradeable symbols: Bybit's API serves klines only for listed
 instruments, so the holdout runs on survivors (419 candidates; 415 usable;
 limitation declared upfront). Features copy the Binance pipeline.
 
 **H1: the fade replicates.** Median return from day-0 close at +7 days:
 **−10.34%** (Binance death-inclusive: −11.45%; Binance survivors only:
-−11.10%). Wilcoxon p = 5.4×10⁻¹⁴; 27.5% of tokens are positive after a
+−11.11%). Wilcoxon p = 5.4×10⁻¹⁴; 27.5% of tokens are positive after a
 week.
 
 **H2: volatility predicting the fade does not replicate; the sign flips.**
@@ -434,14 +440,15 @@ became informative once we refetched true day-0 USD turnover for all 470 events
 from the death-inclusive archive; the base-unit volume weights had been
 degenerate, with five mega-supply tokens holding 98% of total weight. With
 real dollar weights the week-one picture splits in two: token-counted median
-−11.45%, dollar-counted median **−28.72%** (−35.46% BTC-adjusted), and the
+−11.45%, dollar-counted median **−28.72%** (−35.46% BTC-adjusted, n = 460;
+Fig. 5), and the
 delisting-attributable wedge is just **+0.96 pp**. High-turnover listings fade
 harder whether or not they die afterwards.
 
-![**Fig. 4.** Token-counted versus dollar-counted week-one returns. Median forward week-one return from the day-0 close, counted per token (−11.45%) versus weighted by day-0 USD turnover (−28.72%); the delisting-attributable wedge is +0.96 pp (n = 470).](../charts/dollar_vs_token.png){width=100%}
+![**Fig. 5.** Token-counted versus dollar-counted week-one returns. Median forward week-one return from the day-0 close, counted per token (−11.45%) versus weighted by day-0 USD turnover (−28.72%); the delisting-attributable wedge is +0.96 pp (n = 470).](../charts/dollar_vs_token.png){width=100%}
 
 The gap has anatomy. Split the panel into day-0 turnover quintiles and the
-median week-one return runs −0.6%, −5.0%, −14.5%, −16.8%, **−23.5%**
+median week-one return runs −0.6%, −5.0%, −14.5%, −16.8%, **−23.5%** (Fig. 6)
 (BTC-adjusted: −4.6%, −9.8%, −15.7%, −19.5%, −29.1%). The
 quietest quintile shows no fade at all. Turnover also correlates with day-0
 range (Spearman rank correlation +0.84) and pop (+0.79), keeps incremental
@@ -453,7 +460,7 @@ marks
 peak attention [22], optimists set the
 price, and dollars systematically buy that peak.
 
-![**Fig. 5.** Median week-one return from the day-0 close across day-0 USD turnover quintiles (n = 470): −0.6%, −5.0%, −14.5%, −16.8%, −23.5%. The fade is monotone in turnover; the quietest quintile shows no fade at all.](../charts/turnover_quintiles.png){width=100%}
+![**Fig. 6.** Median week-one return from the day-0 close across day-0 USD turnover quintiles (n = 470): −0.6%, −5.0%, −14.5%, −16.8%, −23.5%. The fade is monotone in turnover; the quietest quintile shows no fade at all.](../charts/turnover_quintiles.png){width=100%}
 
 An exploratory third-venue check reinforces the holdout. Coinbase Exchange
 keeps delisted instruments in its public API, so a second death-inclusive
@@ -480,7 +487,7 @@ t-statistics on time-clustered, single-factor-abnormal returns overstate
 certainty.
 
 Traders get a different object out of these numbers: the expected loss varies
-monotonically with the trading volume on day 0 (Fig. 5), and surviving past
+monotonically with the trading volume on day 0 (Fig. 6), and surviving past
 the listing does not rescue it. The anomaly lives in the attention a listing
 draws, not in the act of listing itself. Taking a direct short position in
 the fade is mostly uneconomical [23]: the binding constraint is not funding
@@ -500,8 +507,7 @@ specialist literature, i.e. as a falsification pass. The canonical listing-day
 statistics are *real*; we verify the +6.51% of Ante and Meyer [2] and the
 +22–33% means of Li et al. [15] exactly as published. The trading
 interpretation built on them
-is not: every
-post-opening window in [2] is negative, medians run at half the means, and the fade
+is not: medians run at half the means, and the fade
 concentrates where turnover peaked. The full matrix, claim by claim with
 verbatim quotes and replication verdicts, lives in the companion repository
 (`FALSIFICATION.md`).
@@ -513,7 +519,8 @@ exercise (Section III.G) is exploratory and limited to tokens already trading
 on another venue (n = 79). (3) The range→fade sign
 flip across venues (H2) is documented, not explained. (4) No historical
 order-book depth exists publicly; liquidity enters only through volume
-proxies. (5) Backtest costs (8 bps round-trip) likely understate slippage in
+proxies. (5) Backtest costs (8 bps round-trip, against the ~16 bps retail
+spot benchmark of Section III.E) likely understate slippage in
 stress regimes.
 
 Three extensions follow directly. Live tracking of the momentum stack of
@@ -570,7 +577,8 @@ under the MIT licence: the calendar builders for Binance, Bybit and Coinbase,
 the
 event-study engine, the enriched dataset (470 × 28), the Bybit holdout script
 with its raw-kline cache, the Coinbase calendar and event panel, the
-announcement-timestamp panel (468 of 470 events), the minute-level
+announcement-timestamp panel (468 of 470 events), the pre-announcement
+Coinbase return panel, the perpetual-funding check extract, the minute-level
 day-0 anatomy extract, the day-0 turnover data, the statistical appendices,
 the claim-by-claim falsification matrix for the prior literature, and the
 chart-generation code.
