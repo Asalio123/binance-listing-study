@@ -24,6 +24,7 @@ sum_funding_* > 0 = доход шорту, < 0 = издержка шорта.
 """
 import json
 import time
+import urllib.parse
 import urllib.request
 import urllib.error
 from pathlib import Path
@@ -44,7 +45,7 @@ CACHE.mkdir(exist_ok=True)
 
 def fapi_get(params):
     """Один GET с бэкоффом на 429/418. None после 6 неудач."""
-    qs = "&".join(f"{k}={v}" for k, v in params.items())
+    qs = urllib.parse.urlencode(params)
     url = f"{BASE}?{qs}"
     for attempt in range(6):
         try:
@@ -73,6 +74,8 @@ def fetch_symbol(sym, day0_ms):
 
     inception = fapi_get({"symbol": sym, "startTime": GENESIS_MS, "limit": 1})
     time.sleep(SLEEP)
+    if inception is None:
+        return {"symbol": sym, "inception": None, "window": None}  # транзиент - не кэшируем
 
     window, start = [], day0_ms
     while True:
@@ -110,7 +113,7 @@ def summarize(sym, day0_ms, data):
 
     first_ts = int(inc[0]["fundingTime"])
     row["perp_found"] = 1
-    row["first_funding_ts"] = pd.Timestamp(first_ts, unit="ms", utc=True).isoformat()
+    row["first_funding_ts"] = pd.to_datetime(first_ts, unit="ms", utc=True).isoformat()
     row["spot_to_perp_lag_d"] = (first_ts - day0_ms) / DAY
 
     ev = data.get("window") or []
@@ -138,7 +141,9 @@ def main():
     enr = pd.read_csv(ROOT / "data" / "listing_events_enriched.csv")
     turn = pd.read_csv(ROOT / "data" / "day0_turnover.csv")
     df = enr.merge(turn[["symbol", "day0_date"]], on="symbol", how="left")
-    df["day0_ms"] = (pd.to_datetime(df.day0_date, utc=True).astype("int64") // 10 ** 6)
+    # юнит-безопасно: pandas 3 может дать datetime64[s], // Timedelta надёжно
+    df["day0_ms"] = ((pd.to_datetime(df.day0_date, utc=True)
+                      - pd.Timestamp("1970-01-01", tz="UTC")) // pd.Timedelta(milliseconds=1))
     print(f"Символов: {len(df)}", flush=True)
 
     rows, t0 = [], time.time()

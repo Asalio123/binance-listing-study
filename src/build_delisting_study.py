@@ -60,6 +60,13 @@ PAUSE_BAPI = 0.9
 RE_DELIST_T = re.compile(
     r"will delist|binance delists|notice of removal of (?:spot )?trading pairs|"
     r"cease trading|delisting of|to delist", re.I)
+# migration-анонсы: токен не умирает, а переезжает (swap/rebrand/merge).
+# Заголовок «Binance Will Support the X (TICKER) Token Swap ...»; контрастная
+# группа для публикации, в headline-статистику делистингов не входит.
+RE_MIGRATE_T = re.compile(
+    r"will support the .{0,140}?(token swap|rebrand|migrat|merger|merge|"
+    r"redenominat|ticker change|renaming)|"
+    r"token (swap|migration|merge) (?:of|with|to)\b", re.I)
 RE_NONSPOT = re.compile(
     r"margin|loan|futures|options|grid|convert|earn|leveraged|blvt|"
     r"liquid swap|pool|staking|collateral|auto-invest|dual", re.I)
@@ -124,6 +131,21 @@ def title_list_tickers(title: str) -> set[str]:
     return {t for t in toks if t not in STOP and not t.isdigit()}
 
 
+def classify_event(title: str, text: str) -> str | None:
+    """delist | migration | None. Спот-only; margin/futures/grid отсекаем."""
+    if RE_NONSPOT.search(title):
+        return None
+    if RE_MIGRATE_T.search(title):
+        return "migration"
+    if RE_DELIST_T.search(title):
+        return "migration" if RE_MIGRATE.search(title) else "delist"
+    if re.search(r"delist and cease trading on all spot|"
+                 r"will be delisted from binance|"
+                 r"delisting of .* spot trading pair", text[:4000], re.I):
+        return "delist"
+    return None
+
+
 def article_tickers(title: str, text: str, pairs: list) -> set[str]:
     """Тикеры делистинга: тайтл-список + «Name (TICKER)» + пары /USDT в теле
     + структурное data.pairs (spot, quote=USDT)."""
@@ -156,25 +178,16 @@ def load_article_file(p: Path) -> dict | None:
             (RE_CEASE.search(text))}
 
 
-def is_spot_delist(title: str, text: str) -> bool:
-    """Спот-делистинг: тайтл-паттерн без non-spot маркеров, либо сильный
-    body-сигнал («will delist and cease trading on all spot trading pairs»)."""
-    if RE_DELIST_T.search(title) and not RE_NONSPOT.search(title):
-        return True
-    return bool(re.search(
-        r"delist and cease trading on all spot|"
-        r"will be delisted from binance|delisting of .* spot trading pair",
-        text[:4000], re.I)) and not RE_NONSPOT.search(title)
+# --- стадия 1: TG spot-delist + migration сообщения → коды → догрузка -----
 
-
-# --- стадия 1: TG spot-delist сообщения → коды статей → догрузка ----------
-
-def tg_spot_delist_msgs() -> list[dict]:
+def tg_event_msgs() -> list[dict]:
     msgs = json.load(TG.open())
     out = []
     for m in msgs:
         head = (m.get("text") or "").split("\n", 1)[0]
-        if not RE_DELIST_T.search(head) or RE_NONSPOT.search(head):
+        if RE_NONSPOT.search(head):
+            continue
+        if not (RE_DELIST_T.search(head) or RE_MIGRATE_T.search(head)):
             continue
         codes = set()
         for h in (m.get("hrefs") or []) + [m.get("text") or ""]:

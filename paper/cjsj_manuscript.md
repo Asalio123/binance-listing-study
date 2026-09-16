@@ -134,8 +134,6 @@ predicts the fade) did not survive its own confirmation attempt, and we say so.
 
 ## A. Data: calendar construction and sample
 
-![**Fig. 1.** Listings per year in the death-inclusive calendar: Binance spot USDT events by year of first trading day, January 2021 through August 2026. The calendar is rebuilt from the raw public exchange archive (3,682 archived symbols screened; 470 events retained, delisted tokens included).](../charts/listings_per_year.png){width=100%}
-
 Binance publishes monthly k-line archives for every symbol it has ever listed
 to a public file archive (data.binance.vision), including symbols delisted
 years
@@ -227,7 +225,7 @@ sense of Dichev [11].
 
 ## A. The fade
 
-![**Fig. 2.** Median cumulative return after the listing day. Forward return from the day-0 close over the first 30 trading days, median across the 470 death-inclusive events: −4.45% at +1d, −8.87% at +3d, −11.45% at +7d, −14.51% at +14d, −21.53% at +30d. All medians are significant (Wilcoxon p ≤ 7.9×10⁻¹³; Table II).](../charts/post_listing_drift.png){width=100%}
+![**Fig. 1.** Median cumulative return after the listing day. Forward return from the day-0 close over the first 30 trading days, median across the 470 death-inclusive events: −4.45% at +1d, −8.87% at +3d, −11.45% at +7d, −14.51% at +14d, −21.53% at +30d. All medians are significant (Wilcoxon p ≤ 7.9×10⁻¹³; Table II).](../charts/post_listing_drift.png){width=100%}
 
 **Table II.** Forward returns from day-0 close (n=470).
 
@@ -278,7 +276,7 @@ this paper anchors outcomes, is already past it.
 
 ## B. Volatility, not the pop
 
-![**Fig. 3.** Fade gradient across day-0 pop quartiles. Median week-one return from the day-0 close by quartile of the day-0 close-to-open return (pop): −1.4% in the weakest pop quartile, −20.5% in the third, and −16.1% in the strongest quartile (median day-0 pop +880 per cent). The one-dimensional gradient is non-monotone; the regression decomposition is in Table III.](../charts/pop_fade_gradient.png){width=100%}
+![**Fig. 2.** Fade gradient across day-0 pop quartiles. Median week-one return from the day-0 close by quartile of the day-0 close-to-open return (pop): −1.4% in the weakest pop quartile, −20.5% in the third, and −16.1% in the strongest quartile (median day-0 pop +880 per cent). The one-dimensional gradient is non-monotone; the regression decomposition is in Table III.](../charts/pop_fade_gradient.png){width=100%}
 
 Univariate quartiles suggest listings with bigger day-0 pops fade harder:
 −1.4% median next week in the weakest pop quartile, −20.5% in the third. The
@@ -386,19 +384,41 @@ announcement falls on the listing day itself for 62.8% of events and within
 one day for 78.0%. The two undated events (NBT, MULTI, both delisted) appear
 to be quiet pair additions with no public announcement at all.
 
+The lag is informative in an unexpected direction. The week-one fade is
+statistically indistinguishable across lag groups, from same-day
+announcements to ramps longer than a week (−9% to −13.5% everywhere;
+Kruskal-Wallis p = 0.51): the market dumps the listing no matter how long it
+was anticipated. What the lag does predict is the day-0 pop (Spearman
+ρ = +0.32, p = 2×10⁻¹¹), through the launchpool mechanic: announced farming
+periods between announcement and listing produce median day-0 pops of
++1215.8%.
+
 With timestamps in hand, the pre-announcement premium becomes measurable on
 venues where the token already traded. 79 events have a Coinbase price
 history around the announcement day (usable n varies by window: 54–62
 before, 78 after). The median return on Coinbase is
 +12.9% on the day before the Binance announcement and +24.4% over the three
 days before it (Wilcoxon p = 2.4×10⁻⁹, n = 58; 87.9% positive); the seven
-days after the announcement revert to a −17.9% median (n = 78; Fig. 4). This
+days after the announcement revert to a −17.9% median (n = 78; Fig. 3). This
 subsample is selected (tokens already large enough to trade elsewhere) and
 the exercise is exploratory, but the direction is unambiguous: the premium
 accrues before the announcement, in someone else's market. The folk trade
 buys the tail of it.
 
-![**Fig. 4.** Returns on Coinbase around Binance announcement timestamps for the 79 cross-listed events (the token already traded on Coinbase when Binance announced; n = 54–78 by window). Median returns: +25.4% over the seven days before the announcement, +24.4% over three days, +12.9% on the day before; −17.9% over the seven days after. The premium accrues before the announcement, on the other venue.](../charts/announcement_premium.png){width=100%}
+![**Fig. 3.** Returns on Coinbase around Binance announcement timestamps for the 79 cross-listed events (the token already traded on Coinbase when Binance announced; n = 54–78 by window). Median returns: +25.4% over the seven days before the announcement, +24.4% over three days, +12.9% on the day before; −17.9% over the seven days after. The premium accrues before the announcement, on the other venue.](../charts/announcement_premium.png){width=100%}
+
+Minute-level data around the exact timestamps closes the loop. For the 92
+events with a pre-existing market on another venue (Coinbase 61, Bybit 31),
+the median return is +9.4% over the three hours *before* the announcement
+goes public and +3.3% over the three hours after; about 7 percentage points
+of the run-up print in the last fifteen minutes before publication, and 90%
+of pre-window events are positive (Fig. 4). The pattern is identical on both
+venues, and the few events timestamped independently via Telegram show no
+pre-drift, so the run-up is not an artifact of the content API's clock. The
+market learns of the listing before the announcement; the publication itself
+is the afterthought.
+
+![**Fig. 4.** Median cumulative return around Binance announcement timestamps, minute-level, on venues where the token already traded (n = 92; Coinbase 61, Bybit 31). The run-up of +9.4% accumulates in the three hours before publication, most of it in the last fifteen minutes; the three hours after add +3.3%. Shaded band: interquartile range.](../charts/announcement_shock_minutes.png){width=100%}
 
 ## H. Pre-specified confirmatory holdout: Bybit
 
