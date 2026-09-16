@@ -320,6 +320,15 @@ events had vanished from view. Section III.H pushes further: even
 in a panel that remembers the dead, survivorship reshapes results once the
 dollars are counted.
 
+The death events themselves close the loop. For the 98 of 99 delisted panel
+members with a located delisting announcement (CMS notices plus the
+announcement channel), the announcement day loses −28.5% at the median (5%
+of events positive), the price halves again from announcement to the last
+trade (−51.5%), and buying the listing and holding to the grave loses
+−98.3% at the median (1% positive). Migration and rebrand notices, the same
+genre without death, gain +7.9% on their day (76% positive): the reaction is
+specific to dying, not to the headline. There is no pump before the dump.
+
 ## D. Application: what survives validation
 
 As an application, the findings were embedded in a pre-existing daily momentum
@@ -555,7 +564,9 @@ flip across venues (H2) is documented, not explained. (4) No historical
 order-book depth exists publicly; liquidity enters only through volume
 proxies. (5) Backtest costs (8 bps round-trip, against the ~16 bps retail
 spot benchmark of Section III.E) likely understate slippage in
-stress regimes.
+stress regimes. (6) The `last_date` field truncates at 1,000 days for 52
+panel members; death dates in the delisting study come from the calendar's
+last month instead.
 
 Three extensions follow directly. Live tracking of the momentum stack of
 Section III.D continues, replacing the in-sample upper bounds. The
@@ -615,6 +626,7 @@ announcement-timestamp panel (468 of 470 events), the pre-announcement
 Coinbase return panel, the perpetual-funding sweep (327 contracts), the
 minute-level announcement-shock panel (92 events), the minute-level
 day-0 anatomy and microstructure extracts, the survivorship-simulation panel,
+the delisting event-study panel (98 events with announcement timestamps),
 the day-0 turnover data, the statistical appendices,
 the claim-by-claim falsification matrix for the prior literature, and the
 chart-generation code.

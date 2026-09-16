@@ -67,6 +67,9 @@ RE_MIGRATE_T = re.compile(
     r"will support the .{0,140}?(token swap|rebrand|migrat|merger|merge|"
     r"redenominat|ticker change|renaming)|"
     r"token (swap|migration|merge) (?:of|with|to)\b", re.I)
+# completion-нотификации — НЕ события (анонс был раньше)
+RE_COMPLETED = re.compile(r"has completed|has been completed|completion of",
+                          re.I)
 RE_NONSPOT = re.compile(
     r"margin|loan|futures|options|grid|convert|earn|leveraged|blvt|"
     r"liquid swap|pool|staking|collateral|auto-invest|dual", re.I)
@@ -84,6 +87,13 @@ RE_CEASE = re.compile(
 
 STOP = {"UTC", "GMT", "AND", "THE", "ON", "AT", "ALL", "SPOT", "USDT",
         "Fellow", "BINANCE", "WILL", "DELIST"}
+
+# Рескью: статьи вне delist-заголовков. BETH — «Important Updates on BETH and
+# WBETH» (2023-08-31): BETH/USDT прекращён 2023-10-11 в рамках конверсии
+# BETH→WBETH → migration. NBTUSDT: анонса нет нигде (TG-дамп 2017-2026,
+# весь каталог Delisting id 82912..284618, тела notice Feb-Mar 2023) —
+# тихое снятие без анонса, остаётся несматченным [DATA].
+RESCUE = {"BETH": ("84e6d7df84b04d6180a267385d0a0862", "migration")}
 
 
 def paren_tickers(s: str) -> set[str]:
@@ -133,7 +143,7 @@ def title_list_tickers(title: str) -> set[str]:
 
 def classify_event(title: str, text: str) -> str | None:
     """delist | migration | None. Спот-only; margin/futures/grid отсекаем."""
-    if RE_NONSPOT.search(title):
+    if RE_NONSPOT.search(title) or RE_COMPLETED.search(title):
         return None
     if RE_MIGRATE_T.search(title):
         return "migration"
@@ -185,7 +195,7 @@ def tg_event_msgs() -> list[dict]:
     out = []
     for m in msgs:
         head = (m.get("text") or "").split("\n", 1)[0]
-        if RE_NONSPOT.search(head):
+        if RE_NONSPOT.search(head) or RE_COMPLETED.search(head):
             continue
         if not (RE_DELIST_T.search(head) or RE_MIGRATE_T.search(head)):
             continue
@@ -348,7 +358,8 @@ def main():
 
     # TG события (delist + migration) + догрузка тел
     tg_msgs = tg_event_msgs()
-    all_codes = sorted({c for m in tg_msgs for c in m["codes"]})
+    all_codes = sorted({c for m in tg_msgs for c in m["codes"]}
+                       | {c for c, _ in RESCUE.values()})
     print(f"TG delist/migration сообщений: {len(tg_msgs)} | "
           f"кодов: {len(all_codes)}", flush=True)
     hydrate(all_codes)
@@ -382,12 +393,21 @@ def main():
         def inwin(ts):
             return lo <= ts.tz_convert(None) <= hi
 
-        cands = [a for a in idx.get(base, []) if inwin(a["ts"])]
         art, note, src = None, "", ""
-        if cands:
-            art = max(cands, key=lambda a: a["ts"])
-            src = art["source"]
-        else:  # фолбэк: текст TG-сообщения с тикером в заголовке
+        if base in RESCUE:  # форс-матч проверенной статьи вне delist-тайтлов
+            rcode, ret_ = RESCUE[base]
+            p = (DCMS / f"{rcode}.json") if (DCMS / f"{rcode}.json").exists() \
+                else CMS / f"{rcode}.json"
+            if p.exists():
+                art = load_article_file(p)
+                art["event_type"] = ret_
+                src, note = "rescue", "rescue_forced"
+        if art is None:
+            cands = [a for a in idx.get(base, []) if inwin(a["ts"])]
+            if cands:
+                art = max(cands, key=lambda a: a["ts"])
+                src = art["source"]
+        if art is None:  # фолбэк: текст TG-сообщения с тикером в заголовке
             tgc = [m for m in tg_msgs
                    if base in (title_list_tickers(m["head"])
                                | paren_tickers(m["head"]))
@@ -508,6 +528,26 @@ def main():
               f"%>0={b['pos']:.0f}%", flush=True)
 
     # --- отчёт md ---
+    def fmtp(p):
+        if p != p:
+            return "—"
+        return "<0.0001" if p < 5e-5 else f"{p:.4f}"
+
+    def mechanism(t: str) -> str:
+        tl = t.lower()
+        if "vote to delist" in tl:
+            return "vote-to-delist"
+        if "notice of removal" in tl:
+            return "notice-of-removal"
+        if "will support the" in tl or "rebrand" in tl or "swap" in tl:
+            return "migration/swap"
+        if "will delist" in tl or "delists" in tl or "to delist" in tl:
+            return "will-delist batch"
+        return "other"
+
+    mech = df.assign(m=df.article_title.map(mechanism)) \
+        .groupby(["event_type", "m"]).size().reset_index(name="n")
+
     L = []
     w = L.append
     w("# Зеркальное event study: анонсы делистингов Binance\n")
@@ -517,29 +557,51 @@ def main():
     w("## Метод\n")
     w("- Вселенная: 99 делистнутых USDT-символов панели 470 "
       "(`listing_events_enriched.csv`, delisted=1) [DATA].\n"
-      "- Анонсы делистингов: Binance CMS (`cms_details_cache` + догрузка тел "
-      "по кодам из TG-дампа @binance_announcements через публичный bapi "
-      "article endpoint в `delisting_cms_cache/`); спот-only (margin/futures/"
-      "grid/loan исключены по заголовку) [DATA].\n"
-      "- Rebrand/swap/migration/merge → `event_type=migration`, в headline "
-      "не входят (контрастная группа) [DATA].\n"
-      "- Матчинг: base-тикер в статье (тайтл-список, «Name (TICKER)», пары "
-      "XYZ/USDT в теле, data.pairs), publishDate в [last_date−150д, "
-      "last_date+5д], берётся ближайший анонс перед last_date [DATA].\n"
+      "- ГРАБЛЯ: `panel.last_date` у 52/99 усечён 1000-дневным лимитом "
+      "исходного event study (`days_listed==1000`) — это не дата смерти. "
+      "Истинный месяц смерти — `listing_calendar_binance.csv:last_month`, "
+      "точный день = последний дневной kline в архиве [DATA].\n"
+      "- Анонсы: Binance CMS (`cms_details_cache` + догрузка тел по кодам "
+      "из TG-дампа @binance_announcements через публичный bapi article "
+      "endpoint в `delisting_cms_cache/`, ~330 кодов); спот-only "
+      "(margin/futures/grid/loan/completion-нотификации исключены по "
+      "заголовку) [DATA].\n"
+      "- Rebrand/swap/migration/merge (заголовок «Will Support the ... Token "
+      "Swap/Rebranding ...») → `event_type=migration`, контрастная группа, "
+      "в headline-статистику делистингов не входит [DATA].\n"
+      "- Матчинг: base-тикер в статье (тайтл-список «Will Delist A, B, C», "
+      "«Name (TICKER)», пары XYZ/USDT в теле, data.pairs); окно = месяц "
+      "смерти −180д .. +5д; берётся ПОСЛЕДНИЙ анонс перед смертью (для "
+      "vote-to-delist это статья с результатами голосования = момент, когда "
+      "смерть становится достоверной) [DATA].\n"
       "- Klines: monthly zip data.binance.vision за [анонс−35д, анонс+35д], "
-      "кэш `delisting_klines_cache/` [DATA].\n"
-      "- День 0 = UTC-дата анонса. Доходности от close дня −1 (fwd_h, день 0 "
-      "= ret_day0) и от close дня 0 (post_death_from_0 = до последнего close "
-      "перед концом торгов). trunc: смерть раньше горизонта → mark-to-last "
-      "[DATA].\n")
+      "кэш `delisting_klines_cache/`; единицы open_time нормализованы по "
+      "длине (мс/мкс/нс) [DATA].\n"
+      "- День 0 = UTC-дата анонса. fwd_h — от close дня −1; ret_day0 = "
+      "close0/close−1; post_death = до последнего close; смерть раньше "
+      "горизонта → mark-to-last с флагом trunc. Спотчек цен против свежей "
+      "выгрузки архива: совпадение до 4 знаков (ALPACA 2025-04, FIRO "
+      "2025-04) [DATA].\n")
     w("## Покрытие\n")
     w(f"- Сматчено анонсов: **{len(ev)}/99** "
       f"(true delist {len(dl)}, migration {len(mg)}; TG-text fallback: "
       f"{(ev.match_source == 'tg_text').sum()}) [DATA].\n"
       f"- Несматчено: {len(unmatched)}"
-      + (f" ({', '.join(unmatched)})" if unmatched else "") + " [DATA].\n"
+      + (f" ({', '.join(unmatched)}: тихое снятие без анонса — проверены "
+         f"TG-дамп 2017-2026, весь каталог Delisting (433 статьи, id "
+         f"82912..284618), тела notice Feb-Mar 2023)" if unmatched else "")
+      + " [DATA].\n"
       f"- Медианный лаг анонс→конец торгов: "
-      f"{df.days_announce_to_death.median():.0f} дн [DATA].\n")
+      f"{df.days_announce_to_death.median():.0f} дн (min "
+      f"{df.days_announce_to_death.min():.0f} — UST, halt в день краха "
+      f"2022-05-13; max {df.days_announce_to_death.max():.0f} — BETH, "
+      f"конверсионный notice) [DATA].\n"
+      f"- trunc_14 (смерть раньше 14-го дня) у delist: "
+      f"{dl.trunc_14.mean()*100:.0f}% [DATA].\n")
+    w("\n### Механизмы смерти (по заголовкам сматченных статей)\n"
+      "| event_type | механизм | n |\n|---|---|---|\n")
+    for r in mech.itertuples():
+        w(f"| {r.event_type} | {r.m} | {r.n} |\n")
 
     def tbl(sub: pd.DataFrame, cols, name):
         w(f"\n### {name} (n={len(sub)})\n")
@@ -547,10 +609,8 @@ def main():
           "|---|---|---|---|---|\n")
         for cname, label in cols:
             v = sub[cname].dropna()
-            p = wtest(v)
             w(f"| {label} | {len(v)} | {v.median()*100:+.2f} | "
-              f"{(v > 0).mean()*100:.0f} | "
-              f"{'%.4f' % p if p == p else '—'} |\n")
+              f"{(v > 0).mean()*100:.0f} | {fmtp(wtest(v))} |\n")
 
     cols = [("ret_day0", "День 0 (close−1→close0)"),
             ("fwd_1", "+1д от close−1"), ("fwd_3", "+3д от close−1"),
@@ -561,18 +621,37 @@ def main():
             ("bah_lifecycle", "B&H: close листинга д0 → last close")]
     tbl(dl, cols, "True delistings — event study ±14д")
     tbl(mg, cols, "Migrations/rebrands — контрастная группа")
+
+    worst = dl.nsmallest(3, "ret_day0")
+    best = dl.nlargest(3, "ret_day0")
+    w("\n### Экстремумы дня 0 (true delistings)\n")
+    w("Худшие: " + "; ".join(
+        f"{r.symbol} {r.ret_day0*100:+.0f}%" for r in worst.itertuples())
+      + " [DATA].\n")
+    w("Лучшие (dead-cat squeezes): " + "; ".join(
+        f"{r.symbol} {r.ret_day0*100:+.0f}%" for r in best.itertuples())
+      + " [DATA].\n")
+
     w("\n## Выводы\n")
     b = S["delist"]
-    w(f"- Памп-перед-смертью: день анонса медиана "
+    bm = S["migration"]
+    w(f"- Пампа-перед-смертью НЕТ: день анонса медиана "
       f"**{b['ret_day0']['med']*100:+.1f}%**, позитивных "
-      f"{b['ret_day0']['pos']:.0f}% (n={b['ret_day0']['n']}) [DATA].\n"
-      f"- Между анонсом и концом торгов (close0→last): медиана "
-      f"**{b['post_death_from_0']['med']*100:+.1f}%** "
-      f"(n={b['post_death_from_0']['n']}) [DATA].\n"
-      f"- Полный жизненный цикл B&H: медиана "
-      f"**{b['bah_lifecycle']['med']*100:+.1f}%**, позитивных "
-      f"{b['bah_lifecycle']['pos']:.0f}% (n={b['bah_lifecycle']['n']}) "
-      f"[DATA].\n")
+      f"{b['ret_day0']['pos']:.0f}% (n={b['ret_day0']['n']}); дрейф за 14 дней "
+      f"до анонса {b['pre_14']['med']*100:+.1f}% — рынок не выкупает смерть "
+      f"заранее, удар концентрирован в день анонса [DATA].\n"
+      f"- Между анонсом и концом торгов (close0→last, медианный лаг "
+      f"{df.days_announce_to_death.median():.0f} дн): медиана "
+      f"**{b['post_death_from_0']['med']*100:+.1f}%** — после первого удара "
+      f"цена делится ещё раз пополам [DATA].\n"
+      f"- Полный жизненный цикл B&H (close дня листинга → последний close): "
+      f"медиана **{b['bah_lifecycle']['med']*100:+.1f}%**, позитивных "
+      f"{b['bah_lifecycle']['pos']:.0f}% (n={b['bah_lifecycle']['n']}) [DATA].\n"
+      f"- Контраст migrations: день анонса swap/rebrand медиана "
+      f"**{bm['ret_day0']['med']*100:+.1f}%**, позитивных "
+      f"{bm['ret_day0']['pos']:.0f}% (n={bm['ret_day0']['n']}) — реакция "
+      f"противоположного знака, т.е. отрицательный эффект дня 0 специфичен "
+      f"именно смерти, а не любому «делистинговому» заголовку [DATA].\n")
     OUT_MD.write_text("".join(L))
     print(f"-> {OUT_MD}", flush=True)
 
