@@ -342,13 +342,16 @@ extremes at the percentile boundary), excluding 2021
 p-value of the Wilcoxon test is at most 1.5 × 10⁻¹³. Relative to round-trip
 retail spot costs of ~16 bps, the
 median absolute move is an order of magnitude larger. Monetizing the negative
-sign is harder than the drift suggests. A check on the twelve
-most-traded listings with perpetual futures shows week-one funding rarely
-eating the drift (worst observed weekly sum −3.8% against the −11.45%
-median; break-even is about −0.5% per 8 hours, never sustained for a full
-week in this check). What kills the short is the upside tail: the median
-week-one short earns +12% while the mean loses −21%, and at least 31% of
-the 470 names have no perpetual contract to short at all.
+sign is harder than the drift suggests. A full sweep of perpetual-funding
+histories (327 of the 470 names have a contract) shows week-one funding
+rarely eating the drift: the median weekly funding sum is −0.36% against the
+−11.45% median drift, and only 17.7% of day-0-shortable names lose more than
+half the drift to funding (before 2025 shorts were even *paid* funding; since
+2025 they pay). The binding constraints are access and the upside tail: a
+day-0 short is possible for only 17.0% of the panel (44.7% within week one; a
+third of contracts list more than 30 days after spot), and on the twelve
+most-traded listings the median week-one short earns +12% while the mean
+loses −21%.
 
 ## F. Cross-venue sequencing and lottery features
 
@@ -609,7 +612,8 @@ the
 event-study engine, the enriched dataset (470 × 28), the Bybit holdout script
 with its raw-kline cache, the Coinbase calendar and event panel, the
 announcement-timestamp panel (468 of 470 events), the pre-announcement
-Coinbase return panel, the perpetual-funding check extract, the minute-level
+Coinbase return panel, the perpetual-funding sweep (327 contracts), the
+minute-level announcement-shock panel (92 events), the minute-level
 day-0 anatomy and microstructure extracts, the survivorship-simulation panel,
 the day-0 turnover data, the statistical appendices,
 the claim-by-claim falsification matrix for the prior literature, and the

@@ -260,8 +260,9 @@ def zip_days(body: bytes) -> dict:
 def fetch_klines(sym: str, announce_ts: pd.Timestamp) -> None:
     """Месячные zip за [анонс−35д, анонс+35д] в кэш (идемпотентно)."""
     KLCACHE.mkdir(exist_ok=True)
-    p0 = (announce_ts - pd.Timedelta(days=35)).to_period("M")
-    p1 = (announce_ts + pd.Timedelta(days=35)).to_period("M")
+    ann = announce_ts.tz_localize(None) if announce_ts.tz else announce_ts
+    p0 = (ann - pd.Timedelta(days=35)).to_period("M")
+    p1 = (ann + pd.Timedelta(days=35)).to_period("M")
     cur, now = p0, pd.Timestamp.now(tz="UTC").to_period("M")
     while cur <= p1:
         cp = KLCACHE / f"{sym}-{cur}.json"
@@ -334,16 +335,22 @@ def wtest(s: pd.Series) -> float:
 
 def main():
     panel = pd.read_csv(PANEL)
-    d99 = panel[panel.delisted == 1].copy()
+    cal = pd.read_csv(ROOT / "data" / "listing_calendar_binance.csv")
+    d99 = panel[panel.delisted == 1].merge(
+        cal[["symbol", "last_month"]], on="symbol", how="left")
     d99["base"] = d99.symbol.str.replace("USDT", "", regex=False)
-    d99["last_dt"] = pd.to_datetime(d99.last_date)
-    print(f"делистнутых в панели: {len(d99)}", flush=True)
+    # ГРАБЛЯ: panel.last_date для 52/99 усечён 1000-дневным лимитом исходного
+    # event study (days_listed==1000) — это НЕ дата смерти. Истинный месяц
+    # смерти — calendar.last_month; точный день = последний kline месяца.
+    d99["death_p"] = d99.last_month.map(pd.Period)
+    print(f"делистнутых в панели: {len(d99)} | усечённых 1000д: "
+          f"{(d99.days_listed == 1000).sum()}", flush=True)
 
-    # TG spot-delist сообщения + догрузка тел
-    tg_msgs = tg_spot_delist_msgs()
+    # TG события (delist + migration) + догрузка тел
+    tg_msgs = tg_event_msgs()
     all_codes = sorted({c for m in tg_msgs for c in m["codes"]})
-    print(f"TG spot-delist сообщений: {len(tg_msgs)} | кодов: {len(all_codes)}",
-          flush=True)
+    print(f"TG delist/migration сообщений: {len(tg_msgs)} | "
+          f"кодов: {len(all_codes)}", flush=True)
     hydrate(all_codes)
 
     # статьи из обоих кэшей
@@ -353,52 +360,56 @@ def main():
             a = load_article_file(p)
             if a is None:
                 continue
-            if not is_spot_delist(a["title"], a["text"]):
+            et = classify_event(a["title"], a["text"])
+            if et is None:
                 continue
             a["source"] = src
-            a["migration"] = bool(RE_MIGRATE.search(a["title"])
-                                  or RE_MIGRATE.search(a["text"][:600]))
+            a["event_type"] = et
             arts.append(a)
-    print(f"спот-делистинг статей всего: {len(arts)}", flush=True)
+    print(f"спот delist/migration статей всего: {len(arts)}", flush=True)
     idx = {}
     for a in arts:
         for t in a["tickers"]:
             idx.setdefault(t, []).append(a)
 
-    # матчинг к 99
+    # матчинг к 99: окно вокруг ИСТИННОГО месяца смерти (calendar.last_month)
     rows, unmatched = [], []
     for r in d99.itertuples():
-        base, sym, last = r.base, r.symbol, r.last_dt
-        cands = [a for a in idx.get(base, [])
-                 if pd.Timedelta(days=-5)
-                 <= (last.tz_localize("UTC") - a["ts"])
-                 <= pd.Timedelta(days=150)]
+        base, sym = r.base, r.symbol
+        lo = r.death_p.start_time - pd.Timedelta(days=180)
+        hi = r.death_p.end_time + pd.Timedelta(days=5)
+
+        def inwin(ts):
+            return lo <= ts.tz_convert(None) <= hi
+
+        cands = [a for a in idx.get(base, []) if inwin(a["ts"])]
         art, note, src = None, "", ""
         if cands:
             art = max(cands, key=lambda a: a["ts"])
             src = art["source"]
         else:  # фолбэк: текст TG-сообщения с тикером в заголовке
             tgc = [m for m in tg_msgs
-                   if base in title_list_tickers(m["head"])
-                   and abs((last - pd.Timestamp(m["datetime"]).tz_convert(
-                       None)).days) <= 150]
+                   if base in (title_list_tickers(m["head"])
+                               | paren_tickers(m["head"]))
+                   and inwin(pd.Timestamp(m["datetime"]))]
             if tgc:
-                m = min(tgc, key=lambda m: abs(
-                    (last - pd.Timestamp(m["datetime"]).tz_convert(None))
-                    .days))
+                m = max(tgc, key=lambda m: m["datetime"])
+                et = ("migration" if RE_MIGRATE_T.search(m["head"])
+                      else "delist")
                 art = {"code": "", "title": m["head"], "text": "",
                        "ts": pd.Timestamp(m["datetime"]),
-                       "tickers": {base}, "cease": "",
-                       "migration": bool(RE_MIGRATE.search(m["head"]))}
+                       "tickers": {base}, "cease": "", "event_type": et}
                 src, note = "tg_text", "tg_text_fallback"
         if art is None:
             unmatched.append(sym)
             continue
         rows.append({"symbol": sym, "base": base,
-                     "event_type": "migration" if art["migration"] else "delist",
+                     "event_type": art["event_type"],
                      "announce_ts": art["ts"], "article_code": art["code"],
                      "article_title": art["title"], "cease_text": art["cease"],
-                     "last_date": r.last_date, "first_month": r.first_month,
+                     "death_month": r.last_month,
+                     "panel_last_date": r.last_date,
+                     "first_month": r.first_month,
                      "match_source": src, "notes": note})
     ev = pd.DataFrame(rows)
     n_mig = (ev.event_type == "migration").sum()
@@ -414,11 +425,9 @@ def main():
         ann_day = r.announce_ts.strftime("%Y-%m-%d")
         row = {k: getattr(r, k) for k in
                ("symbol", "base", "event_type", "article_code",
-                "article_title", "cease_text", "last_date", "match_source",
-                "notes")}
+                "article_title", "cease_text", "death_month",
+                "panel_last_date", "match_source", "notes")}
         row["announce_ts_utc"] = r.announce_ts.strftime("%Y-%m-%dT%H:%M:%SZ")
-        row["days_announce_to_death"] = (
-            pd.Timestamp(r.last_date) - pd.Timestamp(ann_day)).days
         if len(s) == 0 or ann_day not in s.index.strftime("%Y-%m-%d"):
             row["notes"] = ";".join(filter(None, [row["notes"],
                                                   "no_klines_window"]))
@@ -429,11 +438,18 @@ def main():
         c = s.values
         close_m1 = c[i0 - 1] if i0 >= 1 else np.nan
         close_0 = c[i0]
-        # last close: последний доступный день <= last_date + 5д
-        lim = (pd.Timestamp(r.last_date) + pd.Timedelta(days=5)).strftime(
-            "%Y-%m-%d")
+        # фактическая смерть: последний kline не позже конца death_month + 10д
+        lim = (pd.Period(r.death_month).end_time
+               + pd.Timedelta(days=10)).strftime("%Y-%m-%d")
         avail = [d for d in dates if d <= lim]
         last_close = c[dates.index(avail[-1])] if avail else np.nan
+        row["last_trade_date"] = avail[-1] if avail else ""
+        row["days_announce_to_death"] = (
+            pd.Timestamp(row["last_trade_date"]) - pd.Timestamp(ann_day)
+        ).days if avail else np.nan
+        if avail and avail[-1] < r.death_month + "-01":
+            row["notes"] = ";".join(filter(None, [row["notes"],
+                                                  "death_before_cal_month"]))
         row["close_m1"] = close_m1
         row["last_close"] = last_close
         row["ret_day0"] = close_0 / close_m1 - 1 if close_m1 else np.nan
