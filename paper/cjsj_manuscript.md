@@ -267,7 +267,13 @@ its first hour and then drifts −2.25% lower by the close; 84.0% of events
 rise in the first hour and 61.3% fall afterwards. The day's price peak is the
 very first minute bar for the median event (80.4% of events peak within the
 first hour), and the first hour carries a median 38.2% of the day's dollar
-volume. The frenzy is concentrated at the open; the listing-day close, where
+volume. Even the opening print is already past the peak: the median first
+minute closes +38.1% above the open. What marks the frenzy is intensity, not
+buyer imbalance: a median 3,858 trades per minute in the first five minutes
+(15.9× the rest of the day), and the quartile with the busiest first hour
+fades −21.9% within a week against −0.7% for the quietest (Spearman
+ρ = −0.28, p = 3.8×10⁻¹⁰). The frenzy is concentrated at the open; the
+listing-day close, where
 this paper anchors outcomes, is already past it.
 
 ## B. Volatility, not the pop
@@ -307,7 +313,12 @@ by only +0.35 pp; the archive keeps the dead paths, so little hides there. The
 warning is for samples assembled from live-universe endpoints, where every
 token that died before sampling disappears entirely: with 70% of week-one
 outcomes negative, Ammann et al. [20] put the inflation for equal-weight
-crypto portfolios at up to 62 pp per year. Section III.H pushes further: even
+crypto portfolios at up to 62 pp per year. A monthly simulation of that
+sampling rule on our own panel quantifies the warning: rebuilt as a live-API
+user would have seen it on each past date, the equal-weight week-one median
+shifts by at most ±2.5 pp and never flips sign, but the dollar-weighted
+median shifts by up to +11.6 pp (November 2024), when more than half of all
+events had vanished from view. Section III.H pushes further: even
 in a panel that remembers the dead, survivorship reshapes results once the
 dollars are counted.
 
@@ -579,7 +590,8 @@ event-study engine, the enriched dataset (470 × 28), the Bybit holdout script
 with its raw-kline cache, the Coinbase calendar and event panel, the
 announcement-timestamp panel (468 of 470 events), the pre-announcement
 Coinbase return panel, the perpetual-funding check extract, the minute-level
-day-0 anatomy extract, the day-0 turnover data, the statistical appendices,
+day-0 anatomy and microstructure extracts, the survivorship-simulation panel,
+the day-0 turnover data, the statistical appendices,
 the claim-by-claim falsification matrix for the prior literature, and the
 chart-generation code.
 [Editorial note, remove before submission: insert public GitHub URL and
