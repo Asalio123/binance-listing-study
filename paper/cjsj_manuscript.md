@@ -150,7 +150,10 @@ removing the 52 symbols matching the leveraged-token suffixes
 The suffix pattern also catches two non-leveraged symbols, JUP and SYRUP,
 whose tickers happen to end in "UP"; restoring them gives the analysis panel
 of **470 events**. Including or excluding them shifts no reported median
-by more than 0.1 pp.
+by more than 0.1 pp. A listing here is the debut of the USDT pair: 59 events
+traded earlier on Binance under another quote currency (re-pairings), and the
+panel knowingly includes 56 tokenized-stock and 5 stablecoin-cross pairs from
+the 2026 waves; Section III.E reports the clean panel (n = 350) alongside.
 
 ## B. Event study specification
 
@@ -362,7 +365,11 @@ For +7 days, the median still lies within the interval [−11.52 per cent,
 −11.31 per cent] under a 2 per cent tail trim, winsorization (capping
 extremes at the percentile boundary), excluding 2021
 (the meme craze) and excluding the fourth quarter of 2024. In every case the
-p-value of the Wilcoxon test is at most 1.5 × 10⁻¹³. Relative to round-trip
+p-value of the Wilcoxon test is at most 1.5 × 10⁻¹³. Excluding the 59
+re-pairing events and the 61 non-token pairs strengthens every number:
+week-one median −14.32%, month-one −30.99%, all Wilcoxon p ≤ 2.5×10⁻¹⁴, and
+the dollar-weighted week-one median is unchanged (−28.89% vs −28.72%), so the
+headline numbers are conservative. Relative to round-trip
 retail spot costs of ~16 bps, the
 median absolute move is an order of magnitude larger. Monetizing the negative
 sign is harder than the drift suggests. A full sweep of perpetual-funding
@@ -603,7 +610,10 @@ proxies. (5) Backtest costs (8 bps round-trip, against the ~16 bps retail
 spot benchmark of Section III.E) likely understate slippage in
 stress regimes. (6) The `last_date` field hits the 1,000-day REST cap for
 175 of 470 rows; all death information in the paper comes from the listing
-calendar instead.
+calendar instead. (7) Events are dated by the USDT pair's debut: 59 of 470
+are re-pairings of assets that traded earlier under other quotes, and 61
+entries are tokenized-stock or stablecoin pairs; the clean panel (n = 350)
+strengthens all results (Section III.E).
 
 Three extensions follow directly. Live tracking of the momentum stack of
 Section III.D continues, replacing the in-sample upper bounds. The
