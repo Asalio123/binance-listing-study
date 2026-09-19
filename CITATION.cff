@@ -10,8 +10,8 @@ authors:
     given-names: Said
     affiliation: Gymnasium of Aznakayevo, Republic of Tatarstan, Russia
     orcid: "https://orcid.org/0009-0009-6357-3168"
-version: v1.0.0
-date-released: "2026-08-28"
+version: v1.1.0
+date-released: "2026-09-19"
 license: MIT
 keywords:
   - cryptocurrency
@@ -19,7 +19,10 @@ keywords:
   - survivorship bias
   - Binance
   - Bybit
+  - Coinbase
   - listing effect
+  - delisting
+  - funding rates
 preferred-citation:
   type: article
   title: >-

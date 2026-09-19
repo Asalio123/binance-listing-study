@@ -78,12 +78,16 @@ buy-and-hold returns whenever money arrives fastest into the most contested
 names [11].
 
 The cryptocurrency literature replicated the pattern with bigger numbers
-[12]–[14]. Ante [1] reports average abnormal returns of 5.7% on the listing
+[12]–[14], [25]. Ante [1] reports average abnormal returns of 5.7% on the listing
 day and 9.2% over a (−3, +3) window across 327 cross-listings on 22
 exchanges; Ante and Meyer [2] find 6.51% and 9.97% on 250 ICO-token
 cross-listings. Li et al. [15] document average announcement-day returns of
 +22–33% on Coinbase and Binance, noting that medians run half the means, the
-signature of lottery-type payoffs. Industry panels agree that the premium
+signature of lottery-type payoffs. They report no reversal over 5–180 day
+horizons; their object differs from ours in anchor and scope, since they date
+day 0 at the announcement and price it from pre-listing cross-venue quotes,
+whereas we anchor at the first trading-day close on the listing venue alone.
+Industry panels agree that the premium
 accrues before tokens become publicly tradeable (The Tie Research, n = 1,844
 [16]).
 
@@ -96,7 +100,7 @@ subsequent (+2, +3) window turns significantly negative. Of the celebrated
 close. Secondly, the inference. The existing literature relies on
 cross-sectional t-tests and rank tests, which assume independent events.
 Listing events satisfy neither assumption: they cluster in time and share one
-market factor, and the simulations show that these tests then overstate
+market factor [26], and the simulations show that these tests then overstate
 significance, materially so [17], [18].
 
 Our contribution is not to dispute those numbers but to change what is
@@ -104,7 +108,11 @@ measured. The panel is death-inclusive and covers *first* listings on one
 venue only. Outcomes are anchored where a retail buyer can actually act, at
 the listing-day close. Event clustering enters the inference, and the weights
 follow money rather than ticker counts. To our knowledge, this is the first
-death-inclusive, dollar-weighted event study of exchange listings. The
+academic event study of first listings that is death-inclusive,
+turnover-weighted, and anchored at the buyer-accessible close; industry
+panels have documented the same fade without these design features (The Tie
+[16], 1,844 CEX listings; Animoca Research [28], 773 listings across five
+exchanges with median returns of −40% to −70%). The
 research question is single and measurable: what does a buyer earn who
 purchases every new Binance USDT listing at its listing-day close, when dead
 tokens are kept in the sample? Four contributions:
@@ -322,7 +330,13 @@ by only +0.35 pp; the archive keeps the dead paths, so little hides there. The
 warning is for samples assembled from live-universe endpoints, where every
 token that died before sampling disappears entirely: with 70% of week-one
 outcomes negative, Ammann et al. [20] put the inflation for equal-weight
-crypto portfolios at up to 62 pp per year. A monthly simulation of that
+crypto portfolios at up to 62 pp per year. They report the opposite weighting
+asymmetry, with value-weighted portfolios inflated by only 0.93 pp per year;
+the two facts reconcile, since their weights are market capitalizations in a
+buy-and-hold portfolio compounded over years, where dead coins carry
+negligible weight, while ours are day-0 turnover shares in a short event
+window, concentrating weight on the hottest listings. A monthly simulation of
+that
 sampling rule on our own panel quantifies the warning, with deaths taken
 point-in-time from each pair's last trading month in the exchange calendar:
 rebuilt as a live-API user would have seen it on each past date, the
@@ -457,7 +471,9 @@ of pre-window events are positive (Fig. 4). The pattern is identical on both
 venues, and a flat three-day run-up on the same venue rules out plain
 momentum selection. (A Telegram-timestamped subsample is uninformative here:
 n = 5, mostly rebrand notices.) The
-market learns of the listing before the announcement; the publication itself
+market learns of the listing before the announcement, consistent with the
+insider-trading estimates of Félez-Viñas et al. [24], who place informed
+trading before 28–48% of listings; the publication itself
 is the afterthought.
 
 ![**Fig. 4.** Median cumulative return around Binance announcement timestamps, minute-level, on venues where the token already traded (n = 92; Coinbase 61, Bybit 31). The run-up of +9.4% accumulates in the three hours before publication, most of it in the last fifteen minutes; the three hours after add +3.3%. Shaded band: interquartile range.](../charts/announcement_shock_minutes.png){width=100%}
@@ -564,8 +580,9 @@ pre-specified; we report it as exploratory.
 For the literature, the widely cited listing premium, whilst real as a
 statistic, is misleading as a signal. In reality it measures "anticipatory
 accumulation": actions taken before retail investors can act, whether informed
-or merely early. Every post-opening
-window in Ante and Meyer's own table [2] is negative, and on the panel used in
+or merely early. Virtually all post-opening
+windows in Ante and Meyer's own table [2] are negative (the sole exception,
+the day +3 return of +0.25%, is statistically insignificant), and on the panel used in
 this study (which keeps delisted tokens in the sample), the post-opening,
 buyer-accessible component of the effect inverts
 entirely. Event-study inference in
@@ -576,7 +593,9 @@ certainty.
 Traders get a different object out of these numbers: the expected loss varies
 monotonically with the trading volume on day 0 (Fig. 6), and surviving past
 the listing does not rescue it. The anomaly lives in the attention a listing
-draws, not in the act of listing itself. Taking a direct short position in
+draws, not in the act of listing itself; the same attention machinery is
+documented in the pump-and-dump literature on these venues [27]. Taking a
+direct short position in
 the fade is mostly uneconomical [23]: the binding constraint is not funding
 (Section III.E) but the lottery asymmetry, and most names lack a shortable
 instrument altogether.
@@ -705,19 +724,21 @@ Finance*, vol. 32, no. 4, 1977.
 differences of opinion, and overvaluation," *Journal of Financial and
 Quantitative Analysis*, vol. 41, no. 2, pp. 455–487, 2006.
 
-[8] Y. Amihud, "Divergence of opinion and long-term performance of initial
-public offerings," *Journal of Financial Research*, vol. 29, no. 1, 2006.
+[8] Y. Gao, C. X. Mao, and R. Zhong, "Divergence of opinion and long-term
+performance of initial public offerings," *Journal of Financial Research*,
+vol. 29, no. 1, pp. 113–129, 2006.
 
-[9] T. Houge, T. Loughran, G. Suchanek, and J. Wiggins, "Divergence of
+[9] T. Houge, T. Loughran, G. Suchanek, and X. Yan, "Divergence of
 opinion, uncertainty, and the quality of initial public offerings,"
-*Financial Management*, vol. 30, no. 4, 2001.
+*Financial Management*, vol. 30, no. 4, pp. 5–23, 2001.
 
 [10] K. Diether, C. Malloy, and A. Scherbina, "Differences of opinion and the
 cross section of stock returns," *Journal of Finance*, vol. 57, no. 5,
 pp. 2113–2141, 2002.
 
-[11] I. Dichev, "What are stock investors' actual historical returns?"
-*Journal of Finance*, vol. 62, no. 4, 2007.
+[11] I. D. Dichev, "What are stock investors' actual historical returns?
+Evidence from dollar-weighted returns," *American Economic Review*, vol. 97,
+no. 1, pp. 386–401, 2007.
 
 [12] H. Benedetti and L. Kostovetsky, "Digital tulips? Returns to investors in
 initial coin offerings," *Journal of Corporate Finance*, vol. 66,
@@ -759,3 +780,21 @@ news on the buying behavior of individual and institutional investors,"
 
 [23] A. Shleifer and R. Vishny, "The limits of arbitrage," *Journal of
 Finance*, vol. 52, no. 1, pp. 35–55, 1997.
+
+[24] E. Félez-Viñas, L. Johnson, and T. J. Putnins, "Insider trading in
+cryptocurrency markets," SSRN Working Paper No. 4184367, 2022,
+doi:10.2139/ssrn.4184367.
+
+[25] S. T. Howell, M. Niessner, and D. Yermack, "Initial coin offerings:
+Financing growth with cryptocurrency token sales," *Review of Financial
+Studies*, vol. 33, no. 9, pp. 3925–3974, 2020.
+
+[26] Y. Liu, A. Tsyvinski, and X. Wu, "Common risk factors in cryptocurrency,"
+*Journal of Finance*, vol. 77, no. 2, pp. 1133–1177, 2022.
+
+[27] J. T. Hamrick, F. Rouhi, A. Mukherjee, A. Feder, N. Gandal, T. Moore, and
+M. Vasek, "An examination of the cryptocurrency pump-and-dump ecosystem,"
+*Information Processing & Management*, vol. 58, no. 4, art. 102506, 2021.
+
+[28] Animoca Research, "Token listings on centralized exchanges: performance
+analysis," 2024.

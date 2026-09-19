@@ -3,7 +3,7 @@
   "upload_type": {
     "type": "dataset"
   },
-  "publication_date": "2026-08-28",
+  "publication_date": "2026-09-19",
   "creators": [
     {
       "name": "Bakhtiev, Said",
@@ -11,7 +11,7 @@
       "orcid": "0009-0009-6357-3168"
     }
   ],
-  "description": "<p>Companion repository for the preprint <em>Post-Listing Underperformance in Cryptocurrency Markets: Evidence from Every Binance USDT Listing, 2021-2026</em>. The release contains the point-in-time listing calendars rebuilt from the raw data.binance.vision archive (3,682 archived symbols; 470 Binance spot USDT events retained, delisted tokens included; 829 Bybit USDT listings), the enriched 470&times;28 event panel used for all reported estimates, the day-0 USD turnover extract, the event-study and holdout code with the raw kline caches required for replication, and a claim-by-claim falsification matrix for the prior listing literature.</p>",
+  "description": "<p>Companion repository for the preprint <em>Post-Listing Underperformance in Cryptocurrency Markets: Evidence from Every Binance USDT Listing, 2021-2026</em>. The release contains the point-in-time listing calendars rebuilt from the raw data.binance.vision archive (3,682 archived symbols; 470 Binance spot USDT events retained, delisted tokens included; 829 Bybit USDT listings), the enriched 470&times;28 event panel used for all reported estimates, the day-0 USD turnover extract, the event-study and holdout code with the raw kline caches required for replication, and a claim-by-claim falsification matrix for the prior listing literature.</p><p>Version 1.1.0 adds the wave 1&ndash;2 extensions: reconstructed announcement timestamps for 468/470 events (Binance public content API with Telegram cross-validation), minute-level announcement-shock returns and day-0 intraday anatomy for all 470 events, a death-inclusive Coinbase Exchange calendar (603 products, 180 delisted) with the 566-event replication panel, a 98-event delisting study, a full-panel perpetual-funding sweep (470 names), a frozen-definition net short-P&amp;L check, month-block bootstrap confidence intervals for the dollar-weighted headline statistics, a panel-exclusion robustness list, a data manifest, and a one-command verification script (build_cjsj.sh).</p>",
   "access_right": "open",
   "license": "mit",
   "keywords": [
@@ -24,5 +24,5 @@
     "dollar-weighted returns"
   ],
   "language": "eng",
-  "version": "v1.0.0"
+  "version": "v1.1.0"
 }
