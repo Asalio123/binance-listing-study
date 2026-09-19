@@ -207,8 +207,8 @@ archive unless noted).
 Daily OHLCV paths come from REST klines where a symbol still exists; for the
 rest, we stitched monthly archive zips together (the platform moved its
 timestamps from milliseconds to microseconds in 2025; the stitcher handles
-both). Where a path ends before a horizon — this affects only ten recent
-listings (recency censoring), not the delisted names — the return is marked
+both). Where a path ends before a horizon (this affects only ten recent
+listings, recency censoring, not the delisted names), the return is marked
 at the last available close and flagged; setting truncated observations to
 −100% instead would worsen every estimate, so the conclusions are
 conservative either way.
