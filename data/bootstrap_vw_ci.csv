@@ -1,0 +1,17 @@
+statistic,point,lo,hi
+vw_median_fwd7,-28.72,-39.45,-19.79
+vw_median_madj7_btcadj,-35.46,-49.32,-22.31
+wedge_delisting_vw,0.96,-3.41,3.24
+ew_minus_vw,17.27,8.05,27.37
+quintile_q1,-0.6,-7.21,0.7
+quintile_q2,-4.99,-14.18,-1.85
+quintile_q3,-14.5,-20.5,-6.14
+quintile_q4,-16.78,-25.99,-12.95
+quintile_q5,-23.54,-33.15,-14.93
+q5_minus_q1,-22.94,-32.61,-13.25
+quintile_btcadj_q1,-4.55,-8.56,0.12
+quintile_btcadj_q2,-9.78,-15.62,-4.59
+quintile_btcadj_q3,-15.73,-22.46,-10.26
+quintile_btcadj_q4,-19.53,-27.72,-12.0
+quintile_btcadj_q5,-29.08,-41.44,-14.8
+q5_minus_q1_btcadj,-24.54,-37.42,-9.91

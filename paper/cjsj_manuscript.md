@@ -7,12 +7,13 @@ date: "September 2026"
 abstract: |
   Buying a token on the day a major exchange lists it is one of crypto's most
   persistent folk trades. We measure what that trade actually delivers, using
-  every Binance spot USDT listing from January 2021 to August 2026: 470 events,
+  every Binance spot USDT listing from January 2021 through July 2026: 470 events,
   reconstructed point-in-time from raw exchange archives so that delisted tokens
   are never dropped. Median returns from
   the first-day close run to −11.45% after one week and −21.53% after a month,
-  with Wilcoxon p-values below 10⁻¹⁶ at weekly horizons. The dollar-typical
+  with Wilcoxon p-values below 10⁻¹⁶ at weekly horizons. The median-dollar
   outcome is more than twice as bad: weighting listings by their day-0 USD
+  turnover, the median week-one loss deepens to −28.7% (−35.5% BTC-adjusted),
   turnover, the median week-one loss deepens to −28.7% (−35.5% BTC-adjusted),
   and subsequent delisting explains less than one percentage point of the gap.
   The funds do not disappear the moment the tokens are delisted; they are
@@ -57,7 +58,7 @@ report bundles the pre-listing run-up into whatever a buyer can still get once
 trading opens.
 
 So we rebuilt the measurement. **Every**
-Binance spot USDT listing from January 2021 through August 2026 went into the
+Binance spot USDT listing from January 2021 through July 2026 went into the
 calendar: 470 events, taken from the exchange's raw public archive. Tokens
 delisted years ago sit in it exactly like tokens listed last month. On this
 panel the typical token loses 11.45% in its first week. The typical dollar
@@ -109,7 +110,7 @@ purchases every new Binance USDT listing at its listing-day close, when dead
 tokens are kept in the sample? Four contributions:
 
 **Data.** We release a death-inclusive listing calendar for the Binance
-spot market, January 2021 through August 2026 (3,682 symbols screened; 470
+spot market, January 2021 through July 2026 (3,682 symbols screened; 470
 USDT events retained, delisted tokens included), together with a parallel
 calendar for Bybit (829 USDT listings). Both were rebuilt from the raw
 archives and released openly with a 28-feature event dataset.
@@ -206,10 +207,11 @@ archive unless noted).
 Daily OHLCV paths come from REST klines where a symbol still exists; for the
 rest, we stitched monthly archive zips together (the platform moved its
 timestamps from milliseconds to microseconds in 2025; the stitcher handles
-both). Where a delisted path
-ends before a horizon, the return is marked at the last available close and
-flagged; setting truncated observations to −100% instead would worsen every
-estimate, so the conclusions are conservative either way.
+both). Where a path ends before a horizon — this affects only ten recent
+listings (recency censoring), not the delisted names — the return is marked
+at the last available close and flagged; setting truncated observations to
+−100% instead would worsen every estimate, so the conclusions are
+conservative either way.
 
 We also pulled day-0 turnover in US dollars for all 470 events (the
 quote-asset volume of the first daily candle) from the same archive. Most
@@ -219,7 +221,11 @@ bar can be partial; the minute-level anatomy of day 0 is analysed in Section
 III.A.) Dollar-typical outcomes below are weighted medians with weights equal
 to day-0 USD turnover: the smallest value at which cumulative weight reaches
 50%. This is a weighting choice, not an internal-rate-of-return measure in the
-sense of Dichev [11].
+sense of Dichev [11]. The BTC-adjusted panel has n = 460: ten July-2026
+tokenized-stock listings have no day+7 close in the public archive (their
+archived history ends 2026-07-31, three days after listing), so the BTC
+adjustment is undefined for them; raw forward returns exist for all 470
+events.
 
 # III. Results
 
@@ -242,7 +248,7 @@ the mean/median asymmetry: at +30d the mean (−7.29%) cannot be told apart
 from zero, because a thin right tail of spectacular winners offsets it. This
 is the lottery structure that makes "average listing
 return" marketing misleading. The drift is stable across halves of the sample
-(−10.80% vs −12.47%; Mann–Whitney p = 0.33).
+(Mann–Whitney p = 0.27–0.33 across split conventions).
 
 The drift also settles a piece of trader folklore: "buy the dip, it
 always bounces." The median token bottoms at **−31.78%**
@@ -256,8 +262,9 @@ compares each observed horizon median against the medians of 2,000 random
 draws from that pool: the +1d and +3d medians do not differ from
 the pooled distribution (p = 1.00; 0.79), whilst the +14d and +30d
 medians exceed every draw (0 of 2,000; empirical p < 5×10⁻⁴, the resolution
-floor of the design). The late-horizon drift is genuinely
-event-specific, not a market-wide artifact.
+floor of the design). The headline +7d median does not clear the pool
+(p = 0.06). The test separates the late-horizon drift from pooled market
+days, but does not by itself rule out a market-wide post-peak regime.
 
 Zooming inside day 0 sharpens the picture. Across all 470 events
 (minute-level bars from the same archive), the median listing gains +30.9% in
@@ -268,7 +275,8 @@ first hour), and the first hour carries a median 38.2% of the day's dollar
 volume. Even the opening print is already past the peak: the median first
 minute closes +38.1% above the open. What marks the frenzy is intensity, not
 buyer imbalance: a median 3,858 trades per minute in the first five minutes
-(15.9× the rest of the day), and the quartile with the busiest first hour
+(median of per-event ratios; the ratio of medians is 13.7×),
+and the quartile with the busiest first hour
 fades −21.9% within a week against −0.7% for the quietest (Spearman
 ρ = −0.28, p = 3.8×10⁻¹⁰). The frenzy is concentrated at the open; the
 listing-day close, where
@@ -320,21 +328,23 @@ events had vanished from view. Section III.H pushes further: even
 in a panel that remembers the dead, survivorship reshapes results once the
 dollars are counted.
 
-The death events themselves close the loop. For the 98 of 99 delisted panel
-members with a located delisting announcement (CMS notices plus the
-announcement channel), the announcement day loses −28.5% at the median (5%
+The death events themselves close the loop. For the 73 true delistings with a located
+announcement (98 of 99 delisted panel members are dated; migrations
+excluded), the announcement day loses −28.5% at the median (5%
 of events positive), the price halves again from announcement to the last
 trade (−51.5%), and buying the listing and holding to the grave loses
 −98.3% at the median (1% positive). Migration and rebrand notices, the same
 genre without death, gain +7.9% on their day (76% positive): the reaction is
-specific to dying, not to the headline. There is no pump before the dump.
+specific to dying, not to the headline. Within two weeks before the
+announcement, there is no pump before the dump.
 
 ## D. Application: what survives validation
 
 As an application, the findings were embedded in a pre-existing daily momentum
 system over the liquid meme sectors (long the top-k tokens by trailing return,
 gated by the BTC trend, sized by inverse volatility). More than twenty-five
-candidate refinements were tested against a fixed baseline; the only change
+candidate refinements were tested against a fixed baseline (the seven
+documented verdicts are in the repository); the only change
 motivated by this study is the exclusion of listings younger than 21 days
 (Table II), adopted as a defensive rule. The full candidate table, with
 accepted and rejected verdicts and all performance numbers, is in the
@@ -355,12 +365,16 @@ sign is harder than the drift suggests. A full sweep of perpetual-funding
 histories (327 of the 470 names have a contract) shows week-one funding
 rarely eating the drift: the median weekly funding sum is −0.36% against the
 −11.45% median drift, and only 17.7% of day-0-shortable names lose more than
-half the drift to funding (before 2025 shorts were even *paid* funding; since
-2025 they pay). The binding constraints are access and the upside tail: a
+half the drift to funding (the sign of funding flips by era: shorts were
+paid in 2021 and 2023–24, and pay in 2022 and from 2025). The binding
+constraints are access and the upside tail: a
 day-0 short is possible for only 17.0% of the panel (44.7% within week one; a
 third of contracts list more than 30 days after spot), and on the twelve
 most-traded listings the median week-one short earns +12% while the mean
-loses −21%.
+loses −21%. Funding itself carries the hype signature: names where shorts pay
+fade deepest (Spearman ρ = +0.16 between week-one funding and the week-one
+return, p = 0.016, n = 221). The frame is perpetuals-only; spot borrow
+availability is worse, so the access numbers are upper bounds.
 
 ## F. Cross-venue sequencing and lottery features
 
@@ -398,12 +412,13 @@ to be quiet pair additions with no public announcement at all.
 
 The lag is informative in an unexpected direction. The week-one fade is
 statistically indistinguishable across lag groups, from same-day
-announcements to ramps longer than a week (−9% to −13.5% everywhere;
-Kruskal-Wallis p = 0.51): the market dumps the listing no matter how long it
+announcements to ramps longer than a week (−10.3% to −13.4%
+by raw group; Kruskal-Wallis p = 0.51): the market dumps the listing no matter how long it
 was anticipated. What the lag does predict is the day-0 pop (Spearman
-ρ = +0.32, p = 2×10⁻¹¹), through the launchpool mechanic: announced farming
+ρ = +0.32 for lags within a week, +0.17 across all 468 dated events),
+through the launchpool mechanic: announced farming
 periods between announcement and listing produce median day-0 pops of
-+1215.8%.
++1215.8% (n = 65).
 
 With timestamps in hand, the pre-announcement premium becomes measurable on
 venues where the token already traded. 79 events have a Coinbase price
@@ -425,8 +440,9 @@ the median return is +9.4% over the three hours *before* the announcement
 goes public and +3.3% over the three hours after; about 7 percentage points
 of the run-up print in the last fifteen minutes before publication, and 90%
 of pre-window events are positive (Fig. 4). The pattern is identical on both
-venues, and the few events timestamped independently via Telegram show no
-pre-drift, so the run-up is not an artifact of the content API's clock. The
+venues, and a flat three-day run-up on the same venue rules out plain
+momentum selection. (A Telegram-timestamped subsample is uninformative here:
+n = 5, mostly rebrand notices.) The
 market learns of the listing before the announcement; the publication itself
 is the afterthought.
 
@@ -435,7 +451,8 @@ is the afterthought.
 ## H. Pre-specified confirmatory holdout: Bybit
 
 The Bybit holdout was designed before the fact. Four directional predictions
-were frozen on 2026-08-23, before any Bybit price data was touched. Three
+were written on 2026-08-23 and frozen in version control on 2026-08-24,
+before any Bybit price data was touched. Three
 transplant the Binance findings to Bybit and form the multiple-testing family,
 corrected with Benjamini-Hochberg (q = 0.05); the decision rule is dual:
 adjusted p < 0.05 plus the predicted direction. The fourth (H4) is a
@@ -453,21 +470,27 @@ week.
 
 **H2: volatility predicting the fade does not replicate; the sign flips.**
 On Bybit survivors the log-range coefficient is **+4.65 pp (t = +2.69)**
-against −3.23 (t = −1.67) on Binance in the like-for-like specification.
+against −3.23 (t = −1.67) on Binance in the like-for-like specification
+(−3.47, t = −1.76 under the frozen controls, which add the delisting flag).
 Adding the volatility control collapses the Bybit coefficient to +1.43
 (t = 0.90, n.s.) while sharpening the Binance one to −8.40 (t = −5.14). The
 gradient is specification-fragile on both venues; we
 report this as genuine cross-venue heterogeneity under survival conditioning
 that generates hypotheses rather than supports them. (One
 declared deviation: the pre-specified control for the delisting flag was
-dropped, because among survivors it is identically zero.)
+dropped, because among survivors it is identically zero.) A calibration note:
+the frozen prediction band [−15, −5] pp was taken from the specification
+with the volatility control, while the frozen test runs without it; on the
+frozen specification the Binance estimate itself (−3.47) sits outside the
+band, so H2 would have failed its decision rule on the discovery sample too.
 
 **H3: extremes mark continuation.** The largest daily gain of week one and
 fwd_30 correlate at **+0.373** (predicted band +0.2…+0.4). Top-MAX tercile
 median fwd_30 is −6.74% versus −17.81% in the bottom tercile (Mann–Whitney
 p = 0.0024).
 
-**Table IV.** The confirmatory family (frozen 2026-08-23), Bybit cohort
+**Table IV.** The confirmatory family (written 2026-08-23, frozen in version
+control 2026-08-24), Bybit cohort
 (n = 415): raw and Benjamini-Hochberg-adjusted p-values.
 
 | Hypothesis | Test | Raw p | BH-adjusted p | Direction as predicted | Verdict |
@@ -483,15 +506,22 @@ became informative once we refetched true day-0 USD turnover for all 470 events
 from the death-inclusive archive; the base-unit volume weights had been
 degenerate, with five mega-supply tokens holding 98% of total weight. With
 real dollar weights the week-one picture splits in two: token-counted median
-−11.45%, dollar-counted median **−28.72%** (−35.46% BTC-adjusted, n = 460;
+−11.45%, dollar-counted median **−28.72%** (month-block bootstrap 95% CI
+[−39.45, −19.79]; −35.46% BTC-adjusted, n = 460, CI [−49.32, −22.31];
 Fig. 5), and the
-delisting-attributable wedge is just **+0.96 pp**. High-turnover listings fade
+delisting-attributable wedge is just **+0.96 pp** (CI [−3.41, +3.24],
+statistically indistinguishable from zero). The dollar-weighted mean,
+−17.40%, sits far above the median: a thin right tail of winners carries part
+of the money. High-turnover listings fade
 harder whether or not they die afterwards.
 
 ![**Fig. 5.** Token-counted versus dollar-counted week-one returns. Median forward week-one return from the day-0 close, counted per token (−11.45%) versus weighted by day-0 USD turnover (−28.72%); the delisting-attributable wedge is +0.96 pp (n = 470).](../charts/dollar_vs_token.png){width=100%}
 
 The gap has anatomy. Split the panel into day-0 turnover quintiles and the
-median week-one return runs −0.6%, −5.0%, −14.5%, −16.8%, **−23.5%** (Fig. 6)
+median week-one return runs −0.6%, −5.0%, −14.5%, −16.8%, **−23.5%** (Fig. 6;
+month-block bootstrap 95% CIs [−7.2, +0.7], [−14.2, −1.9], [−20.5, −6.1],
+[−26.0, −13.0], [−33.2, −14.9]; gradient Q5−Q1 = −22.9 pp, CI [−32.6,
+−13.3])
 (BTC-adjusted: −4.6%, −9.8%, −15.7%, −19.5%, −29.1%). The
 quietest quintile shows no fade at all. Turnover also correlates with day-0
 range (Spearman rank correlation +0.84) and pop (+0.79), keeps incremental
