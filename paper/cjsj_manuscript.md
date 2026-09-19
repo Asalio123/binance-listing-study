@@ -7,30 +7,21 @@ date: "September 2026"
 abstract: |
   Buying a token on the day a major exchange lists it is one of crypto's most
   persistent folk trades. We measure what that trade actually delivers, using
-  every Binance spot USDT listing from January 2021 through July 2026: 470 events,
-  reconstructed point-in-time from raw exchange archives so that delisted tokens
-  are never dropped. Median returns from
-  the first-day close run to −11.45% after one week and −21.53% after a month,
-  with Wilcoxon p-values below 10⁻¹⁶ at weekly horizons. The median-dollar
-  outcome is more than twice as bad: weighting listings by their day-0 USD
-  turnover, the median week-one loss deepens to −28.7% (−35.5% BTC-adjusted),
-  turnover, the median week-one loss deepens to −28.7% (−35.5% BTC-adjusted),
-  and subsequent delisting explains less than one percentage point of the gap.
-  The funds do not disappear the moment the tokens are delisted; they are
-  gradually depleted whilst the tokens still trade, fastest where day-0 volume
-  peaked. The fade is monotone across turnover quintiles (−0.6% to −23.5%),
-  matching the divergence-of-opinion mechanism known from IPO research. We then
-  freeze four directional predictions *before* touching any Bybit price data;
-  three form the Benjamini-Hochberg-corrected family tested on the 415
-  surviving Bybit listings, and the fourth prices survivorship in dollars on
-  Binance: the fade replicates (−10.34%, BH
-  p = 8×10⁻¹⁴), first-week extremes predict continuation rather than reversal
-  (r = +0.37), and the volatility-predicts-fade gradient fails to replicate,
+  every Binance spot USDT listing from January 2021 through July 2026: 470
+  events, reconstructed point-in-time from raw exchange archives so that
+  delisted tokens are never dropped. Median returns from the first-day close
+  run to −11.45% after one week and −21.53% after a month (Wilcoxon
+  p < 10⁻¹⁶). The median-dollar outcome is more than twice as bad (−28.7%
+  weighted by day-0 turnover), and delisting explains less than one percentage
+  point of the gap: the money evaporates while the tokens still trade, fastest
+  where day-0 volume peaked. Four directional predictions, frozen before
+  touching any Bybit data, are tested on 415 surviving Bybit listings: the fade
+  replicates (−10.34%, BH p = 8×10⁻¹⁴), first-week extremes predict
+  continuation (r = +0.37), and the volatility-predicts-fade gradient fails,
   flipping sign. An exploratory death-inclusive check on 566 Coinbase listings
   reproduces the fade almost exactly, and announcement timestamps reconstructed
-  from the exchange's own publication API (99.6% coverage; web-crawl archives
-  fail at this) locate the premium before the announcement, in other venues'
-  markets.
+  from the exchange's own publication API (99.6% coverage) locate the premium
+  before the announcement, in other venues' markets.
 keywords:
   - cryptocurrency
   - listings
@@ -92,16 +83,13 @@ accrues before tokens become publicly tradeable (The Tie Research, n = 1,844
 [16]).
 
 Two points deserve sharper statement than the current literature gives them.
-Firstly, the premium is front-loaded. According to the table compiled by Ante
-and Meyer themselves [2], +5.0 percentage points accrue in the three days
-prior to the listing date, whilst the listing date itself adds +6.5, and the
-subsequent (+2, +3) window turns significantly negative. Of the celebrated
-+9.97% window effect, nothing is left for someone who buys at the listing-day
-close. Secondly, the inference. The existing literature relies on
-cross-sectional t-tests and rank tests, which assume independent events.
-Listing events satisfy neither assumption: they cluster in time and share one
-market factor [26], and the simulations show that these tests then overstate
-significance, materially so [17], [18].
+Firstly, the premium is front-loaded: in Ante and Meyer's own table [2], +5.0
+percentage points accrue before the listing date and the subsequent (+2, +3)
+window turns significantly negative; of the celebrated +9.97% window effect,
+nothing is left for someone who buys at the listing-day close. Secondly, the
+inference: cross-sectional t-tests assume independent events, but listing
+events cluster in time and share one market factor [26], which overstates
+significance materially [17], [18].
 
 Our contribution is not to dispute those numbers but to change what is
 measured. The panel is death-inclusive and covers *first* listings on one
@@ -183,8 +171,6 @@ $$AR_{i,t} = R_{i,t} - R^{BTC}_t, \quad CAR_i(0,k) = \sum_{t=0}^{k} AR_{i,t}$$
 
 and report simple forward returns, if only to stay comparable with the
 headline tables of the cross-listing literature.
-Average across events and you get the AAR and CAAR of the cross-listing
-literature, daily and cumulative respectively.
 
 Inference rests on four layers. (i) A cross-sectional t-test on event-level
 CARs. (ii) The Wilcoxon signed-rank test, robust to the heavy right tail.
@@ -232,11 +218,7 @@ bar can be partial; the minute-level anatomy of day 0 is analysed in Section
 III.A.) Dollar-typical outcomes below are weighted medians with weights equal
 to day-0 USD turnover: the smallest value at which cumulative weight reaches
 50%. This is a weighting choice, not an internal-rate-of-return measure in the
-sense of Dichev [11]. The BTC-adjusted panel has n = 460: ten July-2026
-tokenized-stock listings have no day+7 close in the public archive (their
-archived history ends 2026-07-31, three days after listing), so the BTC
-adjustment is undefined for them; raw forward returns exist for all 470
-events.
+sense of Dichev [11].
 
 # III. Results
 
@@ -316,12 +298,10 @@ Regression separates the candidates (variable definitions in Table I):
 Conditional on the day-0 range, the signed pop turns mildly positive: the
 one-dimensional gradient reflects the co-movement of extreme pops and extreme
 intraday ranges. One caution that anticipates Section III.H: the −8.40
-estimate depends on the annualized-volatility control, which is itself
-measured over the outcome window, so the regression is a decomposition of
-co-movement, not a prediction; drop it and the
-coefficient falls to −3.23 pp (t = −1.67). The range story is directional and
-economically large, but not specification-proof; the confirmatory holdout
-returns a verdict on it.
+estimate depends on the annualized-volatility control, itself measured over
+the outcome window, so the regression is a decomposition of co-movement, not
+a prediction (without that control: −3.23, t = −1.67); the holdout returns a
+verdict on it.
 
 ## C. Survivorship: bounded here, large elsewhere
 
@@ -349,29 +329,23 @@ conclusion intact. Section III.H pushes further: even
 in a panel that remembers the dead, survivorship reshapes results once the
 dollars are counted.
 
-The death events themselves close the loop. For the 73 true delistings with a located
-announcement (98 of 99 delisted panel members are dated; migrations
-excluded), the announcement day loses −28.5% at the median (5%
-of events positive), the price halves again from announcement to the last
-trade (−51.5%), and buying the listing and holding to the grave loses
-−98.3% at the median (1% positive). Migration and rebrand notices, the same
-genre without death, gain +7.9% on their day (76% positive): the reaction is
-specific to dying, not to the headline. Within two weeks before the
-announcement, there is no pump before the dump.
+The death events themselves close the loop. For the 73 true delistings with a
+located announcement (98 of 99 delisted panel members are dated; migrations
+excluded), the announcement day loses −28.5% at the median (5% of events
+positive), the price halves again from announcement to the last trade
+(−51.5%), and buying the listing and holding to the grave loses −98.3% at the
+median (1% positive). Migration and rebrand notices, the same genre without
+death, gain +7.9% on their day (76% positive): the reaction is specific to
+dying, not to the headline. There is no pump before the dump.
 
 ## D. Application: what survives validation
 
 As an application, the findings were embedded in a pre-existing daily momentum
-system over the liquid meme sectors (long the top-k tokens by trailing return,
-gated by the BTC trend, sized by inverse volatility). More than twenty-five
-candidate refinements were tested against a fixed baseline (the seven
-documented verdicts are in the repository); the only change
-motivated by this study is the exclusion of listings younger than 21 days
-(Table II), adopted as a defensive rule. The full candidate table, with
-accepted and rejected verdicts and all performance numbers, is in the
-companion repository (`paper/STRATEGY_VALIDATION.md`). Twenty-plus tested
-hypotheses make selection inflation real, so all strategy numbers are
-in-sample upper bounds; live tracking continues.
+system over the liquid meme sectors; the only change motivated by this study
+is the exclusion of listings younger than 21 days (Table II), adopted as a
+defensive rule. The validated candidate table, with accepted and rejected
+verdicts, is in the companion repository (`paper/STRATEGY_VALIDATION.md`);
+all strategy numbers are in-sample upper bounds, and live tracking continues.
 
 ## E. Robustness
 
@@ -407,33 +381,30 @@ availability is worse, so the access numbers are upper bounds.
 ## F. Cross-venue sequencing and lottery features
 
 A point-in-time Bybit spot calendar adds 829 USDT listings since 2022 (49.5%
-already delisted); 205 of our 470 Binance events (44%) also trade there.
-Cross-venue order carries no signal at daily horizons (Mann–Whitney
-p = 0.20). Within the first week, some tokens print extreme single-day
-up-moves (top MAX tercile, median best day +23.9%); those tokens do *better*
-at +30d than low-MAX ones, −13.4% vs −20.7% (corr(max_daily_7d, fwd_30) =
-+0.32): the attention-continuation logic of the MAX effect [21], not instant
-lottery exhaustion.
+already delisted); 205 of our 470 Binance events (44%) also trade there, and
+cross-venue order carries no signal (Mann–Whitney p = 0.20). Within the first
+week, tokens with extreme single-day up-moves do *better* at +30d, −13.4% vs
+−20.7% (corr(max_daily_7d, fwd_30) = +0.32): the attention-continuation logic
+of the MAX effect [21], not instant lottery exhaustion.
 
 ## G. Dating the announcements, and where the premium sits
 
 Had the premium accumulated by the time of the *announcement*? The question
 needs announcement timestamps, and public web crawls fail to provide them:
-across all 71 Common Crawl collections covering 2019–2026, queried for
-Binance announcement URLs, only 38 of 470 events have any matching candidate,
-the nearest surfaces 70 days *after* the listing, and the median surfaces
-+544 days later. Crawl dates are discovery dates, not publication dates.
+across all 71 Common Crawl collections (2019–2026), only 38 of 470 events
+have any matching candidate, the nearest surfaces 70 days *after* the listing
+and the median +544 days later; crawl dates are discovery dates, not
+publication dates.
 
 The exchange's own infrastructure solves the dating problem. Binance's public
 content API, the catalogue behind its announcement pages, returns a
 millisecond-precision publication timestamp for each of 2,255 catalogue
 articles back to 2017 (plus six rescue notices outside the catalogue).
 Matching articles to panel events by title and body
-patterns (direct listing announcements, HODLer Airdrops and Launchpool
-introductions, trading-pair additions, rebrand and migration notices) dates
-468 of 470 events (99.6%), cross-validated against the exchange's independent
-Telegram announcement channel (20-event random subsample; median absolute
-disagreement: 2 minutes). The
+patterns (direct announcements, airdrop and launchpool introductions, pair
+additions, rebrand notices) dates 468 of 470 events (99.6%), cross-validated
+against the exchange's independent Telegram announcement channel (20-event
+random subsample; median absolute disagreement: 2 minutes). The
 announcement falls on the listing day itself for 62.8% of events and within
 one day for 78.0%. The two undated events (NBT, MULTI, both delisted) appear
 to be quiet pair additions with no public announcement at all.
@@ -531,13 +502,11 @@ control 2026-08-24), Bybit cohort
 
 **H4: the survivorship decomposition, done in dollars.** Excluding delisted
 tokens shifts the Binance median fwd_7 by +0.35 pp (bootstrap CI [−1.27,
-+2.15]; prediction ≥ +1 pp): the frozen prediction fails. The decomposition
-became informative once we refetched true day-0 USD turnover for all 470 events
-from the death-inclusive archive; the base-unit volume weights had been
-degenerate, with five mega-supply tokens holding 98% of total weight. With
++2.15]; prediction ≥ +1 pp): the frozen prediction fails. With true day-0 USD
+turnover weights for all 470 events,
 real dollar weights the week-one picture splits in two: token-counted median
 −11.45%, dollar-counted median **−28.72%** (month-block bootstrap 95% CI
-[−39.45, −19.79]; −35.46% BTC-adjusted, n = 460, CI [−49.32, −22.31];
+[−39.45, −19.79]; −35.46% BTC-adjusted, CI [−49.32, −22.31];
 Fig. 5), and the
 delisting-attributable wedge is just **+0.96 pp** (CI [−3.41, +3.24],
 statistically indistinguishable from zero). The dollar-weighted mean,
@@ -552,7 +521,7 @@ median week-one return runs −0.6%, −5.0%, −14.5%, −16.8%, **−23.5%** (
 month-block bootstrap 95% CIs [−7.2, +0.7], [−14.2, −1.9], [−20.5, −6.1],
 [−26.0, −13.0], [−33.2, −14.9]; gradient Q5−Q1 = −22.9 pp, CI [−32.6,
 −13.3])
-(BTC-adjusted: −4.6%, −9.8%, −15.7%, −19.5%, −29.1%). The
+(BTC-adjusted: −3.5%, −8.5%, −15.3%, −19.8%, −29.1%). The
 quietest quintile shows no fade at all. Turnover also correlates with day-0
 range (Spearman rank correlation +0.84) and pop (+0.79), keeps incremental
 predictive power in
@@ -585,20 +554,14 @@ windows in Ante and Meyer's own table [2] are negative (the sole exception,
 the day +3 return of +0.25%, is statistically insignificant), and on the panel used in
 this study (which keeps delisted tokens in the sample), the post-opening,
 buyer-accessible component of the effect inverts
-entirely. Event-study inference in
-this market additionally requires clustering-aware tests, because naive
-t-statistics on time-clustered, single-factor-abnormal returns overstate
-certainty.
+entirely.
 
 Traders get a different object out of these numbers: the expected loss varies
 monotonically with the trading volume on day 0 (Fig. 6), and surviving past
 the listing does not rescue it. The anomaly lives in the attention a listing
-draws, not in the act of listing itself; the same attention machinery is
-documented in the pump-and-dump literature on these venues [27]. Taking a
-direct short position in
-the fade is mostly uneconomical [23]: the binding constraint is not funding
-(Section III.E) but the lottery asymmetry, and most names lack a shortable
-instrument altogether.
+draws, not in the act of listing itself [27]. Shorting the fade is mostly
+uneconomical [23]: the binding constraint is access, not funding
+(Section III.E).
 
 The measurement lesson is the most general one. The equal-weight median
 answers the question "what happens to a typical token?", whilst the

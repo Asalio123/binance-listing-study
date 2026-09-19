@@ -6,7 +6,7 @@
 
 Month-block bootstrap, same cluster design as `post_window_inference.py`:
 the resampling unit is the calendar month of listing (67 clusters, panel
-n = 470; BTC-adjusted statistics n = 460). Months are drawn with
+n = 470; BTC-adjusted statistics also n = 470 after the 2026-09-19 refresh of the day-closes cache). Months are drawn with
 replacement, every event in a drawn month enters with the draw's
 multiplicity, and each statistic is recomputed inside the draw — including
 re-cutting the turnover-quintile partition on the resampled panel
@@ -25,7 +25,7 @@ correct ordering match the published headline numbers exactly
 | Statistic | Point | 95% CI low | 95% CI high |
 |---|---|---|---|
 | VW median fwd_7 (n=470) | −28.72% | −39.45 | −19.79 |
-| VW median BTC-adj madj_7 (n=460) | −35.46% | −49.32 | −22.31 |
+| VW median BTC-adj madj_7 (n=470) | −35.46% | −49.32 | −22.31 |
 | Delisting wedge (VW survivors − VW full) | +0.96 pp | −3.41 | +3.24 |
 | EW − VW gap (fwd_7) | +17.27 pp | +8.05 | +27.37 |
 | Turnover quintile Q1 median fwd_7 | −0.60% | −7.21 | +0.70 |
@@ -47,12 +47,6 @@ spans zero on both raw and BTC-adjusted panels, which is exactly the
 "no fade in the quietest quintile" claim and is stated as such. The
 delisting wedge (+0.96 pp) is not distinguishable from zero at 95%.
 
-## The n = 460 partition
+## The n = 460 partition (RESOLVED 2026-09-19)
 
-Ten events have no `madj_7`: AAPLB, AMZNB, PYPLB, BEB, DELLB, AMATB,
-SOXSB, GSB, SMHB, FLNCB (USDT) — all July-2026 tokenized-stock listings
-whose daily closes in the Binance public kline archive stop at
-2026-07-31 (three days post-listing, no August monthly file), so the
-day+7 close needed for the BTC adjustment does not exist. Their raw
-`fwd_7` comes from the enriched pipeline and is present, hence the
-470/460 split. Verified against `data/binance_day_closes/`.
+The original run had n = 460 for BTC-adjusted series: ten July-2026 tokenized-stock listings lacked a day+7 close in the day-closes cache. After the cache refresh (2026-08 files added by the M9 hygiene pass), madj is defined for all 470 events; the BTC-adjusted VW median is unchanged (−35.46%), the BTC-adjusted Q1 quintile moves −4.55 -> −3.45. The table above reports refreshed numbers.

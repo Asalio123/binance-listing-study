@@ -1,16 +1,34 @@
-# Release v1.0.0 — готовый текст для GitHub release (→ Zenodo DOI)
+# Release v1.1.0 — готовый текст для GitHub release (→ Zenodo DOI)
 
-Создать релиз: GitHub repo → Releases → Draft a new release → tag `v1.0.0` →
+Создать релиз: GitHub repo → Releases → Draft a new release → tag `v1.1.0` →
 вставить текст ниже → Publish. После линковки репо с Zenodo депозит создастся
 автоматически из `.zenodo.json`.
 
 ---
 
-First public release of the companion repository for the preprint
+Second public release of the companion repository for the preprint
 **"Post-Listing Underperformance in Cryptocurrency Markets: Evidence from Every
-Binance USDT Listing, 2021–2026"** (Said Bakhtiev, August 2026).
+Binance USDT Listing, 2021–2026"** (Said Bakhtiev, 2026).
 
-## What is here
+## What is new in v1.1.0 (wave 2)
+
+- `data/delisting_events.csv` — 98-event delisting study (73 true delistings,
+  25 migrations/swaps), with CMS and kline caches
+- `data/funding_sweep.csv` — full-panel perpetual funding sweep (470 names):
+  perp availability, spot→perp lag, week-1/month-1 funding sums
+- `data/short_pnl_check.csv` — frozen-definition net short-P&L check
+- `data/announcement_shock.csv` + `data/announce_shock_cache/` — minute-level
+  returns around announcement timestamps
+- `data/bootstrap_vw_ci.csv` — month-block bootstrap CIs for the dollar-weighted
+  headline statistics
+- `data/panel_exclusions.csv` — panel-hygiene exclusion list (misdated and
+  special-purpose pairs) used by the robustness appendix
+- Repo hygiene: all `src/*.py` use repo-local paths (fresh-clone runnable),
+  the VW-median print bug in `post_window_inference.py` is fixed and reproduces
+  the published −35.46%, `data/MANIFEST.md` documents every artifact, and
+  `./build_cjsj.sh` verifies the headline numbers from the CSVs offline.
+
+## Wave 1 (v1.0.0) contents
 
 **Data**
 - `data/listing_calendar_binance.csv` — point-in-time calendar of 3,682 archived
