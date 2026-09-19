@@ -88,9 +88,10 @@ md("## R4. Cost check: is a naive fade/buy strategy profitable after costs?\n")
 turn_cost = 16  # bps round trip taker на Binance VIP0 (0.08% сторона)
 med7 = abs(np.median(r7.values))
 md(f"- Median absolute move at +7d: {med7:.1f}% vs round-trip cost ≈ {turn_cost} bps.\n"
-   f"- The drift is an order of magnitude larger than retail costs: it is tradable in principle,\n"
-   f"  BUT the negative sign means LONGS lose; monetizing requires perps/shorts with funding drag,\n"
-   f"  which typically exceeds the drift for most names (funding 11%+ APR baseline).\n")
+   f"- The drift is nearly two orders of magnitude larger than retail costs. The negative sign means\n"
+   f"  LONGS lose; for shorts, the full funding sweep (funding_sweep.csv) shows funding rarely eats\n"
+   f"  the drift (median −0.36% per week vs −11.45% drift); the binding constraint is instrument\n"
+   f"  availability (perpetual exists from day 0 for 17.0% of the panel) and the upside tail.\n")
 
 OUT.write_text("\n".join(L))
 print("\n".join(L))

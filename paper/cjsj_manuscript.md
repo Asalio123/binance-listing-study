@@ -18,7 +18,9 @@ abstract: |
   touching any Bybit data, are tested on 415 surviving Bybit listings: the fade
   replicates (−10.34%, BH p = 8×10⁻¹⁴), first-week extremes predict
   continuation (r = +0.37), and the volatility-predicts-fade gradient fails,
-  flipping sign. An exploratory death-inclusive check on 566 Coinbase listings
+  flipping sign, and the survivorship decomposition attributes under one
+  percentage point of the dollar gap to delisting. An exploratory
+  death-inclusive check on 566 Coinbase listings
   reproduces the fade almost exactly, and announcement timestamps reconstructed
   from the exchange's own publication API (99.6% coverage) locate the premium
   before the announcement, in other venues' markets.
@@ -34,8 +36,8 @@ keywords:
 # I. Introduction
 
 Every few days, an exchange lists a new token. Volume floods in; the chart
-goes vertical. Buying that moment is crypto's most persistent folk trade, and
-the emerging literature appears to support it:
+goes vertical. Buying that moment is one of crypto's most persistent folk
+trades, and the emerging literature appears to support it:
 cross-listings of crypto tokens on major exchanges are followed by large
 positive abnormal returns, several times larger than comparable stock-market
 effects [1], [2].
@@ -52,7 +54,7 @@ So we rebuilt the measurement. **Every**
 Binance spot USDT listing from January 2021 through July 2026 went into the
 calendar: 470 events, taken from the exchange's raw public archive. Tokens
 delisted years ago sit in it exactly like tokens listed last month. On this
-panel the typical token loses 11.45% in its first week. The typical dollar
+panel the typical token loses 11.45% in its first week. The median dollar
 loses about 28%. And nothing about the loss requires the token to die
 afterwards.
 
@@ -113,7 +115,8 @@ archives and released openly with a 28-feature event dataset.
 
 **Evidence.** Taking the day-0 close as the reference point, the median
 forward return is negative at every horizon from +1 to +30 trading days, with
-nonparametric significance between 10⁻¹³ and 10⁻¹⁹, unchanged under tail
+nonparametric p-values at or below 7.9×10⁻¹³ on every horizon, unchanged under
+tail
 trimming, winsorization, subsample exclusion or month-block clustered
 inference.
 
@@ -177,8 +180,12 @@ CARs. (ii) The Wilcoxon signed-rank test, robust to the heavy right tail.
 (iii) A month-block bootstrap (listing months resampled with replacement,
 5,000 draws, percentile intervals), because listing events cluster in time.
 (iv) Benjamini-Hochberg correction (q = 0.05) across the confirmatory
-hypothesis family {H1, H2, H3}. The Bybit holdout design is documented with
-its results in Section III.H. Large-language-model tools assisted code
+hypothesis family {H1, H2, H3}. Layers (i) and (ii) assume independent events
+and are reported for comparability with the prior literature; the bootstrap
+layer (iii) is the valid one under clustering, and every headline statistic
+carries its interval. The Bybit holdout design is documented with
+its results in Section III.H. Large-language-model tools (Claude-family
+coding and editing agents; GPT-family text checks) assisted code
 development and manuscript editing under the author's direction (full
 disclosure in the Acknowledgements).
 
@@ -268,8 +275,8 @@ first hour), and the first hour carries a median 38.2% of the day's dollar
 volume. Even the opening print is already past the peak: the median first
 minute closes +38.1% above the open. What marks the frenzy is intensity, not
 buyer imbalance: a median 3,858 trades per minute in the first five minutes
-(median of per-event ratios; the ratio of medians is 13.7×),
-and the quartile with the busiest first hour
+against 281 over the rest of the day (13.7× as a ratio of medians, 15.9× as
+the median per-event ratio), and the quartile with the busiest first hour
 fades −21.9% within a week against −0.7% for the quietest (Spearman
 ρ = −0.28, p = 3.8×10⁻¹⁰). The frenzy is concentrated at the open; the
 listing-day close, where
@@ -308,9 +315,9 @@ verdict on it.
 Within our archive-based panel, dropping delisted tokens moves the +7d median
 by only +0.35 pp; the archive keeps the dead paths, so little hides there. The
 warning is for samples assembled from live-universe endpoints, where every
-token that died before sampling disappears entirely: with 70% of week-one
-outcomes negative, Ammann et al. [20] put the inflation for equal-weight
-crypto portfolios at up to 62 pp per year. They report the opposite weighting
+token that died before sampling disappears entirely. Ammann et al. [20] put the inflation for equal-weight
+crypto portfolios at up to 62 pp per year, a buy-and-hold horizon our event
+windows do not share. They report the opposite weighting
 asymmetry, with value-weighted portfolios inflated by only 0.93 pp per year;
 the two facts reconcile, since their weights are market capitalizations in a
 buy-and-hold portfolio compounded over years, where dead coins carry
@@ -324,10 +331,11 @@ equal-weight week-one median shifts by at most ±1.5 pp and never flips sign,
 the dollar-weighted median shifts by at most +1.9 pp (May 2025), and the
 share of events that had vanished from view peaks at 23% of the panel. Even
 at its worst point the live-API panel would have shown a dollar-weighted
-week-one median of −28.7% against the true −30.6%, leaving the fade
-conclusion intact. Section III.H pushes further: even
-in a panel that remembers the dead, survivorship reshapes results once the
-dollars are counted.
+week-one median of −28.7% against the true −30.6% computed over the events
+listed by that date, leaving the fade
+conclusion intact. Section III.H pushes further: even in a panel that remembers the dead, the
+dollar-counted picture splits away from the token-counted one, a weighting
+effect rather than a survivorship effect.
 
 The death events themselves close the loop. For the 73 true delistings with a
 located announcement (98 of 99 delisted panel members are dated; migrations
@@ -336,7 +344,7 @@ positive), the price halves again from announcement to the last trade
 (−51.5%), and buying the listing and holding to the grave loses −98.3% at the
 median (1% positive). Migration and rebrand notices, the same genre without
 death, gain +7.9% on their day (76% positive): the reaction is specific to
-dying, not to the headline. There is no pump before the dump.
+dying, not to the headline. No run-up precedes the delisting announcement.
 
 ## D. Application: what survives validation
 
@@ -359,20 +367,20 @@ week-one median −14.32%, month-one −30.99%, all Wilcoxon p ≤ 2.5×10⁻¹�
 the dollar-weighted week-one median is unchanged (−28.89% vs −28.72%), so the
 headline numbers are conservative. Relative to round-trip
 retail spot costs of ~16 bps, the
-median absolute move is an order of magnitude larger. Monetizing the negative
+median absolute move is nearly two orders of magnitude larger. Monetizing the negative
 sign is harder than the drift suggests. A full sweep of perpetual-funding
 histories (327 of the 470 names have a contract) shows week-one funding
 rarely eating the drift: the median weekly funding sum is −0.36% against the
 −11.45% median drift, and only 17.7% of day-0-shortable names lose more than
 half the drift to funding (the sign of funding flips by era: shorts were
-paid in 2021 and 2023–24, and pay in 2022 and from 2025). The binding
-constraints are access and the upside tail: a
-day-0 short is possible for only 17.0% of the panel (44.7% within week one; a
-third of contracts list more than 30 days after spot), and on the twelve
-most-traded listings with a perpetual contract available from day 0 the
-median week-one short earns +25.6% while the mean earns +16.0%, the gap
-driven by two names whose post-listing rallies erased the drift (per-name PnL
-net of funding and costs: `data/short_pnl_check.csv`). Funding itself carries
+paid in 2021 and 2023–24, and pay in 2022 and from 2025). Where a perpetual existed from day 0, the short did pay: on the twelve
+most-traded such listings the median week-one short earns +25.6% and the mean
++16.0%, with two post-listing rallies accounting for the gap (per-name PnL
+net of funding and costs: `data/short_pnl_check.csv`). But that is a selected
+17.0% of the panel (44.7% within week one; a third of contracts list more
+than 30 days after spot), and the selection is not random: venues list
+perpetuals first on the hottest names, which Section III.H shows fade
+hardest. Funding itself carries
 the hype signature: names where shorts pay
 fade deepest (Spearman ρ = +0.16 between week-one funding and the week-one
 return, p = 0.016, n = 221). The frame is perpetuals-only; spot borrow
@@ -492,7 +500,8 @@ p = 0.0024).
 
 **Table IV.** The confirmatory family (written 2026-08-23, frozen in version
 control 2026-08-24), Bybit cohort
-(n = 415): raw and Benjamini-Hochberg-adjusted p-values.
+(n = 415): raw and Benjamini-Hochberg-adjusted p-values; H1 and H2 are
+two-sided, H3 one-sided per the frozen specification.
 
 | Hypothesis | Test | Raw p | BH-adjusted p | Direction as predicted | Verdict |
 |---|---|---|---|---|---|
@@ -502,9 +511,10 @@ control 2026-08-24), Bybit cohort
 
 **H4: the survivorship decomposition, done in dollars.** Excluding delisted
 tokens shifts the Binance median fwd_7 by +0.35 pp (bootstrap CI [−1.27,
-+2.15]; prediction ≥ +1 pp): the frozen prediction fails. With true day-0 USD
-turnover weights for all 470 events,
-real dollar weights the week-one picture splits in two: token-counted median
++2.15]; the frozen prediction was a shift of ≥ +1 pp, which this rules out).
+With true day-0 USD
+turnover weights for all 470 events, the week-one picture splits in two:
+token-counted median
 −11.45%, dollar-counted median **−28.72%** (month-block bootstrap 95% CI
 [−39.45, −19.79]; −35.46% BTC-adjusted, CI [−49.32, −22.31];
 Fig. 5), and the
@@ -520,8 +530,8 @@ The gap has anatomy. Split the panel into day-0 turnover quintiles and the
 median week-one return runs −0.6%, −5.0%, −14.5%, −16.8%, **−23.5%** (Fig. 6;
 month-block bootstrap 95% CIs [−7.2, +0.7], [−14.2, −1.9], [−20.5, −6.1],
 [−26.0, −13.0], [−33.2, −14.9]; gradient Q5−Q1 = −22.9 pp, CI [−32.6,
-−13.3])
-(BTC-adjusted: −3.5%, −8.5%, −15.3%, −19.8%, −29.1%). The
+−13.3];
+BTC-adjusted: −3.5%, −8.5%, −15.3%, −19.8%, −29.1%). The
 quietest quintile shows no fade at all. Turnover also correlates with day-0
 range (Spearman rank correlation +0.84) and pop (+0.79), keeps incremental
 predictive power in
@@ -576,7 +586,7 @@ specialist literature, i.e. as a falsification pass. The canonical listing-day
 statistics are *real*; we verify the +6.51% of Ante and Meyer [2] and the
 +22–33% means of Li et al. [15] exactly as published. The trading
 interpretation built on them
-is not: medians run at half the means, and the fade
+is not: medians run at half the means, as Li et al. [15] note, and the fade
 concentrates where turnover peaked. The full matrix, claim by claim with
 verbatim quotes and replication verdicts, lives in the companion repository
 (`FALSIFICATION.md`).
@@ -617,9 +627,9 @@ check on Coinbase (566 listings) reproduces the fade almost exactly. The
 volatility-fade gradient fails
 to confirm: the estimate is fragile in both venues' data. Survivorship bias
 operates through a "gateway" mechanism: it determines from the
-outset which tokens will be included in the sample at all, a greater impact
-than it has on the weekly median of
-the tokens already measured. Finally, the practical
+outset which tokens will be included in the sample at all; its larger effect
+is on which tokens enter the sample, not on the weekly median of those
+already in it. Finally, the practical
 conclusion fits in one line: by the time a listing becomes tradeable, the
 trade everyone knows about has already happened.
 
