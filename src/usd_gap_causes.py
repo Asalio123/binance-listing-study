@@ -1,9 +1,13 @@
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 from scipy import stats
 
-df = pd.read_csv('[home]/binance-listing-study/data/listing_events_enriched.csv')
-to = pd.read_csv('[home]/binance-listing-study/data/day0_turnover.csv')
+ROOT = Path(__file__).resolve().parent.parent
+
+df = pd.read_csv(ROOT / 'data' / 'listing_events_enriched.csv')
+to = pd.read_csv(ROOT / 'data' / 'day0_turnover.csv')
 d = df.merge(to, on='symbol', how='inner').dropna(subset=['fwd_7', 'usd_turnover', 'pop_day0', 'range_day0']).copy()
 d['log_to'] = np.log(d['usd_turnover'].clip(lower=1))
 d['lm'] = pd.to_datetime(d.first_month + '-01')

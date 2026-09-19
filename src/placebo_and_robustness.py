@@ -9,8 +9,9 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-DF = Path.home() / "binance-listing-study" / "data" / "listing_events_enriched.csv"
-OUT = Path.home() / "binance-listing-study" / "paper" / "robustness_tables.md"
+ROOT = Path(__file__).resolve().parent.parent
+DF = ROOT / "data" / "listing_events_enriched.csv"
+OUT = ROOT / "paper" / "robustness_tables.md"
 rng = np.random.default_rng(7)
 
 df = pd.read_csv(DF)

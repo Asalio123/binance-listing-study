@@ -7,8 +7,9 @@ from pathlib import Path
 
 import pandas as pd
 
-OUT = Path.home() / "binance-listing-study" / "data" / "binance_announcements.csv"
-RAW = Path.home() / "binance-listing-study" / "data" / "wayback_cdx_raw.txt"
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / "data" / "binance_announcements.csv"
+RAW = ROOT / "data" / "wayback_cdx_raw.txt"
 BASEURL = ("http://web.archive.org/cdx/search/cdx?url=binance.com/en/support/announcement/*"
            "&fl=original,timestamp&collapse=urlkey&filter=statuscode:200"
            "&filter=original:.*will-list.*&from={y1}&to={y2}")

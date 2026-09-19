@@ -16,7 +16,7 @@ import pandas as pd
 from botocore import UNSIGNED
 from botocore.config import Config
 
-ROOT = Path.home() / "binance-listing-study"
+ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "day0_turnover.csv"
 S3 = boto3.client("s3", region_name="ap-northeast-1", config=Config(signature_version=UNSIGNED))
 

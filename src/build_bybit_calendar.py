@@ -11,7 +11,8 @@ from pathlib import Path
 
 import pandas as pd
 
-OUT = Path.home() / "binance-listing-study" / "data" / "listing_calendar_bybit.csv"
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / "data" / "listing_calendar_bybit.csv"
 BASE = "https://public.bybit.com/spot/"
 MON = re.compile(r"-(\d{4}-\d{2})\.csv\.gz$")
 

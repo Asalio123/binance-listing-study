@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 
-ROOT = Path.home() / "binance-listing-study"
+ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "cc_dates.csv"
 RAWL = ROOT / "data" / "cc_raw.jsonl"
 STATE = ROOT / "data" / "cc_state.json"

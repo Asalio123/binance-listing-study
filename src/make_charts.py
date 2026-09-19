@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-REPO = Path.home() / "binance-listing-study"
+REPO = Path(__file__).resolve().parent.parent
 DATA = REPO / "data"
 CHARTS = REPO / "charts"
 CHARTS.mkdir(exist_ok=True)

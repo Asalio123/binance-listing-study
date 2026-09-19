@@ -1,0 +1,121 @@
+symbol,reason,detail
+ADXUSDT,misdated,earlier ADX-pair(s) from 2017-11 via fiat/stable (47 mo before panel date 2021-10)
+AERGOUSDT,misdated,earlier AERGO-pair(s) from 2020-10 via fiat/stable (31 mo before panel date 2023-05)
+AGIXUSDT,misdated,earlier AGIX-pair(s) from 2021-06 via fiat/stable (20 mo before panel date 2023-02)
+AMBUSDT,misdated,earlier AMB-pair(s) from 2017-11 via fiat/stable (64 mo before panel date 2023-03)
+ARKUSDT,misdated,earlier ARK-pair(s) from 2017-11 via fiat/stable (70 mo before panel date 2023-09)
+ASTUSDT,misdated,earlier AST-pair(s) from 2017-10 via BTC/ETH/BNB (67 mo before panel date 2023-05)
+AUCTIONUSDT,misdated,earlier AUCTION-pair(s) from 2021-02 via fiat/stable (8 mo before panel date 2021-10)
+BAKEUSDT,misdated,earlier BAKE-pair(s) from 2020-09 via fiat/stable (7 mo before panel date 2021-04)
+BETHUSDT,misdated,earlier BETH-pair(s) from 2021-01 via fiat/stable (26 mo before panel date 2023-03)
+BIFIUSDT,misdated,earlier BIFI-pair(s) from 2021-03 via fiat/stable (13 mo before panel date 2022-04)
+BTGUSDT,misdated,earlier BTG-pair(s) from 2017-10 via BTC/ETH/BNB (42 mo before panel date 2021-04)
+BURGERUSDT,misdated,earlier BURGER-pair(s) from 2020-09 via BTC/ETH/BNB (7 mo before panel date 2021-04)
+CAKEUSDT,misdated,earlier CAKE-pair(s) from 2020-09 via fiat/stable (5 mo before panel date 2021-02)
+CREAMUSDT,misdated,earlier CREAM-pair(s) from 2020-09 via fiat/stable (36 mo before panel date 2023-09)
+CVPUSDT,misdated,earlier CVP-pair(s) from 2020-11 via fiat/stable (11 mo before panel date 2021-10)
+DEXEUSDT,misdated,earlier DEXE-pair(s) from 2021-01 via fiat/stable (6 mo before panel date 2021-07)
+DFUSDT,misdated,earlier DF-pair(s) from 2020-12 via fiat/stable (9 mo before panel date 2021-09)
+ELFUSDT,misdated,earlier ELF-pair(s) from 2017-12 via BTC/ETH/BNB (45 mo before panel date 2021-09)
+FORUSDT,misdated,earlier FOR-pair(s) from 2020-11 via fiat/stable (9 mo before panel date 2021-08)
+FRONTUSDT,misdated,earlier FRONT-pair(s) from 2020-11 via fiat/stable (11 mo before panel date 2021-10)
+FXSUSDT,misdated,earlier FXS-pair(s) from 2021-02 via fiat/stable (10 mo before panel date 2021-12)
+GASUSDT,misdated,earlier GAS-pair(s) from 2017-08 via fiat/stable (67 mo before panel date 2023-03)
+GFTUSDT,misdated,earlier GFT-pair(s) from 2023-02 via fiat/stable (7 mo before panel date 2023-09)
+GHSTUSDT,misdated,earlier GHST-pair(s) from 2020-12 via fiat/stable (8 mo before panel date 2021-08)
+GLMUSDT,misdated,earlier GLM-pair(s) from 2020-12 via fiat/stable (27 mo before panel date 2023-03)
+IDEXUSDT,misdated,earlier IDEX-pair(s) from 2020-08 via fiat/stable (13 mo before panel date 2021-09)
+IQUSDT,misdated,earlier IQ-pair(s) from 2020-06 via fiat/stable (39 mo before panel date 2023-09)
+KP3RUSDT,misdated,earlier KP3R-pair(s) from 2020-11 via fiat/stable (12 mo before panel date 2021-11)
+LOOMUSDT,misdated,earlier LOOM-pair(s) from 2018-05 via fiat/stable (58 mo before panel date 2023-03)
+LUNCUSDT,misdated,earlier LUNC-pair(s) from 2022-05 via fiat/stable (4 mo before panel date 2022-09)
+NEBLUSDT,misdated,earlier NEBL-pair(s) from 2017-12 via fiat/stable (58 mo before panel date 2022-10)
+OAXUSDT,misdated,earlier OAX-pair(s) from 2017-08 via BTC/ETH/BNB (67 mo before panel date 2023-03)
+PHAUSDT,misdated,earlier PHA-pair(s) from 2021-02 via fiat/stable (4 mo before panel date 2021-06)
+PHBUSDT,misdated,earlier PHB-pair(s) from 2019-05 via fiat/stable (42 mo before panel date 2022-11)
+PIVXUSDT,misdated,earlier PIVX-pair(s) from 2018-01 via BTC/ETH/BNB (70 mo before panel date 2023-11)
+POLYUSDT,misdated,earlier POLY-pair(s) from 2018-07 via BTC/ETH/BNB (38 mo before panel date 2021-09)
+POWRUSDT,misdated,earlier POWR-pair(s) from 2017-11 via BTC/ETH/BNB (48 mo before panel date 2021-11)
+PROMUSDT,misdated,earlier PROM-pair(s) from 2020-11 via fiat/stable (28 mo before panel date 2023-03)
+PROSUSDT,misdated,earlier PROS-pair(s) from 2021-02 via fiat/stable (23 mo before panel date 2023-01)
+QKCUSDT,misdated,earlier QKC-pair(s) from 2018-06 via fiat/stable (57 mo before panel date 2023-03)
+QUICKUSDT,misdated,earlier QUICK-pair(s) from 2021-07 via fiat/stable (1 mo before panel date 2021-08)
+REQUSDT,misdated,earlier REQ-pair(s) from 2017-10 via BTC/ETH/BNB (46 mo before panel date 2021-08)
+SCRTUSDT,misdated,earlier SCRT-pair(s) from 2020-09 via fiat/stable (16 mo before panel date 2022-01)
+SKYUSDT,misdated,earlier SKY-pair(s) from 2018-05 via BTC/ETH/BNB (88 mo before panel date 2025-09)
+SLPUSDT,misdated,earlier SLP-pair(s) from 2020-11 via BTC/ETH/BNB (5 mo before panel date 2021-04)
+SNTUSDT,misdated,earlier SNT-pair(s) from 2017-07 via fiat/stable (70 mo before panel date 2023-05)
+SSVUSDT,misdated,earlier SSV-pair(s) from 2021-10 via fiat/stable (16 mo before panel date 2023-02)
+STEEMUSDT,misdated,earlier STEEM-pair(s) from 2018-02 via BTC/ETH/BNB (50 mo before panel date 2022-04)
+SYSUSDT,misdated,earlier SYS-pair(s) from 2018-03 via fiat/stable (42 mo before panel date 2021-09)
+TVKUSDT,misdated,earlier TVK-pair(s) from 2021-02 via fiat/stable (6 mo before panel date 2021-08)
+UFTUSDT,misdated,earlier UFT-pair(s) from 2021-02 via fiat/stable (25 mo before panel date 2023-03)
+USTCUSDT,misdated,earlier USTC-pair(s) from 2022-05 via fiat/stable (10 mo before panel date 2023-03)
+VGXUSDT,misdated,earlier VGX-pair(s) from 2021-08 via BTC/ETH/BNB (3 mo before panel date 2021-11)
+VIBUSDT,misdated,earlier VIB-pair(s) from 2017-10 via fiat/stable (64 mo before panel date 2023-02)
+VIDTUSDT,misdated,earlier VIDT-pair(s) from 2020-10 via fiat/stable (11 mo before panel date 2021-09)
+WBETHUSDT,misdated,earlier WBETH-pair(s) from 2023-05 via BTC/ETH/BNB (2 mo before panel date 2023-07)
+WBTCUSDT,misdated,earlier WBTC-pair(s) from 2020-08 via fiat/stable (32 mo before panel date 2023-04)
+XECUSDT,misdated,earlier XEC-pair(s) from 2021-08 via fiat/stable (1 mo before panel date 2021-09)
+XVGUSDT,misdated,earlier XVG-pair(s) from 2017-10 via fiat/stable (44 mo before panel date 2021-06)
+BFUSDUSDT,stable,"stablecoin-quoted pair (BFUSD/USDT), first listed 2025-08"
+FDUSDUSDT,stable,"stablecoin-quoted pair (FDUSD/USDT), first listed 2023-07"
+USD1USDT,stable,"stablecoin-quoted pair (USD1/USDT), first listed 2025-05"
+USDPUSDT,stable,"stablecoin-quoted pair (USDP/USDT), first listed 2021-09"
+XUSDUSDT,stable,"stablecoin-quoted pair (XUSD/USDT), first listed 2025-03"
+AAOIBUSDT,xstock,"tokenized stock (AAOI), first listed 2026-07"
+AAPLBUSDT,xstock,"tokenized stock (AAPL), first listed 2026-07"
+AMATBUSDT,xstock,"tokenized stock (AMAT), first listed 2026-07"
+AMDBUSDT,xstock,"tokenized stock (AMD), first listed 2026-06"
+AMZNBUSDT,xstock,"tokenized stock (AMZN), first listed 2026-07"
+ARMBUSDT,xstock,"tokenized stock (ARM), first listed 2026-07"
+AVGOBUSDT,xstock,"tokenized stock (AVGO), first listed 2026-07"
+AXTIBUSDT,xstock,"tokenized stock (AXTI), first listed 2026-07"
+BABABUSDT,xstock,"tokenized stock (BABA), first listed 2026-07"
+BEBUSDT,xstock,"tokenized stock (BE), first listed 2026-07"
+CBRSBUSDT,xstock,"tokenized stock (CBRS), first listed 2026-07"
+COINBUSDT,xstock,"tokenized stock (COIN), first listed 2026-07"
+CRCLBUSDT,xstock,"tokenized stock (CRCL), first listed 2026-06"
+CRWVBUSDT,xstock,"tokenized stock (CRWV), first listed 2026-07"
+DELLBUSDT,xstock,"tokenized stock (DELL), first listed 2026-07"
+DRAMBUSDT,xstock,"tokenized stock (DRAM), first listed 2026-07"
+EWYBUSDT,xstock,"tokenized stock (EWY), first listed 2026-06"
+FLNCBUSDT,xstock,"tokenized stock (FLNC), first listed 2026-07"
+GLWBUSDT,xstock,"tokenized stock (GLW), first listed 2026-07"
+GOOGLBUSDT,xstock,"tokenized stock (GOOGL), first listed 2026-07"
+GSBUSDT,xstock,"tokenized stock (GS), first listed 2026-07"
+HOODBUSDT,xstock,"tokenized stock (HOOD), first listed 2026-07"
+IBMBUSDT,xstock,"tokenized stock (IBM), first listed 2026-07"
+INTCBUSDT,xstock,"tokenized stock (INTC), first listed 2026-06"
+INTWBUSDT,xstock,"tokenized stock (INTW), first listed 2026-07"
+KORUBUSDT,xstock,"tokenized stock (KORU), first listed 2026-07"
+LITEBUSDT,xstock,"tokenized stock (LITE), first listed 2026-06"
+METABUSDT,xstock,"tokenized stock (META), first listed 2026-06"
+MRVLBUSDT,xstock,"tokenized stock (MRVL), first listed 2026-07"
+MSFTBUSDT,xstock,"tokenized stock (MSFT), first listed 2026-06"
+MSTRBUSDT,xstock,"tokenized stock (MSTR), first listed 2026-06"
+MUBUSDT,xstock,"tokenized stock (MU), first listed 2026-06"
+MUUBUSDT,xstock,"tokenized stock (MUU), first listed 2026-07"
+MVLLBUSDT,xstock,"tokenized stock (MVLL), first listed 2026-07"
+NBISBUSDT,xstock,"tokenized stock (NBIS), first listed 2026-07"
+NOKBUSDT,xstock,"tokenized stock (NOK), first listed 2026-07"
+NVDABUSDT,xstock,"tokenized stock (NVDA), first listed 2026-06"
+ORCLBUSDT,xstock,"tokenized stock (ORCL), first listed 2026-07"
+PLTRBUSDT,xstock,"tokenized stock (PLTR), first listed 2026-06"
+PYPLBUSDT,xstock,"tokenized stock (PYPL), first listed 2026-07"
+QCOMBUSDT,xstock,"tokenized stock (QCOM), first listed 2026-07"
+QNTBUSDT,xstock,"tokenized stock (QNT), first listed 2026-07"
+QQQBUSDT,xstock,"tokenized stock (QQQ), first listed 2026-06"
+RKLBBUSDT,xstock,"tokenized stock (RKLB), first listed 2026-07"
+SKHYBUSDT,xstock,"tokenized stock (SKHY), first listed 2026-07"
+SMHBUSDT,xstock,"tokenized stock (SMH), first listed 2026-07"
+SNDKBUSDT,xstock,"tokenized stock (SNDK), first listed 2026-06"
+SNXXBUSDT,xstock,"tokenized stock (SNXX), first listed 2026-07"
+SOXLBUSDT,xstock,"tokenized stock (SOXL), first listed 2026-07"
+SOXSBUSDT,xstock,"tokenized stock (SOXS), first listed 2026-07"
+SPCXBUSDT,xstock,"tokenized stock (SPCX), first listed 2026-06"
+SPYBUSDT,xstock,"tokenized stock (SPY), first listed 2026-07"
+TQQQBUSDT,xstock,"tokenized stock (TQQQ), first listed 2026-07"
+TSLABUSDT,xstock,"tokenized stock (TSLA), first listed 2026-06"
+TSMBUSDT,xstock,"tokenized stock (TSM), first listed 2026-07"
+WDCBUSDT,xstock,"tokenized stock (WDC), first listed 2026-07"

@@ -19,7 +19,7 @@ from pathlib import Path
 
 import pandas as pd
 
-ROOT = Path.home() / "binance-listing-study"
+ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / "data" / "cms_details_cache"
 TG = ROOT / "data" / "tg_announcements_scrape.json"
 PANEL = ROOT / "data" / "listing_events_enriched.csv"

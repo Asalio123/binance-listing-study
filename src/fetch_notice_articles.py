@@ -8,7 +8,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-ROOT = Path.home() / "binance-listing-study"
+ROOT = Path(__file__).resolve().parent.parent
 TG = ROOT / "data" / "tg_announcements_scrape.json"
 CACHE = ROOT / "data" / "cms_details_cache"
 URL = ("https://www.binance.com/bapi/composite/v1/public/cms/"

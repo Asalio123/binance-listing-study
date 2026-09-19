@@ -312,7 +312,7 @@ coefficient falls to −3.23 pp (t = −1.67). The range story is directional an
 economically large, but not specification-proof; the confirmatory holdout
 returns a verdict on it.
 
-## C. Survivorship: small in medians, huge in principle
+## C. Survivorship: bounded here, large elsewhere
 
 Within our archive-based panel, dropping delisted tokens moves the +7d median
 by only +0.35 pp; the archive keeps the dead paths, so little hides there. The
@@ -320,11 +320,15 @@ warning is for samples assembled from live-universe endpoints, where every
 token that died before sampling disappears entirely: with 70% of week-one
 outcomes negative, Ammann et al. [20] put the inflation for equal-weight
 crypto portfolios at up to 62 pp per year. A monthly simulation of that
-sampling rule on our own panel quantifies the warning: rebuilt as a live-API
-user would have seen it on each past date, the equal-weight week-one median
-shifts by at most ±2.5 pp and never flips sign, but the dollar-weighted
-median shifts by up to +11.6 pp (November 2024), when more than half of all
-events had vanished from view. Section III.H pushes further: even
+sampling rule on our own panel quantifies the warning, with deaths taken
+point-in-time from each pair's last trading month in the exchange calendar:
+rebuilt as a live-API user would have seen it on each past date, the
+equal-weight week-one median shifts by at most ±1.5 pp and never flips sign,
+the dollar-weighted median shifts by at most +1.9 pp (May 2025), and the
+share of events that had vanished from view peaks at 23% of the panel. Even
+at its worst point the live-API panel would have shown a dollar-weighted
+week-one median of −28.7% against the true −30.6%, leaving the fade
+conclusion intact. Section III.H pushes further: even
 in a panel that remembers the dead, survivorship reshapes results once the
 dollars are counted.
 
@@ -370,8 +374,11 @@ paid in 2021 and 2023–24, and pay in 2022 and from 2025). The binding
 constraints are access and the upside tail: a
 day-0 short is possible for only 17.0% of the panel (44.7% within week one; a
 third of contracts list more than 30 days after spot), and on the twelve
-most-traded listings the median week-one short earns +12% while the mean
-loses −21%. Funding itself carries the hype signature: names where shorts pay
+most-traded listings with a perpetual contract available from day 0 the
+median week-one short earns +25.6% while the mean earns +16.0%, the gap
+driven by two names whose post-listing rallies erased the drift (per-name PnL
+net of funding and costs: `data/short_pnl_check.csv`). Funding itself carries
+the hype signature: names where shorts pay
 fade deepest (Spearman ρ = +0.16 between week-one funding and the week-one
 return, p = 0.016, n = 221). The frame is perpetuals-only; spot borrow
 availability is worse, so the access numbers are upper bounds.
@@ -594,9 +601,9 @@ flip across venues (H2) is documented, not explained. (4) No historical
 order-book depth exists publicly; liquidity enters only through volume
 proxies. (5) Backtest costs (8 bps round-trip, against the ~16 bps retail
 spot benchmark of Section III.E) likely understate slippage in
-stress regimes. (6) The `last_date` field truncates at 1,000 days for 52
-panel members; death dates in the delisting study come from the calendar's
-last month instead.
+stress regimes. (6) The `last_date` field hits the 1,000-day REST cap for
+175 of 470 rows; all death information in the paper comes from the listing
+calendar instead.
 
 Three extensions follow directly. Live tracking of the momentum stack of
 Section III.D continues, replacing the in-sample upper bounds. The

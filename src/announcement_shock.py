@@ -29,7 +29,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-ROOT = Path.home() / "binance-listing-study"
+ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 CACHE = DATA / "announce_shock_cache"
 CACHE.mkdir(exist_ok=True)

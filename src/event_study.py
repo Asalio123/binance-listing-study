@@ -21,8 +21,8 @@ import pandas as pd
 from botocore import UNSIGNED
 from botocore.config import Config
 
-DATA = Path.home() / "[private-repo]" / "data"
-CAL = DATA / "listing_events.csv"
+DATA = Path(__file__).resolve().parent.parent / "data"
+CAL = DATA / "listing_calendar_binance.csv"
 OUT = DATA / "listing_event_returns.csv"
 
 S3 = boto3.client("s3", region_name="ap-northeast-1", config=Config(signature_version=UNSIGNED))

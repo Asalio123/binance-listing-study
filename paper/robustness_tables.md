@@ -40,5 +40,17 @@ non-event null would sharpen rejection further.
 
 - Median absolute move at +7d: 11.5% vs round-trip cost ≈ 16 bps.
 - The drift is an order of magnitude larger than retail costs: it is tradable in principle,
-  BUT the negative sign means LONGS lose; monetizing requires perps/shorts with funding drag,
-  which typically exceeds the drift for most names (funding 11%+ APR baseline).
+  BUT the negative sign means LONGS lose; monetizing requires shorting perps. Full-panel
+  funding sweep (`data/funding_sweep.csv`, all 470 names; script `src/funding_sweep.py`):
+  - A perp exists for 327/470 names (69.6%), but it is shortable from day 0
+    (perp inception ≤ spot day 0) for only **80/470 = 17.0%** of the panel, and within
+    week 1 for 210/470 = 44.7%. Availability, not funding, is the binding constraint.
+  - Across the 209 names with week-1 funding history, the median week-1 funding sum for
+    a short is **−0.36%** vs the −11.45% median drift — about 3% of the drift. A sustained
+    break-even rate (< −0.5%/8h for the whole week) occurs in 1 of 209 names.
+  - The tail is real: 17.7% of day-0 shorts (14/79 with week-1 history) lose more than
+    half the drift to funding; the worst week-1 sum is −28.97% (NEWTUSDT).
+  - Regime break: in 2021–2024 week-1 funding was roughly zero-to-positive for shorts
+    (cohort medians +0.21/+0.22/+0.16%, except 2022 at −0.67%); since 2025 shorts pay
+    (median −1.13% in 2025, −1.89% in 2026) — still ~10–17% of the drift, but no
+    longer ~zero.

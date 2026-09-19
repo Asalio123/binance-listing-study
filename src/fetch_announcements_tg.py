@@ -12,7 +12,7 @@ import time
 import urllib.request
 from pathlib import Path
 
-ROOT = Path.home() / "binance-listing-study"
+ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "tg_announcements_scrape.json"
 URL = "https://t.me/s/binance_announcements"
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "

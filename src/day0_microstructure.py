@@ -26,7 +26,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-ROOT = Path.home() / "binance-listing-study"
+ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / "data" / "intraday_day0_cache"
 OUT = ROOT / "data" / "day0_microstructure.csv"
 COLS = ["open_time", "open", "high", "low", "close", "volume", "close_time",

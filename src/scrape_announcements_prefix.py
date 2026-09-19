@@ -8,7 +8,8 @@ from pathlib import Path
 
 import pandas as pd
 
-D = Path.home() / "binance-listing-study" / "data"
+ROOT = Path(__file__).resolve().parent.parent
+D = ROOT / "data"
 CAL = D / "listing_events_enriched.csv"
 OUT = D / "binance_announcements.csv"
 HEX = re.compile(r"[0-9a-f]{32}")

@@ -9,7 +9,8 @@ import pandas as pd
 import numpy as np
 from scipy import stats
 
-D = Path.home() / "binance-listing-study" / "data"
+ROOT = Path(__file__).resolve().parent.parent
+D = ROOT / "data"
 L = []
 
 
@@ -63,5 +64,5 @@ corr = m7.max_daily_7d.corr(m7.fwd_30)
 md(f"\nКорреляция max_daily_7d -> fwd_30: {corr:+.3f}\n")
 
 out_md = "\n".join(L)
-(Path.home() / "binance-listing-study" / "paper" / "cross_exchange.md").write_text(out_md)
+(ROOT / "paper" / "cross_exchange.md").write_text(out_md)
 print(out_md)

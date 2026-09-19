@@ -18,9 +18,9 @@ import pandas as pd
 from botocore import UNSIGNED
 from botocore.config import Config
 
-DATA = Path.home() / "[private-repo]" / "data"
-OUT_HOME = DATA / "listing_events_enriched.csv"
-OUT_REPO = Path.home() / "binance-listing-study" / "data" / "listing_events_enriched.csv"
+ROOT = Path(__file__).resolve().parent.parent
+DATA = ROOT / "data"
+OUT = DATA / "listing_events_enriched.csv"
 
 S3 = boto3.client("s3", region_name="ap-northeast-1", config=Config(signature_version=UNSIGNED))
 API = "https://api.binance.com/api/v3/klines"
@@ -125,7 +125,7 @@ def enrich(df, sym, row):
 
 
 def main():
-    cal = pd.read_csv(DATA / "listing_events.csv")
+    cal = pd.read_csv(DATA / "listing_calendar_binance.csv")
     cal = cal[cal.symbol.str.endswith("USDT") & ~cal.symbol.str.match(LEV_PAT) & (cal.first_month >= "2021-01")]
     print(f"Событий: {len(cal)}", flush=True)
     res = []
@@ -140,12 +140,11 @@ def main():
         if i % 50 == 0:
             print(f"[{i}/{len(cal)}] {time.time()-t0:.0f}с", flush=True)
     out = pd.DataFrame(res)
-    out.to_csv(OUT_HOME, index=False)
-    out.to_csv(OUT_REPO, index=False)
+    out.to_csv(OUT, index=False)
     cols = ["pop_day0", "range_day0", "fwd_7", "fwd_30", "peak30", "trough30", "up_days_share_30"]
     print("\nМедианы ключевых фичей (%):")
     print((out[cols].median() * 100).round(2).to_string())
-    print(f"\nOK -> {OUT_REPO}")
+    print(f"\nOK -> {OUT}")
 
 
 if __name__ == "__main__":

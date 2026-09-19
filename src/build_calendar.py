@@ -11,7 +11,8 @@ import pandas as pd
 from botocore import UNSIGNED
 from botocore.config import Config
 
-OUT = Path.home() / "[private-repo]" / "data" / "listing_events.csv"
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / "data" / "listing_calendar_binance.csv"
 S3 = boto3.client("s3", region_name="ap-northeast-1", config=Config(signature_version=UNSIGNED, retries={"max_attempts": 5}))
 
 

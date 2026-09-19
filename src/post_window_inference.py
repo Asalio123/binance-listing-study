@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-ROOT = Path.home() / 'binance-listing-study'
+ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / 'data' / 'binance_day_closes'
 _local = threading.local()
 
@@ -139,7 +139,7 @@ def main():
     to = pd.read_csv(ROOT / 'data' / 'day0_turnover.csv')
     dd = out.merge(to, on='symbol').dropna(subset=['madj_7'])
     wv = dd.usd_turnover.clip(lower=1).values
-    o = np.argsort(wv)
+    o = np.argsort(dd.madj_7.values)  # взвешенная медиана: порядок по ЗНАЧЕНИЮ, не по весу
     vw = float(dd.madj_7.values[o][np.searchsorted(np.cumsum(wv[o]), wv[o].sum() / 2)]) * 100
     print(f'USD-VW madj (0->7д): {vw:+.2f}% (EW mean {c.mean():+.2f}%)')
 

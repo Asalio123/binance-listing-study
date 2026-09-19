@@ -18,7 +18,7 @@ from pathlib import Path
 
 import pandas as pd
 
-ROOT = Path.home() / "binance-listing-study"
+ROOT = Path(__file__).resolve().parent.parent
 CAT = ROOT / "data" / "cms_catalog48_titles_scout.json"
 PANEL = ROOT / "data" / "listing_events_enriched.csv"
 CACHE = ROOT / "data" / "cms_details_cache"

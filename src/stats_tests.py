@@ -8,8 +8,9 @@ import pandas as pd
 from pathlib import Path
 from scipy import stats
 
-DF = Path.home() / "binance-listing-study" / "data" / "listing_events_enriched.csv"
-OUT = Path.home() / "binance-listing-study" / "paper" / "stats_tables.md"
+ROOT = Path(__file__).resolve().parent.parent
+DF = ROOT / "data" / "listing_events_enriched.csv"
+OUT = ROOT / "paper" / "stats_tables.md"
 rng = np.random.default_rng(42)
 
 df = pd.read_csv(DF)

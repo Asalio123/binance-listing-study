@@ -2,7 +2,11 @@
 
 For a monthly grid of dates T (2022-01 -> 2026-08) rebuild the panel as a
 live-API user would have seen it at T: events with day0 < T, minus all events
-whose history ended before T (last_date < T, i.e. already delisted/silent).
+dead by T. Death is taken point-in-time from the listing calendar:
+an event is alive at T iff its calendar last_month >= month(T). The panel's
+own last_date is NOT used -- it is truncated by the 1000-day REST limit at
+175/470 rows, which made the previous version of this script drop live 2021
+listings as if they were dead.
 Compare against the death-inclusive panel of the same events and measure the
 bias in median fwd_7 / fwd_30 and the USD-weighted median fwd_7.
 
@@ -22,7 +26,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-REPO = Path.home() / "binance-listing-study"
+REPO = Path(__file__).resolve().parent.parent
 DATA = REPO / "data"
 CHARTS = REPO / "charts"
 CHARTS.mkdir(exist_ok=True)
@@ -54,18 +58,27 @@ def wmedian(x, w):
 
 ev = pd.read_csv(DATA / "listing_events_enriched.csv")
 to = pd.read_csv(DATA / "day0_turnover.csv")
-df = ev.merge(to, on="symbol", how="inner").copy()
+cal = pd.read_csv(DATA / "listing_calendar_binance.csv").drop_duplicates("symbol")
+df = ev.merge(to, on="symbol", how="inner").merge(
+    cal[["symbol", "last_month"]], on="symbol", how="left", validate="1:1"
+).copy()
+assert df["last_month"].notna().all(), "panel symbol missing from calendar"
 df["day0_date"] = pd.to_datetime(df["day0_date"])
-df["last_date"] = pd.to_datetime(df["last_date"])
 df["w"] = df["usd_turnover"].clip(lower=1)
 print(f"panel: {len(df)} events, day0 {df.day0_date.min().date()} -> "
       f"{df.day0_date.max().date()}, delisted={int(df.delisted.sum())}", flush=True)
 
 grid = pd.date_range("2022-01-01", "2026-08-01", freq="MS")
+cal_max = df["last_month"].max()  # calendar snapshot ends here (2026-07)
 rows = []
 for T in grid:
+    # point-in-time membership: alive at T iff the pair's last calendar month
+    # with a candle is T's month or later. Beyond the snapshot's final month
+    # membership is right-censored: clamp T to cal_max (pairs last seen in the
+    # snapshot month count as alive, the standard censoring convention).
+    month_T = min(T.strftime("%Y-%m"), cal_max)
     full = df[df.day0_date < T]
-    live = full[full.last_date >= T]
+    live = full[full.last_month >= month_T]
 
     def stats(p):
         f7 = p.fwd_7.dropna()

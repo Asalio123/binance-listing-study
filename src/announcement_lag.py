@@ -19,7 +19,7 @@ import pandas as pd
 from pathlib import Path
 from scipy import stats
 
-ROOT = Path.home() / "binance-listing-study"
+ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "announcement_lag_analysis.csv"
 
 

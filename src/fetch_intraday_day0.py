@@ -20,7 +20,7 @@ from pathlib import Path
 
 import pandas as pd
 
-ROOT = Path.home() / "binance-listing-study"
+ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "intraday_day0.csv"
 CACHE = ROOT / "data" / "intraday_day0_cache"
 BASE = "https://data.binance.vision/data/spot"
