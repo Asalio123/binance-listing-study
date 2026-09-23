@@ -17,9 +17,7 @@ abstract: |
   where day-0 volume peaked. Four directional predictions, frozen before
   touching any Bybit data, are tested on 415 surviving Bybit listings: the fade
   replicates (−10.34%, BH p = 8×10⁻¹⁴), first-week extremes predict
-  continuation (r = +0.37), and the volatility-predicts-fade gradient fails,
-  flipping sign, and the survivorship decomposition attributes under one
-  percentage point of the dollar gap to delisting. An exploratory
+  continuation (r = +0.37), and the volatility-predicts-fade gradient fails, flipping sign. On the Binance panel, outside the corrected family, the survivorship decomposition attributes under one percentage point of the dollar gap to delisting. An exploratory
   death-inclusive check on 566 Coinbase listings
   reproduces the fade almost exactly, and announcement timestamps reconstructed
   from the exchange's own publication API (99.6% coverage) locate the premium
@@ -120,7 +118,7 @@ tail
 trimming, winsorization, subsample exclusion or month-block clustered
 inference.
 
-**Mechanism.** Week-one losses deepen monotonically in day-0 USD turnover:
+**Mechanism.** Week-one losses steepen across day-0 turnover quintiles (Q5−Q1 = −22.9 pp, bootstrap CI excludes zero):
 the listing-day version of the divergence-of-opinion underpricing known from
 IPOs since Miller [6] (Section III.H).
 
@@ -150,9 +148,7 @@ The suffix pattern also catches two non-leveraged symbols, JUP and SYRUP,
 whose tickers happen to end in "UP"; restoring them gives the analysis panel
 of **470 events**. Including or excluding them shifts no reported median
 by more than 0.1 pp. A listing here is the debut of the USDT pair: 59 events
-traded earlier on Binance under another quote currency (re-pairings), and the
-panel knowingly includes 56 tokenized-stock and 5 stablecoin-cross pairs from
-the 2026 waves; Section III.E reports the clean panel (n = 350) alongside.
+traded earlier on Binance under another quote currency (re-pairings), and the panel knowingly includes 56 tokenized-stock pairs from the 2026 waves and 5 stablecoin-cross pairs; Section III.E reports the clean panel (n = 350) alongside.
 
 ## B. Event study specification
 
@@ -184,10 +180,7 @@ hypothesis family {H1, H2, H3}. Layers (i) and (ii) assume independent events
 and are reported for comparability with the prior literature; the bootstrap
 layer (iii) is the valid one under clustering, and every headline statistic
 carries its interval. The Bybit holdout design is documented with
-its results in Section III.H. Large-language-model tools (Claude-family
-coding and editing agents; GPT-family text checks) assisted code
-development and manuscript editing under the author's direction (full
-disclosure in the Acknowledgements).
+its results in Section III.H. Large-language-model tools (Anthropic Claude agents of the opus-4 and sonnet-4 families and Moonshot Kimi k3, via the ZCode command-line environment, August-September 2026; OpenAI GPT-family models for text checks) assisted code drafting, debugging, literature search, and language editing under the author's direction. Prompts were conversational and task-level (representative: "recompute the week-one median weighted by day-0 turnover and bootstrap its confidence interval"); they were not preserved verbatim, as the work was interactive across sessions. No model generated data or results (full disclosure in the Acknowledgements).
 
 ## C. Variables
 
@@ -284,7 +277,7 @@ this paper anchors outcomes, is already past it.
 
 ## B. Volatility, not the pop
 
-![**Fig. 2.** Fade gradient across day-0 pop quartiles. Median week-one return from the day-0 close by quartile of the day-0 close-to-open return (pop): −1.4% in the weakest pop quartile, −20.5% in the third, and −16.1% in the strongest quartile (median day-0 pop +880 per cent). The one-dimensional gradient is non-monotone; the regression decomposition is in Table III.](../charts/pop_fade_gradient.png){width=100%}
+![**Fig. 2.** Fade gradient across day-0 pop quartiles. Median week-one return from the day-0 close by quartile of the day-0 close-to-open return (pop): −1.4% in the weakest pop quartile, −20.5% in the third, and −16.1% in the strongest quartile (median day-0 pop +880 per cent). The one-dimensional gradient reverses at the extreme; the regression decomposition is in Table III.](../charts/pop_fade_gradient.png){width=100%}
 
 Univariate quartiles suggest listings with bigger day-0 pops fade harder:
 −1.4% median next week in the weakest pop quartile, −20.5% in the third. The
@@ -340,11 +333,11 @@ effect rather than a survivorship effect.
 The death events themselves close the loop. For the 73 true delistings with a
 located announcement (98 of 99 delisted panel members are dated; migrations
 excluded), the announcement day loses −28.5% at the median (5% of events
-positive), the price halves again from announcement to the last trade
-(−51.5%), and buying the listing and holding to the grave loses −98.3% at the
+positive), the price halves again from the announcement-day close to the last trade (−51.5%), and buying the listing and holding to the grave loses −98.3% at the
 median (1% positive). Migration and rebrand notices, the same genre without
 death, gain +7.9% on their day (76% positive): the reaction is specific to
-dying, not to the headline. No run-up precedes the delisting announcement.
+dying, not to the headline. No run-up precedes the delisting announcement:
+over the two weeks before it, the median event drifts −7.5% (30% positive).
 
 ## D. Application: what survives validation
 
@@ -370,8 +363,7 @@ retail spot costs of ~16 bps, the
 median absolute move is nearly two orders of magnitude larger. Monetizing the negative
 sign is harder than the drift suggests. A full sweep of perpetual-funding
 histories (327 of the 470 names have a contract) shows week-one funding
-rarely eating the drift: the median weekly funding sum is −0.36% against the
-−11.45% median drift, and only 17.7% of day-0-shortable names lose more than
+rarely eating the drift: the median weekly funding sum is −0.36% (n = 209 with week-one funding events) against the −11.45% median drift, and only 17.7% of day-0-shortable names lose more than
 half the drift to funding (the sign of funding flips by era: shorts were
 paid in 2021 and 2023–24, and pay in 2022 and from 2025). Where a perpetual existed from day 0, the short did pay: on the twelve
 most-traded such listings the median week-one short earns +25.6% and the mean
@@ -430,10 +422,7 @@ periods between announcement and listing produce median day-0 pops of
 With timestamps in hand, the pre-announcement premium becomes measurable on
 venues where the token already traded. 79 events have a Coinbase price
 history around the announcement day (usable n varies by window: 54–62
-before, 78 after). The median return on Coinbase is
-+12.9% on the day before the Binance announcement and +24.4% over the three
-days before it (Wilcoxon p = 2.4×10⁻⁹, n = 58; 87.9% positive); the seven
-days after the announcement revert to a −17.9% median (n = 78; Fig. 3). This
+before, 78 after). The median return on Coinbase is +12.9% on the day before the Binance announcement (Wilcoxon p = 4.0×10⁻⁸, n = 62; 80.6% positive) and +24.4% over the three days before it (p = 2.4×10⁻⁹, n = 58; 87.9% positive); the seven days after the announcement revert to a −17.9% median (n = 78; Fig. 3). This
 subsample is selected (tokens already large enough to trade elsewhere) and
 the exercise is exploratory, but the direction is unambiguous: the premium
 accrues before the announcement, in someone else's market. The folk trade
@@ -445,8 +434,7 @@ Minute-level data around the exact timestamps closes the loop. For the 92
 events with a pre-existing market on another venue (Coinbase 61, Bybit 31),
 the median return is +9.4% over the three hours *before* the announcement
 goes public and +3.3% over the three hours after; about 7 percentage points
-of the run-up print in the last fifteen minutes before publication, and 90%
-of pre-window events are positive (Fig. 4). The pattern is identical on both
+of the run-up print in the last fifteen minutes before publication, and 90% of events with a full pre-window are positive (87% of all 92; Fig. 4). The pattern is identical on both
 venues, and a flat three-day run-up on the same venue rules out plain
 momentum selection. (A Telegram-timestamped subsample is uninformative here:
 n = 5, mostly rebrand notices.) The
@@ -510,8 +498,7 @@ two-sided, H3 one-sided per the frozen specification.
 | H3: extremes mark continuation | Pearson, one-sided | 1.9×10⁻¹⁵ | 5.6×10⁻¹⁵ | yes | replicates |
 
 **H4: the survivorship decomposition, done in dollars.** Excluding delisted
-tokens shifts the Binance median fwd_7 by +0.35 pp (bootstrap CI [−1.27,
-+2.15]; the frozen prediction was a shift of ≥ +1 pp, which this rules out).
+tokens shifts the Binance median fwd_7 by +0.35 pp (bootstrap CI [−1.27, +2.15]); the frozen prediction of a shift of at least +1 pp fails on the point estimate.
 With true day-0 USD
 turnover weights for all 470 events, the week-one picture splits in two:
 token-counted median
@@ -533,16 +520,14 @@ month-block bootstrap 95% CIs [−7.2, +0.7], [−14.2, −1.9], [−20.5, −6.
 −13.3];
 BTC-adjusted: −3.5%, −8.5%, −15.3%, −19.8%, −29.1%). The
 quietest quintile shows no fade at all. Turnover also correlates with day-0
-range (Spearman rank correlation +0.84) and pop (+0.79), keeps incremental
-predictive power in
-cross-section (−2.4 pp per log-unit, t = −2.6), persists in every calendar
+range (Spearman rank correlation +0.84) and pop (+0.79), keeps incremental predictive power in cross-section (−2.4 pp per log-unit, t = −2.6, with the day-0 pop, day-0 range and first-week volatility controlled), persists in every calendar
 year, and survives removal of the five heaviest events. This is the listing-day
 version of the divergence-of-opinion mechanism [6], [8]–[10]: record turnover
 marks
 peak attention [22], optimists set the
 price, and dollars systematically buy that peak.
 
-![**Fig. 6.** Median week-one return from the day-0 close across day-0 USD turnover quintiles (n = 470): −0.6%, −5.0%, −14.5%, −16.8%, −23.5%. The fade is monotone in turnover; the quietest quintile shows no fade at all.](../charts/turnover_quintiles.png){width=100%}
+![**Fig. 6.** Median week-one return from the day-0 close across day-0 USD turnover quintiles (n = 470): −0.6%, −5.0%, −14.5%, −16.8%, −23.5%. The fade steepens in day-0 turnover; the quietest quintile shows no fade at all.](../charts/turnover_quintiles.png){width=100%}
 
 An exploratory third-venue check reinforces the holdout. Coinbase Exchange
 keeps delisted instruments in its public API, so a second death-inclusive
@@ -566,8 +551,7 @@ this study (which keeps delisted tokens in the sample), the post-opening,
 buyer-accessible component of the effect inverts
 entirely.
 
-Traders get a different object out of these numbers: the expected loss varies
-monotonically with the trading volume on day 0 (Fig. 6), and surviving past
+Traders get a different object out of these numbers: the expected loss steepens with the trading volume on day 0 (Fig. 6), and surviving past
 the listing does not rescue it. The anomaly lives in the attention a listing
 draws, not in the act of listing itself [27]. Shorting the fade is mostly
 uneconomical [23]: the binding constraint is access, not funding
@@ -620,7 +604,7 @@ An analysis of every USDT token listed on Binance's spot market between 2021
 and 2026 (the data was rebuilt so that no dead coin can drop out of the
 sample) shows that prices tend to fall during the first week after listing
 (−11.45% in token terms, −28.72% in dollar terms). Furthermore, the decline
-is concentrated monotonically where attention and trading volume
+is steepest where attention and trading volume
 peaked. A pre-specified holdout confirms the fade and the continuation effect
 of first-week extremes on a second venue, and an exploratory death-inclusive
 check on Coinbase (566 listings) reproduces the fade almost exactly. The
@@ -639,11 +623,7 @@ This work was carried out under the academic supervision of Sergey Solntsev,
 PhD in Economics, Deputy Head of the Laboratory for Labour Market Studies,
 Assistant Professor at the Faculty of Economic Sciences, National Research
 University Higher School of Economics. We thank Binance, Bybit and Coinbase
-for maintaining public market-data archives. Disclosure of AI use:
-large-language-model tools were used under the author's direction for code
-assistance, literature search, and manuscript editing; every analysis,
-result, and interpretation was produced by the author, who verified each
-reported number against the underlying data and code.
+for maintaining public market-data archives. Disclosure of AI use: large-language-model tools assisted code drafting, literature search, and language editing (tools and versions in Section II.B); the work was designed and directed by the author, who verified every reported number against the released data and code; no AI tool is an author.
 
 # Declarations
 
@@ -727,8 +707,7 @@ art. 101853, 2021.
 [15] J. Li, M. Luo, M. Wang, and Z. Wei, "Cryptocurrency listings on
 cryptocurrency exchanges," SSRN 4715718, 2024.
 
-[16] The Tie Research, "What does an exchange listing actually deliver?"
-2026.
+[16] J. Moss, The Tie Research, "What does an exchange listing actually deliver?" July 13, 2026, https://thetie.io/insights/what-does-an-exchange-listing-actually-deliver-in-2026.
 
 [17] J. Kolari and S. Pynnönen, "Event study testing with cross-sectional
 correlation of abnormal returns," *Review of Financial Studies*, vol. 23,
@@ -755,8 +734,7 @@ news on the buying behavior of individual and institutional investors,"
 Finance*, vol. 52, no. 1, pp. 35–55, 1997.
 
 [24] E. Félez-Viñas, L. Johnson, and T. J. Putnins, "Insider trading in
-cryptocurrency markets," SSRN Working Paper No. 4184367, 2022,
-doi:10.2139/ssrn.4184367.
+cryptocurrency markets," SSRN Working Paper No. 4184367, 2022, revised February 2025, doi:10.2139/ssrn.4184367.
 
 [25] S. T. Howell, M. Niessner, and D. Yermack, "Initial coin offerings:
 Financing growth with cryptocurrency token sales," *Review of Financial
@@ -769,5 +747,4 @@ Studies*, vol. 33, no. 9, pp. 3925–3974, 2020.
 M. Vasek, "An examination of the cryptocurrency pump-and-dump ecosystem,"
 *Information Processing & Management*, vol. 58, no. 4, art. 102506, 2021.
 
-[28] Animoca Research, "Token listings on centralized exchanges: performance
-analysis," 2024.
+[28] Animoca Research, "Token listings on centralized exchanges: performance analysis," October 2024; as covered by CryptoSlate, October 31, 2024.

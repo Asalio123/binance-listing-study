@@ -34,12 +34,12 @@ correct ordering match the published headline numbers exactly
 | Turnover quintile Q4 | −16.78% | −25.99 | −12.95 |
 | Turnover quintile Q5 | −23.54% | −33.15 | −14.93 |
 | Gradient Q5 − Q1 | −22.94 pp | −32.61 | −13.25 |
-| BTC-adj quintile Q1 | −4.55% | −8.56 | +0.12 |
-| BTC-adj quintile Q2 | −9.78% | −15.62 | −4.59 |
-| BTC-adj quintile Q3 | −15.73% | −22.46 | −10.26 |
-| BTC-adj quintile Q4 | −19.53% | −27.72 | −12.00 |
+| BTC-adj quintile Q1 | −3.45% | −8.56 | +0.54 |
+| BTC-adj quintile Q2 | −8.53% | −15.24 | −4.26 |
+| BTC-adj quintile Q3 | −15.25% | −22.44 | −10.12 |
+| BTC-adj quintile Q4 | −19.84% | −27.72 | −12.00 |
 | BTC-adj quintile Q5 | −29.08% | −41.44 | −14.80 |
-| BTC-adj gradient Q5 − Q1 | −24.54 pp | −37.42 | −9.91 |
+| BTC-adj gradient Q5 − Q1 | −25.63 pp | −37.81 | −10.43 |
 
 Reading: the VW medians and the quintile gradient exclude zero
 comfortably under clustering; Q1 (quietest listings) does not — its CI

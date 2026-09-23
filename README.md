@@ -48,7 +48,11 @@ src/build_calendar.py   # walks the S3 archive index -> listing_calendar_binance
                         # (symbol, first_month, last_month, delisted flag)
 src/event_study.py      # price paths per event (REST for survivors,
                         # archive zips for delisted) -> event-level returns
+src/build_announcement_dates.py   # announcement timestamps from the Binance CMS API
+src/make_announcement_premium_chart.py  # Fig: pre-announcement premium on Coinbase
 data/listing_calendar_binance.csv   # prebuilt calendar, 3682 symbols
+data/MANIFEST.md                  # every data artifact with its generator
+build_cjsj.sh                     # one-command offline verification (20 checks)
 ```
 
 ## Usage
@@ -63,8 +67,9 @@ python src/event_study.py        # ~10 min, needs public Binance REST
 
 - No historical order-book depth exists in the archive; liquidity at listing open is
   not modelled.
-- Announcement timestamps are not reconstructed here — this study covers the
-  post-open window only.
+- Announcement timestamps are reconstructed for 468 of 470 events
+  (`data/announcement_dates.csv`, Binance CMS API + Telegram cross-validation);
+  the two undated events (NBT, MULTI) appear to be quiet pair additions.
 - Delisted coins are marked to last available close (`trunc_*` flags in output);
   treating them as −100% instead makes every horizon worse.
 

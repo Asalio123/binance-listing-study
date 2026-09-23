@@ -37,7 +37,7 @@ web.archive.org, t.me), the rest are pure recompute over the caches.
 | `announcement_dates.csv` | 468 | 60K | Announcement timestamps for 468/470 events (Binance CMS + Telegram cross-validation), match pattern and confidence grade per event | `build_announcement_dates.py` |
 | `announcement_lag_analysis.csv` | 470 | 64K | Announcement→trading lag per event with pre-announcement drift statistics | `announcement_lag.py` |
 | `announcement_shock.csv` | 468 | 52K | Minute-level returns around the announcement timestamp | `announcement_shock.py` |
-| `announcement_premium_coinbase.csv` | 79 | 8K | Returns around Binance announcement timestamps measured on Coinbase (79 cross-listed events) | derived artifact; no generating script in repo (audit M9/H4) |
+| `announcement_premium_coinbase.csv` | 79 | 8K | Returns around Binance announcement timestamps measured on Coinbase (79 cross-listed events) | generator: `src/build_announcement_premium.py` (offline, from announcement_dates.csv + listing_events_enriched.csv + coinbase_candles_cache/); one v1 cell corrected (POWRUSDT post7: gap-skipping positional index → calendar date; published medians invariant) |
 | `intraday_day0.csv` | 470 | 56K | Minute-level day-0 anatomy: first-hour return, time-to-peak, volume share, listing open timestamp | `fetch_intraday_day0.py` *(network)* |
 | `day0_microstructure.csv` | 470 | 88K | Day-0 microstructure aggregates from the minute cache | `day0_microstructure.py` |
 | `delisting_events.csv` | 98 | 44K | Delisting event study: 98 located delisting announcements with post-announcement returns | `build_delisting_study.py` *(network)* |
