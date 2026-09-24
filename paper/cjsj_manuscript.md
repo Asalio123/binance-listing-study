@@ -13,11 +13,11 @@ abstract: |
   run to −11.45% after one week and −21.53% after a month (Wilcoxon
   p < 10⁻¹⁶). The median-dollar outcome is more than twice as bad (−28.7%
   weighted by day-0 turnover), and delisting explains less than one percentage
-  point of the gap: the money evaporates while the tokens still trade, fastest
+  point of that loss: the money evaporates while the tokens still trade, fastest
   where day-0 volume peaked. Four directional predictions, frozen before
   touching any Bybit data, are tested on 415 surviving Bybit listings: the fade
   replicates (−10.34%, BH p = 8×10⁻¹⁴), first-week extremes predict
-  continuation (r = +0.37), and the volatility-predicts-fade gradient fails, flipping sign. On the Binance panel, outside the corrected family, the survivorship decomposition attributes under one percentage point of the dollar gap to delisting. An exploratory
+  continuation (r = +0.37), and the volatility-predicts-fade gradient fails, flipping sign. On the Binance panel, outside the corrected family, the survivorship decomposition attributes under one percentage point of the dollar loss to delisting. An exploratory
   death-inclusive check on 566 Coinbase listings
   reproduces the fade almost exactly, and announcement timestamps reconstructed
   from the exchange's own publication API (99.6% coverage) locate the premium
@@ -434,7 +434,7 @@ Minute-level data around the exact timestamps closes the loop. For the 92
 events with a pre-existing market on another venue (Coinbase 61, Bybit 31),
 the median return is +9.4% over the three hours *before* the announcement
 goes public and +3.3% over the three hours after; about 7 percentage points
-of the run-up print in the last fifteen minutes before publication, and 90% of events with a full pre-window are positive (87% of all 92; Fig. 4). The pattern is identical on both
+of the run-up print in the last fifteen minutes before publication, and 90% of events with a full pre-window are positive (87% of all 92; Fig. 4). The pre-announcement run-up appears on both
 venues, and a flat three-day run-up on the same venue rules out plain
 momentum selection. (A Telegram-timestamped subsample is uninformative here:
 n = 5, mostly rebrand notices.) The

@@ -125,20 +125,21 @@ ax.set_ylabel("Median week-one return (%)")
 ax.set_ylim(min(raw_vals + adj_vals) * 1.18, 2)
 save(fig, "dollar_vs_token.png")
 
-# --- Fig 5: fade monotone in day-0 turnover ----------------------------------
-d["q"] = pd.qcut(d.usd_turnover, 5,
-                 labels=["Q1\nlowest", "Q2", "Q3", "Q4", "Q5\nhighest"])
-q = d.groupby("q", observed=True).agg(madj=("madj_7", lambda x: x.median() * 100),
-                                      n=("madj_7", "size"))
+# --- Fig 5: fade steepens in day-0 turnover ---------------------------------
+dq = ev.merge(to, on="symbol").dropna(subset=["fwd_7"]).copy()
+dq["q"] = pd.qcut(dq.usd_turnover, 5,
+                  labels=["Q1\nlowest", "Q2", "Q3", "Q4", "Q5\nhighest"])
+q = dq.groupby("q", observed=True).agg(fwd7=("fwd_7", lambda x: x.median() * 100),
+                                       n=("fwd_7", "size"))
 fig, ax = plt.subplots(figsize=(8, 4.2))
-bars = ax.bar(q.index.astype(str), q["madj"], color=RED, alpha=0.85, width=0.6)
-for b, v in zip(bars, q["madj"]):
+bars = ax.bar(q.index.astype(str), q["fwd7"], color=RED, alpha=0.85, width=0.6)
+for b, v in zip(bars, q["fwd7"]):
     ax.text(b.get_x() + b.get_width() / 2, v - 1.2, f"{v:+.1f}%",
             ha="center", va="top", fontsize=11, fontweight="bold")
 ax.axhline(0, color="#444444", linewidth=0.8)
-ax.set_ylabel("Median BTC-adjusted return,\nfirst week (%)")
+ax.set_ylabel("Median week-one return,\nfirst week (%)")
 ax.set_xlabel("Day-0 USD turnover quintile")
-ax.set_ylim(q["madj"].min() * 1.22, 3)
+ax.set_ylim(q["fwd7"].min() * 1.22, 3)
 save(fig, "turnover_quintiles.png")
 
 print("OK:", sorted(p.name for p in CHARTS.glob("*.png")))
