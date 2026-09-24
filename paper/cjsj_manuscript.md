@@ -178,8 +178,8 @@ CARs. (ii) The Wilcoxon signed-rank test, robust to the heavy right tail.
 (iv) Benjamini-Hochberg correction (q = 0.05) across the confirmatory
 hypothesis family {H1, H2, H3}. Layers (i) and (ii) assume independent events
 and are reported for comparability with the prior literature; the bootstrap
-layer (iii) is the valid one under clustering, and every headline statistic
-carries its interval. The Bybit holdout design is documented with
+layer (iii) is the valid one under clustering, and the primary medians carry
+its interval (Table II and Sections III.C, III.H). The Bybit holdout design is documented with
 its results in Section III.H. Large-language-model tools (Anthropic Claude agents of the opus-4 and sonnet-4 families and Moonshot Kimi k3, via the ZCode command-line environment, August-September 2026; OpenAI GPT-family models for text checks) assisted code drafting, debugging, literature search, and language editing under the author's direction. Prompts were conversational and task-level (representative: "recompute the week-one median weighted by day-0 turnover and bootstrap its confidence interval"); they were not preserved verbatim, as the work was interactive across sessions. No model generated data or results (full disclosure in the Acknowledgements).
 
 ## C. Variables
@@ -226,7 +226,9 @@ sense of Dichev [11].
 
 ![**Fig. 1.** Median cumulative return after the listing day. Forward return from the day-0 close over the first 30 trading days, median across the 470 death-inclusive events: −4.45% at +1d, −8.87% at +3d, −11.45% at +7d, −14.51% at +14d, −21.53% at +30d. All medians are significant (Wilcoxon p ≤ 7.9×10⁻¹³; Table II).](../charts/post_listing_drift.png){width=100%}
 
-**Table II.** Forward returns from day-0 close (n=470).
+**Table II.** Forward returns from day-0 close (n=470); month-block 95% CIs of
+the medians: +1d [−6.9, −2.9], +3d [−11.3, −6.3], +7d [−14.8, −7.4],
++14d [−21.1, −9.1], +30d [−31.2, −12.1]; all exclude zero.
 
 | Horizon | Median | Mean | t-stat | Wilcoxon p | %>0 |
 |---|---|---|---|---|---|
@@ -449,7 +451,7 @@ is the afterthought.
 
 The Bybit holdout was designed before the fact. Four directional predictions
 were written on 2026-08-23 and frozen in version control on 2026-08-24,
-before any Bybit price data was touched. Three
+before any Bybit price data entered the repository. Three
 transplant the Binance findings to Bybit and form the multiple-testing family,
 corrected with Benjamini-Hochberg (q = 0.05); the decision rule is dual:
 adjusted p < 0.05 plus the predicted direction. The fourth (H4) is a

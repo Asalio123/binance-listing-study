@@ -50,3 +50,19 @@ delisting wedge (+0.96 pp) is not distinguishable from zero at 95%.
 ## The n = 460 partition (RESOLVED 2026-09-19)
 
 The original run had n = 460 for BTC-adjusted series: ten July-2026 tokenized-stock listings lacked a day+7 close in the day-closes cache. After the cache refresh (2026-08 files added by the M9 hygiene pass), madj is defined for all 470 events; the BTC-adjusted VW median is unchanged (−35.46%), the BTC-adjusted Q1 quintile moves −4.55 -> −3.45. The table above reports refreshed numbers.
+
+
+## Equal-weight median CIs (added 2026-09-24)
+
+Month-block bootstrap (67 month clusters, 5,000 draws, seed 42), percentile
+2.5/97.5, for the five equal-weight medians of Table I / Table II. All five
+exclude zero. These are the intervals printed in the CI column of the forward-
+return table in both manuscript versions.
+
+| Horizon | Median | 95% CI |
+|---|---|---|
+| +1d | -4.45 | [-6.91, -2.87] |
+| +3d | -8.87 | [-11.26, -6.28] |
+| +7d | -11.45 | [-14.77, -7.44] |
+| +14d | -14.51 | [-21.11, -9.07] |
+| +30d | -21.53 | [-31.19, -12.12] |
