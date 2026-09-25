@@ -180,7 +180,7 @@ hypothesis family {H1, H2, H3}. Layers (i) and (ii) assume independent events
 and are reported for comparability with the prior literature; the bootstrap
 layer (iii) is the valid one under clustering, and the primary medians carry
 its interval (Table II and Sections III.C, III.H). The Bybit holdout design is documented with
-its results in Section III.H. Large-language-model tools (Anthropic Claude agents of the opus-4 and sonnet-4 families and Moonshot Kimi k3, via the ZCode command-line environment, August-September 2026; OpenAI GPT-family models for text checks) assisted code drafting, debugging, literature search, and language editing under the author's direction. Prompts were conversational and task-level (representative: "recompute the week-one median weighted by day-0 turnover and bootstrap its confidence interval"); they were not preserved verbatim, as the work was interactive across sessions. No model generated data or results (full disclosure in the Acknowledgements).
+its results in Section III.H. Large-language-model tools (Anthropic Claude opus-4/sonnet-4 and Moonshot Kimi k3 families; OpenAI GPT-family models for text checks) assisted, under the author's direction, in collecting the public data, in suggestions and debugging for parts of the analysis code, and in drafting and editing parts of the manuscript. Prompts were conversational and task-level and were not preserved verbatim, as the work was interactive across sessions. No model generated data or results (full disclosure in the Acknowledgements).
 
 ## C. Variables
 
@@ -625,7 +625,7 @@ This work was carried out under the academic supervision of Sergey Solntsev,
 PhD in Economics, Deputy Head of the Laboratory for Labour Market Studies,
 Assistant Professor at the Faculty of Economic Sciences, National Research
 University Higher School of Economics. We thank Binance, Bybit and Coinbase
-for maintaining public market-data archives. Disclosure of AI use: large-language-model tools assisted code drafting, literature search, and language editing (tools and versions in Section II.B); the work was designed and directed by the author, who verified every reported number against the released data and code; no AI tool is an author.
+for maintaining public market-data archives. Disclosure of AI use: large-language-model tools assisted data collection, parts of the analysis code, and manuscript drafting and editing (tools and versions in Section II.B); the work was designed and directed by the author, who verified every reported number against the released data and code; no AI tool is an author.
 
 # Declarations
 
