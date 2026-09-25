@@ -632,7 +632,7 @@ for maintaining public market-data archives. Disclosure of AI use: large-languag
 **Pre-specification.** The four directional predictions (Section III.H) were
 specified, and the Bybit listing calendar frozen, before any Bybit price
 outcome was computed or examined; both are preserved in the companion
-repository's version-control history (commit `9135a54`, preceding all
+repository's version-control history (commit `e7a2f37`, preceding all
 outcome-analysis commits). This is pre-specification under version control,
 not registration with an external registry; we state the distinction plainly.
 

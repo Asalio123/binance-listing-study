@@ -58,17 +58,17 @@ Binance USDT Listing, 2021–2026"** (Said Bakhtiev, 2026).
 engine, statistics, pre-specified Bybit holdout, announcement-date
 reconstruction (CMS + Telegram), intraday day-0 fetcher, chart generation.
 
-**Paper** (`paper/`) — preprint PDF and sources, the claim-by-claim
-falsification matrix for the prior listing literature (`FALSIFICATION.md`),
-and statistical appendices.
+**Paper** (`paper/`) — the manuscript (full master and 2–3-page venue
+submission versions), the claim-by-claim falsification matrix for the prior
+listing literature (`FALSIFICATION.md`), and statistical appendices.
 
 ## Headline numbers (n = 470, death-inclusive)
 
 - Median fwd returns from day-0 close: −4.45% (+1d), −11.45% (+7d), −21.53% (+30d)
 - Dollar-weighted week-one median: −28.72% raw, −35.46% BTC-adjusted
-- Delisting explains +0.96 pp of the token-vs-dollar gap; survivorship shift
-  on medians +0.35 pp (n.s.)
-- Preregistered Bybit holdout (415 survivors): fade replicates (−10.34%,
+- Delisting explains +0.96 pp of the dollar-weighted week-one loss;
+  survivorship shift on medians +0.35 pp (n.s.)
+- Pre-specified Bybit holdout (415 survivors): fade replicates (−10.34%,
   BH p = 8×10⁻¹⁴); H2 volatility gradient does not replicate (sign flip)
 
 ## Citing

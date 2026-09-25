@@ -1,7 +1,35 @@
-*.log
-__pycache__/
-*.pyc
+# locals
 .DS_Store
-.zcode/
+__pycache__/
+*.log
 .pages/
+.zcode/
+paper/fonts/*.zip
 
+# internal process docs (local-only, never public)
+HANDOFF.md
+VENUES.md
+REMINDERS.md
+PLAN_research_next.md
+FIX_WAVE_PROMPT_*.md
+PROMPT_DEEP_CONTEXT.md
+paper/make_noised.py
+paper/build.sh
+paper/frl_letter.md
+paper/frl_letter.docx
+paper/collab_pitch.md
+paper/self_assessment.md
+paper/humanize_changelog_*.md
+paper/preprint.md
+paper/preprint.pdf
+paper/preprint_ru.md
+paper/AGENT_FAILURES_AUDIT_*.md
+publish/frl_waiver_email.md
+publish/yhsa_inquiry_email.md
+publish/cjsj_cover_letter.md
+publish/cjsj_form_answers.md
+publish/ssrn_checklist.md
+publish/CJSJ_PLAN.md
+publish/announcements.md
+publish/kaggle_description.md
+publish/cjsj_package/
