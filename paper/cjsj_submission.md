@@ -35,7 +35,7 @@ Four directional predictions were written on 2026-08-23 and frozen in version co
 
 ## E. AI-assistance disclosure
 
-Large-language-model tools (Anthropic Claude opus-4/sonnet-4 and Moonshot Kimi k3 families; OpenAI GPT-family models for text checks) assisted under the author's direction in supporting roles: collecting the public data, suggestions and debugging for parts of the analysis code, and drafting and editing parts of the manuscript. Prompts were conversational and were not preserved verbatim. The author designed the study, specified every analysis, and verified every reported number against the released data and code; no model generated data or results; no AI tool is an author.
+Large-language-model tools (Anthropic Claude Opus 4.8, Moonshot Kimi K3, and OpenAI ChatGPT 5.6 for text checks) assisted under the author's direction in supporting roles: collecting the public data, suggestions and debugging for parts of the analysis code, and drafting and editing parts of the manuscript. Prompts were conversational and were not preserved verbatim. The author designed the study, specified every analysis, and verified every reported number against the released data and code; no model generated data or results; no AI tool is an author.
 
 # III. Results
 
