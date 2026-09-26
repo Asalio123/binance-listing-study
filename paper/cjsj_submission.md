@@ -109,7 +109,7 @@ The author thanks Sergey Solntsev, PhD in Economics, National Research Universit
 
 # Data and Code Availability
 
-The companion repository (MIT licence) contains the listing calendars, the 470-event panel, the holdout code with its raw cache, the announcement-timestamp panel, the funding sweep, the delisting study, and all verification code; one command re-checks every headline number offline. [Editorial note, remove before submission: insert the public GitHub URL and Zenodo DOI.]
+The companion repository is public and versioned: https://github.com/Asalio123/binance-listing-study, archived at https://doi.org/10.5281/zenodo.22976615. It contains the listing calendars, the 470-event panel, the holdout code with its raw cache, the announcement-timestamp panel, the funding sweep, the delisting study, and all verification code; one command re-checks every headline number offline.
 
 # References
 

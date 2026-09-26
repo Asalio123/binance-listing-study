@@ -73,8 +73,7 @@ listing literature (`FALSIFICATION.md`), and statistical appendices.
 
 ## Citing
 
-See `CITATION.cff`. DOI of this dataset (Zenodo) and of the preprint (SSRN)
-will be added to this section and the README after deposit.
+See `CITATION.cff`. Archived release (Zenodo): https://doi.org/10.5281/zenodo.22976615 ; repository: https://github.com/Asalio123/binance-listing-study.
 
 ## License
 

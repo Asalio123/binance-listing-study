@@ -3,6 +3,7 @@
 **Evidence from every Binance USDT listing, 2021–2026**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22976615.svg)](https://doi.org/10.5281/zenodo.22976615)
 [![Reproducibility](https://img.shields.io/badge/verification-one--command-green)](build_cjsj.sh)
 
 > What does a buyer earn who purchases every new Binance USDT listing at its
@@ -93,6 +94,7 @@ python src/event_study.py        # price paths -> event-level returns
 ## Paper & citation
 
 Manuscript sources: [`paper/cjsj_manuscript.md`](paper/cjsj_manuscript.md).
+Archived release: [10.5281/zenodo.22976615](https://doi.org/10.5281/zenodo.22976615).
 Pre-specified hypotheses: [`HYPOTHESES.md`](HYPOTHESES.md) (frozen before the
 holdout was touched; see the commit history).
 

@@ -651,8 +651,8 @@ the delisting event-study panel (98 events with announcement timestamps),
 the day-0 turnover data, the statistical appendices,
 the claim-by-claim falsification matrix for the prior literature, and the
 chart-generation code.
-[Editorial note, remove before submission: insert public GitHub URL and
-Zenodo DOI once the repository is public; the release package is prepared.]
+The repository is public at https://github.com/Asalio123/binance-listing-study
+and archived at https://doi.org/10.5281/zenodo.22976615.
 
 # References
 
