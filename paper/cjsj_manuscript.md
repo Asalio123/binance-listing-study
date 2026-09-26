@@ -621,10 +621,8 @@ trade everyone knows about has already happened.
 
 # Acknowledgements
 
-This work was carried out under the academic supervision of Sergey Solntsev,
-PhD in Economics, Deputy Head of the Laboratory for Labour Market Studies,
-Assistant Professor at the Faculty of Economic Sciences, National Research
-University Higher School of Economics. We thank Binance, Bybit and Coinbase
+The author thanks Svetlana A. Bakhtieva, English teacher at the Gymnasium of
+Aznakayevo, for mentorship and language guidance. We thank Binance, Bybit and Coinbase
 for maintaining public market-data archives. Disclosure of AI use: large-language-model tools assisted data collection, parts of the analysis code, and manuscript drafting and editing (tools and versions in Section II.B); the work was designed and directed by the author, who verified every reported number against the released data and code; no AI tool is an author.
 
 # Declarations

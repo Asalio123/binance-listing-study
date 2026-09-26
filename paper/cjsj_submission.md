@@ -105,7 +105,7 @@ Rebuilding the measurement so that no dead coin can drop out of the sample shows
 
 # Acknowledgements
 
-The author thanks Sergey Solntsev, PhD in Economics, National Research University Higher School of Economics, for academic supervision, and Binance, Bybit, and Coinbase for their public market-data archives. Large-language-model tools assisted as disclosed in Section II; the work was designed and directed by the author, and no AI tool is an author.
+The author thanks Svetlana A. Bakhtieva, English teacher at the Gymnasium of Aznakayevo, for mentorship and language guidance, and Binance, Bybit, and Coinbase for their public market-data archives. Large-language-model tools assisted as disclosed in Section II; the work was designed and directed by the author, and no AI tool is an author.
 
 # Data and Code Availability
 
